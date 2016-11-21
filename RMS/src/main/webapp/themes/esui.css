@@ -1,4 +1,4 @@
-/*¹«ÓÃ*/
+/*ï¿½ï¿½ï¿½ï¿½*/
 a{color:#000000 !important;text-decoration:none !important}
 a:hover{color:#00CCFF !important;text-decoration:none !important;}
 a:focus{color:#000000 !important;text-decoration:none !important;}
@@ -12,7 +12,7 @@ a:focus{color:#000000 !important;text-decoration:none !important;}
 .fontBold{font-weight:bold;}
 .calendareast{width:200px;height:250px;}
 
-/*ºóÌ¨Ê×Ò³*/
+/*ï¿½ï¿½Ì¨ï¿½ï¿½Ò³*/
 .searchBack{ background-color: #ffffff;}
 .logoImg{width:55px;height:55px;}
 .north{height:70px;background:url(default/images/index-back.jpg) repeat-x 0 0;}
@@ -27,12 +27,18 @@ a:focus{color:#000000 !important;text-decoration:none !important;}
 .tree-node{padding: 5px 0px;}
 
 
-/*ÓÃ»§ĞÅÏ¢*/
+/*ï¿½Ã»ï¿½ï¿½ï¿½Ï¢*/
 .addUserLog{width: 300px; height: 180px; padding: 5px;background-color: #fafafa;}
 .addUserLog .logCenter{padding: 10px; background: #fff; border: 1px solid #ccc;}
 .addUserLog .logSouth{text-align: right; height: 30px; line-height: 30px;}
 
-/*Ìí¼ÓÉÌÆ·*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½Æ·*/
 .add_good_title{padding:3px 2px;border-bottom:1px solid #ccc}	
 .addgood{height:400px;}	
 .goodcenter{margin:0px 30% 0px; width:100%;}
+
+
+/*æƒé™ä¸­å¿ƒ*/
+	.top-area{width:740px;}
+	.top-area .title{margin-bottom:0px;background-color:#E7F0FE;border:1px solid #95B8E7;}
+	.btm-area .title{margin-bottom:0px;background-color:#E7F0FE;border:1px solid #95B8E7;}

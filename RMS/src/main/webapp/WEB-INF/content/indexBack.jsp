@@ -55,9 +55,9 @@
 		<div title="系统管理" data-options="iconCls:'icon-system'">
 			<ul id="tt3" class="easyui-tree esuitree">
 				<li data-options="iconCls:'icon-menu'">><span><a href="#"  onclick="addTab('菜单权限','privilege_menu1')">菜单权限</a></span></li>
-				<li data-options="iconCls:'icon-center'">><span><a href="#"  onclick="addTab('权限中心','privilege_menu1')">权限中心</a></span></li>
-				<li data-options="iconCls:'icon-datapri'">><span><a href="#"  onclick="addTab('数据权限','privilege_menu1')">数据权限</a></span></li>
-				<li data-options="iconCls:'icon-setting'">><span><a href="#"  onclick="addTab('底层权限','privilege_menu1')">底层权限</a></span></li>			
+				<li data-options="iconCls:'icon-center'">><span><a href="#"  onclick="addTab('权限中心','privilege_menu2')">权限中心</a></span></li>
+				<li data-options="iconCls:'icon-datapri'">><span><a href="#"  onclick="addTab('数据权限','privilege_menu3')">数据权限</a></span></li>
+				<li data-options="iconCls:'icon-setting'">><span><a href="#"  onclick="addTab('底层权限','privilege_menu4')">底层权限</a></span></li>			
 			</ul>
 		</div>
 
