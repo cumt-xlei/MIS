@@ -1,0 +1,168 @@
+/* CSS Document */
+@charset "utf-8";
+body,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt,dd,input{ margin:0; padding:0;}
+body{font-size:12px;}
+img{border:none;}
+li{list-style:none;}
+select,textarea{outline:none;border:none;background:none;}
+/*清浮动*/
+.clearfix:after{content:"";display:block;clear:both;}
+.clearfix{zoom:1;}
+
+/* topBar */
+.topBar{height:31px;background-color;#f7f7f7;} 
+
+.fl{float:left}
+.fr{float:right}
+
+	/*bootstrap公用*/
+
+/*标题*/
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+
+.h1,
+.h2,
+.h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.h4,
+.h5,
+.h6 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.h1 {
+  font-size: 36px;
+}
+h2,
+.h2 {
+  font-size: 30px;
+}
+h3,
+.h3 {
+  font-size: 24px;
+}
+h4,
+.h4 {
+  font-size: 18px;
+}
+h5,
+.h5 {
+  font-size: 14px;
+}
+h6,
+.h6 {
+  font-size: 12px;
+}
+
+/*副标题*/
+
+.h1 .small,
+.h2 .small,
+.h3 .small,
+.h4 .small,
+.h5 .small,
+.h6 .small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999;
+}
+
+.h1 .small,
+.h2 .small,
+.h3 .small {
+  font-size: 65%;
+}
+
+.h4 .small,
+.h5 .small,
+.h6 .small {
+  font-size: 75%;
+}
+
+
+/*body部分*/
+
+body {
+font-family: "MicrosoftYaHei","微软雅黑";
+line-height: 1.42857143;
+color: #333;
+background-color: #fff;
+}
+
+
+/*正文强调部分（lead类）*/
+.lead {
+margin-bottom: 20px;
+font-size: 16px;
+font-weight: 200;
+line-height: 1.4;
+}
+@media (min-width: 768px) {/*大中型浏览器字体稍大*/
+.lead {
+font-size: 21px;
+  }
+}
+
+b,strong {
+  font-weight: bold; /*文本加粗*/
+}
+
+/*text-muted：提示，使用浅灰色（#999）
+.text-primary：主要，使用蓝色（#428bca）
+.text-success：成功，使用浅绿色(#3c763d)
+.text-info：通知信息，使用浅蓝色（#31708f）
+.text-warning：警告，使用黄色（#8a6d3b）
+.text-danger：危险，使用褐色（#a94442）*/
+.text-muted {
+color: #999;
+}
+.text-primary {
+color: #428bca;
+}
+a.text-primary:hover {
+color: #3071a9;
+}
+.text-success {
+color: #3c763d;
+}
+a.text-success:hover {
+color: #2b542c;
+}
+.text-info {
+color: #31708f;
+}
+a.text-info:hover {
+color: #245269;
+}
+.text-warning {
+color: #8a6d3b;
+}
+a.text-warning:hover {
+color: #66512c;
+}
+.text-danger {
+color: #a94442;
+}
+a.text-danger:hover {
+color: #843534;
+}
+
+
+
+
+

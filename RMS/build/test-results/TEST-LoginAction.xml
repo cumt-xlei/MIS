@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="LoginAction" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-07-16T08:07:43" hostname="EC-B303-30" time="0.486">
+  <properties/>
+  <testcase name="testExecute" classname="LoginAction" time="0.486"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
