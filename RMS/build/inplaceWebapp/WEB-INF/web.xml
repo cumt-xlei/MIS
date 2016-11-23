@@ -3,13 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	
-	<!-- 测试的filter配置 -->
-
-	
-	
-	
- 
-		
 	 <filter>
         <filter-name>struts</filter-name>
         <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
@@ -29,7 +22,10 @@
         <filter-name>struts1</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
+    <!-- 欢迎页   -->
+    <welcome-file-list>
+    	<welcome-file>/WEB-INF/content/indexBack.jsp</welcome-file>
+	</welcome-file-list>
 	 
 </web-app>
 

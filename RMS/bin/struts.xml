@@ -5,22 +5,24 @@
 <struts>
 	<constant name="conststruts.devMode" value="true"/>
 	<!-- Struts2的所有Action都需位于package下 -->
-	<package name="lee" extends="struts-default">
-	
-	    	   
+	<package name="lee" extends="struts-default">	    	   
 	   <action name="*">
 			<result>/WEB-INF/content/{1}.jsp</result>
-		</action>
-	  
-		
+		</action>	
 	</package>
 	
-<!--用户后台
-	<package name="bps" extends="json-default"> 
-
-	
+	<!--AJAX -->
+	<package name="bps" extends="json-default">
+		<action name="getAll_*" class="cn.edu.cumt.ec.action.UserBackAction" method="*"> 
+    		<result name="success" type="json">
+				<!-- 为该Result指定参数 -->
+				<param name="noCache">true</param>
+				<param name="contentType">text/html</param>
+				<!-- 设置只序列Action的map属性 -->		
+				<param name="root">returnpd</param>
+			</result>
+		</action> 	
 	</package>	
 
- -->	
 		
 </struts>

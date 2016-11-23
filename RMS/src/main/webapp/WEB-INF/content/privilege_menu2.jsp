@@ -14,11 +14,10 @@
 	<script type="text/javascript" src="js/esui.js"></script>
 
     <script type="text/javascript">
- 		$(function(){
- 			var a=null;
+ 		$(function role(){
  			//数据表格
  			$('#roledg').datagrid({
- 			    url:'getallgood.action?gname='+a,
+ 			    url:'getAll_Role.action',
  			   	pagination:true,
  			   	rownumbers:true,
  			   	striped:true,
@@ -29,19 +28,49 @@
  			    ]],
  			 //数据表格  
  			   toolbar: [{
- 				  	text:'用户',
- 					iconCls: 'icon-users',
- 					handler: function(){alert('编辑按钮')}
+ 				  	text:'角色',
+					iconCls: 'icon-customer2',
+					handler: function role(){}
+ 				  	
  				},'-',{
- 					text:'角色',
- 					iconCls: 'icon-customer2',
- 					handler: function(){alert('帮助按钮')}
+ 					text:'用户',
+ 					iconCls: 'icon-users',
+ 					handler:function (){$('#roledg').hide()}
  				}]
 
  			});
  		});
  		
- 		$(function(){
+ 		$(function users(){
+ 			var a=null;
+ 			//数据表格
+ 			$('#usersdg').datagrid({
+ 			    url:'getallgood.action?gname='+a,
+ 			   	pagination:true,
+ 			   	rownumbers:true,
+ 			   	striped:true,
+ 			   	singleSelect:true, 			    
+ 			    columns:[[
+ 					{field:'RoleName',title:'账号',width:300,align:'center'},
+ 					{field:'RoleDesc',title:'名称',width:300,align:'center'}
+ 			    ]],
+ 			 //数据表格  
+ 			   toolbar: [{
+ 				  	text:'角色',
+					iconCls: 'icon-customer2',
+					handler: $('#usersdg').hide()
+ 				  	
+ 				},'-',{
+ 					text:'用户',
+ 					iconCls: 'icon-users',
+ 					handler: $('#roledg').hide()
+ 				}]
+
+ 			});
+ 		});
+ 				
+ 		
+ 		$(function detail(){
  			var a=null;
  			//数据表格
  			$('#privilegedg').datagrid({
@@ -68,7 +97,8 @@
     <!--表格-->
     <div class="top-area">
     	<p class="title">用户角色</p>
-    	<table id="roledg" ></table> 
+    	<table id="roledg" ></table>
+    	<table id="usersdg" ></table>  
     </div>
     <div class="btm-area">
     	<p class="title">权限控制</p>
