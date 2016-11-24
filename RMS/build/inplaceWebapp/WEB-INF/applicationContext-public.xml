@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	
+	http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context-4.3.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+	">
+	<!-- 使用注解 ???--> 	
+	<context:component-scan base-package="cn.it.shop.."/>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mis"/>
+		<property name="user" value="root"/>
+		<property name="password" value="123456"/>
+		<property name="maxPoolSize" value="40"/>
+		<property name="minPoolSize" value="2"/>
+		<property name="initialPoolSize" value="2"/>
+		<property name="maxIdleTime" value="30"/>
+	</bean>
+    
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!-- <property name="configLocation" value="classpath:hibernate.cfg.xml"/> -->
+		<property name="annotatedClasses">
+			<list>
+				<value>cn.it.shop.model.Category</value>
+				<value>cn.it.shop.model.Admin</value>
+			</list>
+		</property>		
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!--  创建事务管理器, 管理sessionFactory(因为所有的session都是从sessionFactory获取的) -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	
+	<!-- 配置通知, 那些方法需要切入什么类型的事务?? -->	
+	<tx:advice id="advice" transaction-manager="transactionManager">
+	
+		<!-- 表达式, 定义哪个包的哪些类需要切入事务,但是此处并且没有制定类中哪些方法,需要切入什么样 事务?? -->
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="query*" propagation="REQUIRED"/>
+			<tx:method name="get*" propagation="REQUIRED"/>
+			<tx:method name="get" propagation="REQUIRED"/>
+			<tx:method name="count*" propagation="REQUIRED"/>
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	
+
+	<!-- 配置切面表达式, 并且让 tx与切面表达式合二为一?? -->
+	<aop:config>
+		<!-- 表达式, 定义哪个包的哪些类需要切入事务,但是此处并且没有制定类中哪些方法,需要切入什么样 事务 -->
+		<aop:pointcut expression="execution(* cn.it.shop.service.impl.*.*(..))" id="pointcut"/>
+		<aop:advisor advice-ref="advice" pointcut-ref="pointcut"/>
+	</aop:config>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
