@@ -36,6 +36,12 @@
 			<list>
 				<value>cn.it.shop.model.Category</value>
 				<value>cn.it.shop.model.Admin</value>
+				<value>cn.it.shop.model.User</value>
+				<value>cn.it.shop.model.Role</value>
+				<value>cn.it.shop.model.UserRole</value>
+				<value>cn.it.shop.model.Privilege</value>
+				<value>cn.it.shop.model.Menu</value>
+				<value>cn.it.shop.model.Button</value>
 			</list>
 		</property>		
 		<property name="hibernateProperties">

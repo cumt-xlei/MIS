@@ -8,7 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Category entity. @author MyEclipse Persistence Tools
+ * Category entity. 
+ * @author MyEclipse L
  */
 @Entity
 @Table(name="category")

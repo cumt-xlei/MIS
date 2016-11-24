@@ -7,6 +7,9 @@
     <constant name="struts.devMode" value="true" />     
     <package name="bps" extends="json-default"> 
     <!-- 登录action-->
+    	<action name="">
+			<result>WEB-INF/indexBack.jsp</result>
+		</action>
 		<action name="*">
 			<result>WEB-INF/{1}.jsp</result>
 		</action>
