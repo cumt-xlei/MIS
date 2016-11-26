@@ -14,6 +14,8 @@ import com.opensymphony.xwork2.ModelDriven;
 
 import cn.it.shop.service.AdminService;
 import cn.it.shop.service.CategoryService;
+import cn.it.shop.service.PrivilegeService;
+import cn.it.shop.service.RoleService;
 
 public class BaseAction<T> extends ActionSupport implements RequestAware,SessionAware, ApplicationAware,ModelDriven<T>{
 	private static final long serialVersionUID = 1L;
@@ -22,6 +24,10 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	protected CategoryService categoryService;
 	@Resource 
 	protected AdminService adminService;
+	@Resource 
+	protected RoleService roleService;
+	@Resource 
+	protected PrivilegeService privilegeService;
 	
 	
 	//在调用构造方法的时候给model赋值

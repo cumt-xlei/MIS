@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import cn.it.shop.dao.AdminDao;
 import cn.it.shop.dao.BaseDao;
 import cn.it.shop.dao.CategoryDao;
+import cn.it.shop.dao.PrivilegeDao;
+import cn.it.shop.dao.RoleDao;
 import cn.it.shop.service.BaseService;
 @SuppressWarnings("unchecked")
 @Service("baseService")
@@ -45,7 +47,10 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	protected CategoryDao categoryDao;
 	@Resource(name="adminDao")
 	protected AdminDao adminDao;
-	
+	@Resource(name="roleDao")
+	protected RoleDao roleDao;
+	@Resource(name="privilegeDao")
+	protected PrivilegeDao privilegeDao;
 	
 	
 	

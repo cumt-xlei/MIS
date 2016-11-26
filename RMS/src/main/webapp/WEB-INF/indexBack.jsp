@@ -69,8 +69,8 @@
 		</div>
 		<div title="组织架构" data-options="iconCls:'icon-organization'">
 			<ul id="tt4" class="easyui-tree esuitree">		
-				<li data-options="iconCls:'icon-department'"><span><a href="#"  onclick="addTab('部门','dept_menu')">部门</a></span></li>
-				<li data-options="iconCls:'icon-customer2'"><span><a href="#"  onclick="addTab('角色','role_menu')">角色</a></span></li>
+				<li data-options="iconCls:'icon-department'"><span><a href="#"  onclick="addTab('部门','order_menu2')">部门</a></span></li>
+				<li data-options="iconCls:'icon-customer2'"><span><a href="#"  onclick="addTab('角色','order_menu1')">角色</a></span></li>
 				<li data-options="iconCls:'icon-users'"><span><a href="#"  onclick="addTab('用户','order_menu1')">用户</a></span></li>
 			</ul>
 		</div>	

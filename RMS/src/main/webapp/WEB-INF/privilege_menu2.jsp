@@ -14,10 +14,11 @@
 	<script type="text/javascript" src="js/esui.js"></script>
 
     <script type="text/javascript">
+    	//查询所有角色
  		$(function role(){
  			//数据表格
  			$('#roledg').datagrid({
- 			    url:'getAll_Role.action',
+ 			    url:'queryAllRole.action',
  			   	pagination:true,
  			   	rownumbers:true,
  			   	striped:true,
@@ -40,7 +41,29 @@
 
  			});
  		});
- 		
+    	
+    	//查询所有用户
+    	
+    	
+    	//权限列表
+		$( document ).ready(function(){
+			var parentId = 0;
+			$('#tt').treegrid({    
+			    url:'queryPrivilege.action?parentId='+parentId,
+			    rownumbers:true,
+			    idField:'id',    
+			    treeField:'RecordStatus',
+			    columns:[[    
+			        {title:'id',field:'id',width:180}, 
+			        {field:'RecordStatus',title:'RecordStatus',width:180} ,
+			        {field:'PrivilegeOperation',title:'PrivilegeOperation',width:180}    
+			    ]],
+			    onBeforeExpand:function(row){
+			    	//动态设置展开查询的url
+			    	$(this).treegrid('options').url = 'queryPrivilege.action?parentId='+row.id;   
+				}
+			});  
+		})
  	
  		
     </script>
@@ -58,6 +81,7 @@
     	<table id="privilegedg" ></table> 
     </div>
 	<div id="searchGoodWindow"> </div> 
+	<table id="tt" style="width:600px;height:400px"></table>  
 
 </body>
 </html>

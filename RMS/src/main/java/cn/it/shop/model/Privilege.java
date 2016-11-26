@@ -27,8 +27,9 @@ public class Privilege {
 	private String PrivilegeAccess;
 	private String PrivilegeOperation;
 	private String RecordStatus;
+	private Integer ParentID;
 	
-	
+
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
@@ -92,6 +93,13 @@ public class Privilege {
 	}
 	public void setRecordStatus(String recordStatus) {
 		RecordStatus = recordStatus;
+	}
+	@Column(name="ParentID")
+	public Integer getParentID() {
+		return ParentID;
+	}
+	public void setParentID(Integer parentID) {
+		ParentID = parentID;
 	}
 
 }
