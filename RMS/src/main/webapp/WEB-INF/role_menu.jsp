@@ -14,24 +14,20 @@
 	<script type="text/javascript">
 	$(function(){
 	    $('#dg').datagrid({
-	    url:'#',
+	    url:'queryAllRole.action',
 	    pagination:true,
 	    singleSelect:true,
 	    columns:[[
-			{field:'role_name',title:'角色名称',width:400,align:'center'},
-			{field:'description',title:'角色描述',width:1100,align:'center'},
-	    ],[
-	        {field:'role_name'},
-	        {field:'description'},
+			{field:'RoleName',title:'角色名称',width:400,align:'center'},
+			{field:'RoleDesc',title:'角色描述',width:1100,align:'center'},
 	    ]],
 	    toolbar: [{
 	    	text:'保存',
-			iconCls: 'icon-save',
-			handler: function(){alert('edit')}
+			iconCls: 'icon-save' 
 		},'-',{
 			text:'添加',
 			iconCls: 'icon-add',
-			handler: function(){alert('help')}
+			handler: function(){addRole()}
 		},'-',{
 			text:'删除',
 			iconCls: 'icon-remove',
@@ -41,14 +37,53 @@
 			iconCls: 'icon-edit',
 			handler: function(){alert('help')}
 		}]
-	});
+		});
+	    
+	    $('#dd' ).dialog({
+	    	closed:'true'
+	    })
 	})
 
+	
+	function addRole(){
+		$('#dd').dialog({
+		    title: '添加角色',
+		    width: 400,
+		    height: 200,
+		    closed: false,
+		    cache: false,
+		    modal: true
+		});
+		$('#ff').form({
+			success:function(){
+				$.messager.alert('添加成功');
+			}
+		});
+		
+	}
 
 	</script>  
 <body>
  
 <table id="dg"></table>
+<div id="dd">
+	<form id="ff" action="addRole.action" method="post">
+		<table>
+			<tr>
+				<td>角色名称</td>
+				<td><input name="RoleName" type="text"></input></td>
+			</tr>
+			<tr>
+				<td>角色描述:</td>
+				<td><input name="RoleDesc" type="text"></input></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="保存"></input></td>
+			</tr>
+		</table>
+	</form>
+</div>
 
 </body>
 </html>
