@@ -37,6 +37,11 @@
 				<param name="root">returnpd</param>
 			</result>
 		</action>	
+		<!-- 用于页面的转发 -->
+		<action name="send_*_*" class="cn.it.shop.action.SendAction">
+			<result name="send">/WEB-INF/{1}/{2}.jsp</result>
+		</action>
+		<!-- 处理关于user的操作 -->
 		<action name="user_*" class="cn.it.shop.action.UserAction" method="{1}">
 			<result name="jsonMap" type="json">
 				<param name="noCache">true</param>

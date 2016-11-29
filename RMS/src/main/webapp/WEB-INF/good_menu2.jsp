@@ -14,16 +14,24 @@
  			   	rownumbers:true,
  			   	striped:true,
  			   	singleSelect:true,
+ 			   pagination : true,
+				pageSize : 20,
+				pageList : [ 5, 10, 15,20 ],
+				loadMsg : '正在查询学生信息，请等待...',
+				//指定id字段为标识字段
+				idField : 'id',
+				//自动适应列
+				fitColumns : true,
 	 			frozenColumns : [ [ 
 	 			    {field : 'xyz',checkbox : true},
 	 			    {field : 'id',title : '编号',width : 30}
 	 			    ] ],
  			    columns:[[
- 					{field:'LoginName',title:'客户',width:100,align:'center'},
- 					{field:'RoleDesc',title:'公司名称',width:100,align:'center'},
- 					{field:'RoleDesc',title:'联系名',width:100,align:'center'},
+ 					{field:'realName',title:'客户',width:100,align:'center'},
+ 					{field:'title',title:'公司名称',width:100,align:'center'},
+ 					{field:'nickName',title:'联系名',width:100,align:'center'},
  					{field:'RoleDesc',title:'头衔',width:100,align:'center'},
- 					{field:'RoleDesc',title:'地址',width:200,align:'center'},
+ 					{field:'address',title:'地址',width:200,align:'center'},
  					{field:'RoleDesc',title:'城市',width:100,align:'center'},
  					{field:'RoleDesc',title:'区域',width:100,align:'center'},
  					{field:'RoleDesc',title:'邮政编码',width:700,align:'center'}
