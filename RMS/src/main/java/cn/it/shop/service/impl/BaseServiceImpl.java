@@ -16,6 +16,7 @@ import cn.it.shop.dao.BaseDao;
 import cn.it.shop.dao.CategoryDao;
 import cn.it.shop.dao.PrivilegeDao;
 import cn.it.shop.dao.RoleDao;
+import cn.it.shop.dao.UserDao;
 import cn.it.shop.service.BaseService;
 @SuppressWarnings("unchecked")
 @Service("baseService")
@@ -51,6 +52,8 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	protected RoleDao roleDao;
 	@Resource(name="privilegeDao")
 	protected PrivilegeDao privilegeDao;
+	@Resource(name="userDao")
+	protected UserDao userDao;
 	
 	
 	

@@ -16,6 +16,7 @@ import cn.it.shop.service.AdminService;
 import cn.it.shop.service.CategoryService;
 import cn.it.shop.service.PrivilegeService;
 import cn.it.shop.service.RoleService;
+import cn.it.shop.service.UserService;
 
 public class BaseAction<T> extends ActionSupport implements RequestAware,SessionAware, ApplicationAware,ModelDriven<T>{
 	private static final long serialVersionUID = 1L;
@@ -28,6 +29,8 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	protected RoleService roleService;
 	@Resource 
 	protected PrivilegeService privilegeService;
+	@Resource 
+	protected UserService userService;
 	
 	
 	//在调用构造方法的时候给model赋值
@@ -51,6 +54,9 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	protected Map<String,Object> request;
 	protected Map<String,Object> session;
 	protected Map<String,Object> application;
+	protected Map<String,Object> pageMap=null;
+	protected int page;
+	protected int rows;
 	@Override
 	public void setApplication(Map<String, Object> application) {
 		this.application=application;
@@ -63,6 +69,30 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	public void setRequest(Map<String, Object> request) {
 		this.request=request;
 	}
+	public Map<String, Object> getPageMap() {
+		System.out.println("--pageMap----");
+		return pageMap;
+	}
+	public void setPageMap(Map<String, Object> pageMap) {
+		this.pageMap = pageMap;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
 	
 	
 	

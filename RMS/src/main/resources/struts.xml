@@ -37,6 +37,12 @@
 				<param name="root">returnpd</param>
 			</result>
 		</action>	
+		<action name="user_*" class="cn.it.shop.action.UserAction" method="{1}">
+			<result name="jsonMap" type="json">
+				<!-- 要转化为json对象的数据 -->
+				<param name="root">pageMap</param>
+			</result>
+		</action>
     	<!--权限action结束-->   	
     	<action name="">
 			<result>WEB-INF/indexBack.jsp</result>
