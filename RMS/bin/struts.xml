@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="true" />     
+    <package name="bps" extends="json-default"> 
+    <!--action-->
+    	<!--权限action开始-->
+    	<!--查找所有角色-->
+    	<action name="queryAllRole" class="cn.it.shop.action.RoleAction" method="queryAllRole"> 
+    		<result name="ok" type="json">
+				<!-- 为该Result指定参数 -->
+				<param name="noCache">true</param>
+				<param name="contentType">text/html</param>
+				<!-- 设置只序列Action的map属性 -->		
+				<param name="root">returnpd</param>
+			</result>
+		</action>
+		<!--权限详情-->
+		<action name="queryPrivilege" class="cn.it.shop.action.PrivilegeAction" method="queryPrivilege"> 
+    		<result name="ok" type="json">
+				<!-- 为该Result指定参数 -->
+				<param name="noCache">true</param>
+				<param name="contentType">text/html</param>
+				<!-- 设置只序列Action的map属性 -->		
+				<param name="root">returnpd</param>
+			</result>
+		</action>
+		<action name="queryAllPrivilege" class="cn.it.shop.action.PrivilegeAction" method="queryAllPrivilege"> 
+    		<result name="ok" type="json">
+				<!-- 为该Result指定参数 -->
+				<param name="noCache">true</param>
+				<param name="contentType">text/html</param>
+				<!-- 设置只序列Action的map属性 -->		
+				<param name="root">returnpd</param>
+			</result>
+		</action>	
+    	<!--权限action结束-->   	
+    	<action name="">
+			<result>WEB-INF/indexBack.jsp</result>
+		</action>
+		<action name="*">
+			<result>WEB-INF/{1}.jsp</result>
+		</action>
+	</package>
+</struts>
+

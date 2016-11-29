@@ -1,0 +1,20 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<c:set value="${pageContext.request.contextPath}" var="RMS"/>
+<title>权限管理系统</title>
+<!-- 下面是前端页面的样式 
+	<link rel="stylesheet" href="${RMS}/css/bootstrap-theme.min.css" />
+-->
+<link rel="stylesheet" type="text/css" href="${RMS}/themes/default/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="${RMS}/themes/icon.css"/>
+<link rel="stylesheet" type="text/css" href="${RMS}/themes/esui.css"/>
+
+<script type="text/javascript" src="${RMS}/js/jquery.min.js"></script>
+<script type="text/javascript" src="${RMS}/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${RMS}/js/esui.js"></script>
+<script type="text/javascript" src="${RMS}/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${RMS}/js/jquery.easyui.mobile.js"></script>
+
+
+
