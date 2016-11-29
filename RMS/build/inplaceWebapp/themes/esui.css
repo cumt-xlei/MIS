@@ -1,4 +1,4 @@
-/*����*/
+﻿/*����*/
 a{color:#000000 !important;text-decoration:none !important}
 a:hover{color:#00CCFF !important;text-decoration:none !important;}
 a:focus{color:#000000 !important;text-decoration:none !important;}
@@ -42,3 +42,5 @@ a:focus{color:#000000 !important;text-decoration:none !important;}
 	.top-area{width:740px;}
 	.top-area .title{margin-bottom:0px;background-color:#E7F0FE;border:1px solid #95B8E7;}
 	.btm-area .title{margin-bottom:0px;background-color:#E7F0FE;border:1px solid #95B8E7;}
+/*对话窗口字体格式*/
+.dialog_text{ text-align:center;padding-top:20px }

@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
 	"http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
-    <constant name="struts.devMode" value="true" />     
-    <package name="bps"  extends="json-default"  strict-method-invocation="false"> 
-    <!--action-->
+    	<constant name="struts.devMode" value="true" />     
+    	<package name="bps"  extends="json-default"  strict-method-invocation="false"> 
+    	<!--action-->
     	<!--权限action开始-->
     	<!--查找所有角色-->
     	<action name="queryAllRole" class="cn.it.shop.action.RoleAction" method="queryAllRole"> 
@@ -17,41 +17,68 @@
 				<!-- 设置只序列Action的map属性 -->		
 				<param name="root">returnpd</param>
 			</result>
-		</action>
-		<!--权限详情-->
-		<action name="queryPrivilege" class="cn.it.shop.action.PrivilegeAction" method="queryPrivilege"> 
+	</action>
+	<!--权限详情-->
+	<action name="queryPrivilege" class="cn.it.shop.action.PrivilegeAction" method="queryPrivilege"> 
     		<result name="ok" type="json">
-				<!-- 为该Result指定参数 -->
-				<param name="noCache">true</param>
-				<param name="contentType">text/html</param>
-				<!-- 设置只序列Action的map属性 -->		
-				<param name="root">returnpd</param>
-			</result>
-		</action>
-		<action name="queryAllPrivilege" class="cn.it.shop.action.PrivilegeAction" method="queryAllPrivilege"> 
+			<!-- 为该Result指定参数 -->
+			<param name="noCache">true</param>
+			<param name="contentType">text/html</param>
+			<!-- 设置只序列Action的map属性 -->		
+			<param name="root">returnpd</param>
+		</result>
+	</action>
+	<action name="queryAllPrivilege" class="cn.it.shop.action.PrivilegeAction" method="queryAllPrivilege"> 
     		<result name="ok" type="json">
-				<!-- 为该Result指定参数 -->
-				<param name="noCache">true</param>
-				<param name="contentType">text/html</param>
-				<!-- 设置只序列Action的map属性 -->		
-				<param name="root">returnpd</param>
-			</result>
-		</action>	
-		<!-- 用于页面的转发 -->
-		<action name="send_*_*" class="cn.it.shop.action.SendAction">
-			<result name="send">/WEB-INF/{1}/{2}.jsp</result>
-		</action>
-		<!-- 处理关于user的操作 -->
-		<action name="user_*" class="cn.it.shop.action.UserAction" method="{1}">
-			<result name="jsonMap" type="json">
-				<param name="noCache">true</param>
-				<param name="contentType">text/html</param>
-				<!-- 要转化为json对象的数据 -->
-				<param name="root">pageMap</param>
-			</result>
-		</action>
-    	<!--权限action结束-->   	
-    	<action name="">
+			<!-- 为该Result指定参数 -->
+			<param name="noCache">true</param>
+			<param name="contentType">text/html</param>
+			<!-- 设置只序列Action的map属性 -->		
+			<param name="root">returnpd</param>
+		</result>
+	</action>	
+    	<!--权限action结束-->
+
+
+
+	<!-- 用于页面的转发 -->
+	<action name="send_*_*" class="cn.it.shop.action.SendAction">
+		<result name="send">/WEB-INF/{1}/{2}.jsp</result>
+	</action>
+	<!-- 处理关于user的操作 -->
+	<action name="user_*" class="cn.it.shop.action.UserAction" method="{1}">
+		<result name="jsonMap" type="json">
+			<param name="noCache">true</param>
+			<param name="contentType">text/html</param>
+			<!-- 要转化为json对象的数据 -->
+			<param name="root">pageMap</param>
+		</result>
+	</action> 
+	<!-- user的操作结束 -->  
+
+    	<!--组织action-->
+    	<action name="saveRole" class="cn.it.shop.action.RoleAction" method="saveRole"> 
+    		<result name="ok" type="json">
+			<!-- 为该Result指定参数 -->
+			<param name="noCache">true</param>
+			<param name="contentType">text/html</param>
+			<!-- 设置只序列Action的map属性 -->		
+			<param name="root">returnpd</param>
+		</result>
+	</action>
+    	<action name="deleteRole" class="cn.it.shop.action.RoleAction" method="deleteRole"> 
+    		<result name="ok" type="json">
+			<!-- 为该Result指定参数 -->
+			<param name="noCache">true</param>
+			<param name="contentType">text/html</param>
+			<!-- 设置只序列Action的map属性 -->		
+			<param name="root">returnpd</param>
+		</result>
+	</action>
+    	
+    	<!--组织action结束-->   
+	
+    		<action name="">
 			<result>WEB-INF/indexBack.jsp</result>
 		</action>
 		<action name="*">

@@ -22,9 +22,6 @@
 			{field:'RoleDesc',title:'角色描述',width:1100,align:'center'},
 	    ]],
 	    toolbar: [{
-	    	text:'保存',
-			iconCls: 'icon-save' 
-		},'-',{
 			text:'添加',
 			iconCls: 'icon-add',
 			handler: function(){addRole()}
