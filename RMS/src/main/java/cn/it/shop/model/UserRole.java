@@ -19,11 +19,11 @@ import javax.persistence.Table;
 @Table(name="cf_userrole")
 public class UserRole {
 	private Integer id;
-	private Integer UserID;
-	private Integer RoleID;
-	private Integer CreateUserID;
-	private Integer ModifyUserID;
-	private String RecordStatus;
+	private Integer userID;
+	private Integer roleID;
+	private Integer createUserID;
+	private Integer modifyUserID;
+	private String recordStatus;
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -35,24 +35,24 @@ public class UserRole {
 	}
 	@Column(name="CreateUserID")
 	public Integer getCreateUserID() {
-		return CreateUserID;
+		return createUserID;
 	}
 	public void setCreateUserID(Integer createUserID) {
-		CreateUserID = createUserID;
+		this.createUserID = createUserID;
 	}
 	@Column(name="ModifyUserID")
 	public Integer getModifyUserID() {
-		return ModifyUserID;
+		return modifyUserID;
 	}
 	public void setModifyUserID(Integer modifyUserID) {
-		ModifyUserID = modifyUserID;
+		this.modifyUserID = modifyUserID;
 	}
 	@Column(name="RecordStatus")
 	public String getRecordStatus() {
-		return RecordStatus;
+		return recordStatus;
 	}
 	public void setRecordStatus(String recordStatus) {
-		RecordStatus = recordStatus;
+		this.recordStatus = recordStatus;
 	}
 
 	
@@ -61,17 +61,17 @@ public class UserRole {
 		@ManyToOne(targetEntity=User.class,cascade=CascadeType.ALL)
 		@JoinColumn(name="UserID",referencedColumnName="id",nullable=false)
 		public Integer getUserID() {
-			return UserID;
+			return userID;
 		}
 		public void setUserID(Integer userID) {
-			UserID = userID;
+			this.userID = userID;
 		}
 		@ManyToOne(targetEntity=Role.class,cascade=CascadeType.ALL)
 		@JoinColumn(name="RoleID",referencedColumnName="id",nullable=false)
 		public Integer getRoleID() {
-			return RoleID;
+			return roleID;
 		}
 		public void setRoleID(Integer roleID) {
-			RoleID = roleID;
+			this.roleID = roleID;
 		}
 }

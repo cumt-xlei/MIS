@@ -19,6 +19,12 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	@Override
 	public Long count() {
 		return (Long)roleDao.count();
+	}
+
+	@Override
+	public boolean deleteRole(String RoleName) {
+		// TODO Auto-generated method stub
+		return roleDao.deleteRole(RoleName);
 	}	
 
 }

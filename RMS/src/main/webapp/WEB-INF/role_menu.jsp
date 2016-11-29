@@ -31,7 +31,7 @@
 		},'-',{
 			text:'删除',
 			iconCls: 'icon-remove',
-			handler: function(){alert('help')}
+			handler: function(){deleteRole()}
 		},'-',{
 			text:'修改',
 			iconCls: 'icon-edit',
@@ -40,6 +40,9 @@
 		});
 	    
 	    $('#dd' ).dialog({
+	    	closed:'true'
+	    });
+	    $('#dd2' ).dialog({
 	    	closed:'true'
 	    })
 	})
@@ -56,18 +59,57 @@
 		});
 		$('#ff').form({
 			success:function(){
-				$.messager.alert('添加成功');
+				$.messager.alert('消息','添加成功','');	
+				$('#dg').datagrid('reload');
+				$('#dd').dialog({closed: true});
 			}
 		});
-		
+	}
+	
+	function deleteRole(){
+		var row = $('#dg').datagrid('getSelected');
+		if (row){
+			$('#dd2').dialog({
+			    title: '确认窗口',
+			    width: 300,
+			    height: 150,
+			    closed: false,
+			    cache: false,
+			    modal: true,
+			    buttons:[{
+					text:'确定',
+					iconCls:'icon-ok',
+					handler:function(){
+						$.ajax({
+						      url:'deleteRole.action',
+						      dataType:'json', 
+						      data:{'RoleName':row.RoleName},
+						      method:'POST',
+						      success:function(){
+						    	  $.messager.alert('消息','删除成功','');
+								  $('#dd2').dialog({closed: true});
+						    	  $("#dg").datagrid("reload");
+						      }						    
+						})
+					}					
+
+				},{
+					text:'取消',
+					iconCls:'icon-cancel',
+					handler:function(){$('#dd2').dialog('close');}
+				}]
+			    
+			});
+		};
+
 	}
 
 	</script>  
 <body>
  
 <table id="dg"></table>
-<div id="dd">
-	<form id="ff" action="addRole.action" method="post">
+<div id="dd" class="dialog_text">
+	<form id="ff" action="saveRole.action" method="post">
 		<table>
 			<tr>
 				<td>角色名称</td>
@@ -83,6 +125,10 @@
 			</tr>
 		</table>
 	</form>
+</div>
+
+<div id="dd2" class="dialog_text">
+确定删除？
 </div>
 
 </body>

@@ -54,4 +54,15 @@ public class RoleAction  extends BaseAction<Role>{
 		return returnpd;
 		
 	}
+	
+	public String saveRole(){
+		returnpd="ok";
+		roleService.save(getModel());
+		return returnpd;
+	}
+	public String deleteRole(){
+		returnpd="ok";
+		roleService.deleteRole(getModel().getRoleName());
+		return returnpd;
+	}
 }

@@ -1,4 +1,5 @@
 package cn.it.shop.model;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
@@ -16,16 +17,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="cf_button")
-public class Button {
+public class Button implements Serializable{
 	private Integer id;
-	private Integer SeqNo;
-	private String BtnName;
-	private String BtnNo;
-	private String BtnClass;
-	private String BtnIcon;
-	private String BtnScript;
-	private String MenuNo;
-	private String InitStatus;
+	private Integer seqNo;
+	private String btnName;
+	private String btnNo;
+	private String btnClass;
+	private String btnIcon;
+	private String btnScript;
+	private String menuNo;
+	private String initStatus;	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
@@ -36,58 +37,58 @@ public class Button {
 	}
 	@Column(name="SeqNo")
 	public Integer getSeqNo() {
-		return SeqNo;
+		return seqNo;
 	}
 	public void setSeqNo(Integer seqNo) {
-		SeqNo = seqNo;
+		this.seqNo = seqNo;
 	}
 	@Column(name="BtnName")
 	public String getBtnName() {
-		return BtnName;
+		return btnName;
 	}
 	public void setBtnName(String btnName) {
-		BtnName = btnName;
+		this.btnName = btnName;
 	}
 	@Column(name="BtnNo")
 	public String getBtnNo() {
-		return BtnNo;
+		return btnNo;
 	}
 	public void setBtnNo(String btnNo) {
-		BtnNo = btnNo;
+		this.btnNo = btnNo;
 	}
 	@Column(name="BtnClass")
 	public String getBtnClass() {
-		return BtnClass;
+		return btnClass;
 	}
 	public void setBtnClass(String btnClass) {
-		BtnClass = btnClass;
+		this.btnClass = btnClass;
 	}
 	@Column(name="BtnIcon")
 	public String getBtnIcon() {
-		return BtnIcon;
+		return btnIcon;
 	}
 	public void setBtnIcon(String btnIcon) {
-		BtnIcon = btnIcon;
+		this.btnIcon = btnIcon;
 	}
 	@Column(name="BtnScript")
 	public String getBtnScript() {
-		return BtnScript;
-	}
-	public void setBtnScript(String btnScript) {
-		BtnScript = btnScript;
+		return btnScript;
 	}
 	@Column(name="MenuNo")
+	public void setBtnScript(String btnScript) {
+		this.btnScript = btnScript;
+	}
 	public String getMenuNo() {
-		return MenuNo;
+		return menuNo;
 	}
 	public void setMenuNo(String menuNo) {
-		MenuNo = menuNo;
+		this.menuNo = menuNo;
 	}
 	@Column(name="InitStatus")
-	public  String getInitStatus() {
-		return InitStatus;
+	public String getInitStatus() {
+		return initStatus;
 	}
-	public void setInitStatus( String initStatus) {
-		InitStatus = initStatus;
+	public void setInitStatus(String initStatus) {
+		this.initStatus = initStatus;
 	}
 }

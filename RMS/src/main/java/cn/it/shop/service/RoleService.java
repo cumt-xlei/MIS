@@ -8,5 +8,5 @@ public interface RoleService extends BaseService<Role>{
 
 	List<Role> queryAllRole(String string, int page, int rows);
 	Long count();
-
+	boolean deleteRole(String RoleName);
 }

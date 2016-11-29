@@ -19,15 +19,15 @@ import javax.persistence.Table;
 @Table(name="cf_privilege")
 public class Privilege {
 	private Integer id;
-	private Integer PrivilegeMasterKey;
-	private Integer PrivilegeAccessKey;
-	private Integer CreateUserID;
-	private Integer ModifyUserID;
-	private String PrivilegeMaster;
-	private String PrivilegeAccess;
-	private String PrivilegeOperation;
-	private String RecordStatus;
-	private Integer ParentID;
+	private Integer privilegeMasterKey;
+	private Integer privilegeAccessKey;
+	private Integer createUserID;
+	private Integer modifyUserID;
+	private String privilegeMaster;
+	private String privilegeAccess;
+	private String privilegeOperation;
+	private String recordStatus;
+	private Integer parentID;
 	
 
 	@Id
@@ -40,66 +40,66 @@ public class Privilege {
 	}
 	@Column(name="PrivilegeMasterKey")
 	public Integer getPrivilegeMasterKey() {
-		return PrivilegeMasterKey;
+		return privilegeMasterKey;
 	}
 	public void setPrivilegeMasterKey(Integer privilegeMasterKey) {
-		PrivilegeMasterKey = privilegeMasterKey;
+		this.privilegeMasterKey = privilegeMasterKey;
 	}
 	@Column(name="PrivilegeAccessKey")
 	public Integer getPrivilegeAccessKey() {
-		return PrivilegeAccessKey;
+		return privilegeAccessKey;
 	}
 	public void setPrivilegeAccessKey(Integer privilegeAccessKey) {
-		PrivilegeAccessKey = privilegeAccessKey;
+		this.privilegeAccessKey = privilegeAccessKey;
 	}
 	@Column(name="CreateUserID")
 	public Integer getCreateUserID() {
-		return CreateUserID;
+		return createUserID;
 	}
 	public void setCreateUserID(Integer createUserID) {
-		CreateUserID = createUserID;
+		this.createUserID = createUserID;
 	}
 	@Column(name="ModifyUserID")
 	public Integer getModifyUserID() {
-		return ModifyUserID;
+		return modifyUserID;
 	}
 	public void setModifyUserID(Integer modifyUserID) {
-		ModifyUserID = modifyUserID;
+		this.modifyUserID = modifyUserID;
 	}
 	@Column(name="PrivilegeMaster",length=50)
 	public String getPrivilegeMaster() {
-		return PrivilegeMaster;
+		return privilegeMaster;
 	}
 	public void setPrivilegeMaster(String privilegeMaster) {
-		PrivilegeMaster = privilegeMaster;
+		this.privilegeMaster = privilegeMaster;
 	}
 	@Column(name="PrivilegeAccess",length=50)
 	public String getPrivilegeAccess() {
-		return PrivilegeAccess;
+		return privilegeAccess;
 	}
 	public void setPrivilegeAccess(String privilegeAccess) {
-		PrivilegeAccess = privilegeAccess;
+		this.privilegeAccess = privilegeAccess;
 	}
 	@Column(name="PrivilegeOperation",length=50)
 	public String getPrivilegeOperation() {
-		return PrivilegeOperation;
+		return privilegeOperation;
 	}
 	public void setPrivilegeOperation(String privilegeOperation) {
-		PrivilegeOperation = privilegeOperation;
+		this.privilegeOperation = privilegeOperation;
 	}
 	@Column(name="RecordStatus",length=50)
 	public String getRecordStatus() {
-		return RecordStatus;
+		return recordStatus;
 	}
 	public void setRecordStatus(String recordStatus) {
-		RecordStatus = recordStatus;
+		this.recordStatus = recordStatus;
 	}
 	@Column(name="ParentID")
 	public Integer getParentID() {
-		return ParentID;
+		return parentID;
 	}
 	public void setParentID(Integer parentID) {
-		ParentID = parentID;
+		this.parentID = parentID;
 	}
 
 }

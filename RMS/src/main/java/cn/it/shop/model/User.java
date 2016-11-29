@@ -38,124 +38,123 @@ public class User implements java.io.Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	@Column(name="deptID")
+	@Column(name="DeptID")
 	public Integer getDeptID() {
 		return deptID;
 	}
 	public void setDeptID(Integer deptID) {
 		this.deptID = deptID;
 	}
-	@Column(name="supplierID")
+	@Column(name="SupplierID")
 	public Integer getSupplierID() {
 		return supplierID;
 	}
 	public void setSupplierID(Integer supplierID) {
 		this.supplierID = supplierID;
 	}
-	@Column(name="employeeID")
+	@Column(name="EmployeeID")
 	public Integer getEmployeeID() {
 		return employeeID;
 	}
 	public void setEmployeeID(Integer employeeID) {
 		this.employeeID = employeeID;
 	}
-	@Column(name="createUserID")
+	@Column(name="CreateUserID")
 	public Integer getCreateUserID() {
 		return createUserID;
 	}
 	public void setCreateUserID(Integer createUserID) {
 		this.createUserID = createUserID;
 	}
-	@Column(name="modifyUserID")
+	@Column(name="ModifyUserID")
 	public Integer getModifyUserID() {
 		return modifyUserID;
 	}
 	public void setModifyUserID(Integer modifyUserID) {
 		this.modifyUserID = modifyUserID;
 	}
-	@Column(name="loginName")
+	@Column(name="LoginName",length=50,nullable=false)
 	public String getLoginName() {
 		return loginName;
 	}
 	public void setLoginName(String loginName) {
 		this.loginName = loginName;
 	}
-	@Column(name="loginPassword")
+	@Column(name="LoginPassword",length=50,nullable=false)
 	public String getLoginPassword() {
 		return loginPassword;
 	}
 	public void setLoginPassword(String loginPassword) {
 		this.loginPassword = loginPassword;
 	}
-	@Column(name="realName")
+	@Column(name="RealName",length=50)
 	public String getRealName() {
 		return realName;
 	}
 	public void setRealName(String realName) {
 		this.realName = realName;
 	}
-	@Column(name="title")
+	@Column(name="Title",length=50)
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	@Column(name="sex")
+	@Column(name="Sex",length=50)
 	public String getSex() {
 		return sex;
 	}
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	@Column(name="phone")
+	@Column(name="Phone",length=50)
 	public String getPhone() {
 		return phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	@Column(name="fax")
+	@Column(name="Fax",length=50)
 	public String getFax() {
 		return fax;
 	}
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
-	@Column(name="email")
+	@Column(name="Email",length=50)
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	@Column(name="qq")
-	public String getQq() {
+	@Column(name="QQ",length=50)
+	public String getQQ() {
 		return qq;
 	}
-	public void setQq(String qq) {
-		this.qq = qq;
+	public void setQQ(String qQ) {
+		this.qq = qQ;
 	}
-	@Column(name="nickName")
+	@Column(name="NickName",length=50)
 	public String getNickName() {
 		return nickName;
 	}
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
-	@Column(name="address")
+	@Column(name="Address")
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	@Column(name="recordStatus")
+	@Column(name="RecordStatus")
 	public String getRecordStatus() {
 		return recordStatus;
 	}
 	public void setRecordStatus(String recordStatus) {
 		this.recordStatus = recordStatus;
 	}
-	
 }

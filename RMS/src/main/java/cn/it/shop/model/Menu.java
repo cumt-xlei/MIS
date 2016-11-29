@@ -1,4 +1,5 @@
 package cn.it.shop.model;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
@@ -16,16 +17,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="cf_menu")
-public class Menu {
+public class Menu implements Serializable{
 	private Integer id;
-	private Integer MenuOrder;
-	private Boolean IsVisible;
-	private Boolean IsLeaf;
-	private String MenuNo;
-	private String MenuParentNo;
-	private String MenuName;
-	private String MenuUrl;
-	private String MenuIcon;
+	private Integer menuOrder;
+	private Boolean isVisible;
+	private Boolean isLeaf;
+	private String menuNo;
+	private String menuParentNo;
+	private String menuName;
+	private String menuUrl;
+	private String menuIcon;
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -37,59 +38,59 @@ public class Menu {
 	}
 	@Column(name="MenuOrder")
 	public Integer MenuOrder() {
-		return MenuOrder;
+		return menuOrder;
 	}
 	public void setMenuOrder(Integer menuOrder) {
-		MenuOrder = menuOrder;
+		this.menuOrder = menuOrder;
 	}
 	@Column(name="IsVisible")
 	public Boolean getIsVisible() {
-		return IsVisible;
+		return isVisible;
 	}
 	public void setIsVisible(Boolean isVisible) {
-		IsVisible = isVisible;
+		this.isVisible = isVisible;
 	}
 	@Column(name="IsLeaf")
 	public Boolean getIsLeaf() {
-		return IsLeaf;
+		return isLeaf;
 	}
 	public void setIsLeaf(Boolean isLeaf) {
-		IsLeaf = isLeaf;
+		this.isLeaf = isLeaf;
 	}
 	@Column(name="MenuNo")
 	public String getMenuNo() {
-		return MenuNo;
+		return menuNo;
 	}
 	public void setMenuNo(String menuNo) {
-		MenuNo = menuNo;
+		this.menuNo = menuNo;
 	}
 	@Column(name="MenuOrder")
 	public String MenuParentNo() {
-		return MenuParentNo;
+		return menuParentNo;
 	}
 	public void setMenuParentNo(String menuParentNo) {
-		MenuParentNo = menuParentNo;
+		this.menuParentNo = menuParentNo;
 	}
 	@Column(name="MenuName")
 	public String getMenuName() {
-		return MenuName;
+		return menuName;
 	}
 	public void setMenuName(String menuName) {
-		MenuName = menuName;
+		this.menuName = menuName;
 	}
 	@Column(name="MenuUrl")
 	public String getMenuUrl() {
-		return MenuUrl;
+		return menuUrl;
 	}
 	public void setMenuUrl(String menuUrl) {
-		MenuUrl = menuUrl;
+		this.menuUrl = menuUrl;
 	}
 	@Column(name="MenuIcon")
 	public String getMenuIcon() {
-		return MenuIcon;
+		return menuIcon;
 	}
 	public void setMenuIcon(String menuIcon) {
-		MenuIcon = menuIcon;
+		this.menuIcon = menuIcon;
 	}
 
 }

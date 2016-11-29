@@ -1,5 +1,7 @@
 package cn.it.shop.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="category")
-public class Category implements java.io.Serializable {
+public class Category implements Serializable {
 
 	// Fields
 

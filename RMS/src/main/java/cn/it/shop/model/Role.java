@@ -12,10 +12,10 @@ import javax.persistence.Table;
 public class Role implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private Integer CreateUserID;
-	private Integer ModifyUserID;
-	private String RoleName;
-	private String RoleDesc;
+	private Integer createUserID;
+	private Integer modifyUserID;
+	private String roleName;
+	private String roleDesc;
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -27,31 +27,34 @@ public class Role implements java.io.Serializable {
 	}
 	@Column(name="CreateUserID")
 	public Integer getCreateUserID() {
-		return CreateUserID;
+		return createUserID;
 	}
 	public void setCreateUserID(Integer createUserID) {
-		CreateUserID = createUserID;
+		this.createUserID = createUserID;
 	}
 	@Column(name="ModifyUserID")
 	public Integer getModifyUserID() {
-		return ModifyUserID;
+		return modifyUserID;
 	}
 	public void setModifyUserID(Integer modifyUserID) {
-		ModifyUserID = modifyUserID;
+		this.modifyUserID = modifyUserID;
 	}
 	@Column(name="RoleName",length=50,nullable=false)
-	public String getRoleName() {
-		return RoleName;
-	}
 	public void setRoleName(String roleName) {
-		RoleName = roleName;
+		this.roleName = roleName;
 	}
+	public String getRoleName() {
+		return roleName;
+	}
+
 	@Column(name="RoleDesc",length=255)
 	public String getRoleDesc() {
-		return RoleDesc;
+		return roleDesc;
 	}
 	public void setRoleDesc(String roleDesc) {
-		RoleDesc = roleDesc;
+		this.roleDesc = roleDesc;
 	}
+
+	
 	
 }
