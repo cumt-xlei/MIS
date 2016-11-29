@@ -15,11 +15,11 @@ import cn.it.shop.service.UserService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath:applicationContext-*.xml")
 public class UserServiceTest {
-	@Resource
+	@Resource(name="userService")
 	private UserService userService;
 	@Test
 	public void testQueryAllUser(){
-		List<User> u=userService.queryUser("", 1, 5);
+		List<User> u=userService.query();
 		System.out.println(u.size());
 	}
 }

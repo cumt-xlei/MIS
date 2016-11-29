@@ -5,7 +5,7 @@
 <struts>
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
     <constant name="struts.devMode" value="true" />     
-    <package name="bps" extends="json-default"> 
+    <package name="bps"  extends="json-default"  strict-method-invocation="false"> 
     <!--action-->
     	<!--权限action开始-->
     	<!--查找所有角色-->
@@ -39,6 +39,8 @@
 		</action>	
 		<action name="user_*" class="cn.it.shop.action.UserAction" method="{1}">
 			<result name="jsonMap" type="json">
+				<param name="noCache">true</param>
+				<param name="contentType">text/html</param>
 				<!-- 要转化为json对象的数据 -->
 				<param name="root">pageMap</param>
 			</result>
