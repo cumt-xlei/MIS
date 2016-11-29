@@ -13,7 +13,7 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
 	public List<User> queryUser(String name, int page, int rows) {
-		String hql="FROM User u WHERE u.RealName LIKE :name";
+		String hql="FROM User u WHERE u.realName LIKE :name";
 		return getSession().createQuery(hql)				
 				.setString("name", "%" + name + "%")
 				.setFirstResult((page-1)*rows)

@@ -12,23 +12,23 @@ import javax.persistence.Table;
 public class User implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private Integer DeptID;
-	private Integer SupplierID;
-	private Integer EmployeeID;
-	private Integer CreateUserID;
-	private Integer ModifyUserID;
-	private String LoginName;
-	private String LoginPassword;
-	private String RealName;
-	private String Title;
-	private String Sex;
-	private String Phone;
-	private String Fax;
-	private String Email;
-	private String QQ;
-	private String NickName;
-	private String Address;
-	private String RecordStatus;
+	private Integer deptID;
+	private Integer supplierID;
+	private Integer employeeID;
+	private Integer createUserID;
+	private Integer modifyUserID;
+	private String loginName;
+	private String loginPassword;
+	private String realName;
+	private String title;
+	private String sex;
+	private String phone;
+	private String fax;
+	private String email;
+	private String qq;
+	private String nickName;
+	private String address;
+	private String recordStatus;
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -38,123 +38,124 @@ public class User implements java.io.Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	@Column(name="DeptID")
+	@Column(name="deptID")
 	public Integer getDeptID() {
-		return DeptID;
+		return deptID;
 	}
 	public void setDeptID(Integer deptID) {
-		DeptID = deptID;
+		this.deptID = deptID;
 	}
-	@Column(name="SupplierID")
+	@Column(name="supplierID")
 	public Integer getSupplierID() {
-		return SupplierID;
+		return supplierID;
 	}
 	public void setSupplierID(Integer supplierID) {
-		SupplierID = supplierID;
+		this.supplierID = supplierID;
 	}
-	@Column(name="EmployeeID")
+	@Column(name="employeeID")
 	public Integer getEmployeeID() {
-		return EmployeeID;
+		return employeeID;
 	}
 	public void setEmployeeID(Integer employeeID) {
-		EmployeeID = employeeID;
+		this.employeeID = employeeID;
 	}
-	@Column(name="CreateUserID")
+	@Column(name="createUserID")
 	public Integer getCreateUserID() {
-		return CreateUserID;
+		return createUserID;
 	}
 	public void setCreateUserID(Integer createUserID) {
-		CreateUserID = createUserID;
+		this.createUserID = createUserID;
 	}
-	@Column(name="ModifyUserID")
+	@Column(name="modifyUserID")
 	public Integer getModifyUserID() {
-		return ModifyUserID;
+		return modifyUserID;
 	}
 	public void setModifyUserID(Integer modifyUserID) {
-		ModifyUserID = modifyUserID;
+		this.modifyUserID = modifyUserID;
 	}
-	@Column(name="LoginName",length=50,nullable=false)
+	@Column(name="loginName")
 	public String getLoginName() {
-		return LoginName;
+		return loginName;
 	}
 	public void setLoginName(String loginName) {
-		LoginName = loginName;
+		this.loginName = loginName;
 	}
-	@Column(name="LoginPassword",length=50,nullable=false)
+	@Column(name="loginPassword")
 	public String getLoginPassword() {
-		return LoginPassword;
+		return loginPassword;
 	}
 	public void setLoginPassword(String loginPassword) {
-		LoginPassword = loginPassword;
+		this.loginPassword = loginPassword;
 	}
-	@Column(name="RealName",length=50)
+	@Column(name="realName")
 	public String getRealName() {
-		return RealName;
+		return realName;
 	}
 	public void setRealName(String realName) {
-		RealName = realName;
+		this.realName = realName;
 	}
-	@Column(name="Title",length=50)
+	@Column(name="title")
 	public String getTitle() {
-		return Title;
+		return title;
 	}
 	public void setTitle(String title) {
-		Title = title;
+		this.title = title;
 	}
-	@Column(name="Sex",length=50)
+	@Column(name="sex")
 	public String getSex() {
-		return Sex;
+		return sex;
 	}
 	public void setSex(String sex) {
-		Sex = sex;
+		this.sex = sex;
 	}
-	@Column(name="Phone",length=50)
+	@Column(name="phone")
 	public String getPhone() {
-		return Phone;
+		return phone;
 	}
 	public void setPhone(String phone) {
-		Phone = phone;
+		this.phone = phone;
 	}
-	@Column(name="Fax",length=50)
+	@Column(name="fax")
 	public String getFax() {
-		return Fax;
+		return fax;
 	}
 	public void setFax(String fax) {
-		Fax = fax;
+		this.fax = fax;
 	}
-	@Column(name="Email",length=50)
+	@Column(name="email")
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
-	@Column(name="QQ",length=50)
-	public String getQQ() {
-		return QQ;
+	@Column(name="qq")
+	public String getQq() {
+		return qq;
 	}
-	public void setQQ(String qQ) {
-		QQ = qQ;
+	public void setQq(String qq) {
+		this.qq = qq;
 	}
-	@Column(name="NickName",length=50)
+	@Column(name="nickName")
 	public String getNickName() {
-		return NickName;
+		return nickName;
 	}
 	public void setNickName(String nickName) {
-		NickName = nickName;
+		this.nickName = nickName;
 	}
-	@Column(name="Address")
+	@Column(name="address")
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
-	@Column(name="RecordStatus")
+	@Column(name="recordStatus")
 	public String getRecordStatus() {
-		return RecordStatus;
+		return recordStatus;
 	}
 	public void setRecordStatus(String recordStatus) {
-		RecordStatus = recordStatus;
+		this.recordStatus = recordStatus;
 	}
+	
 }
