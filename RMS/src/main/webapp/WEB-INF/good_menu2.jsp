@@ -8,7 +8,7 @@
  		$(function role(){
  			//数据表格
  			$('#roledg').datagrid({
- 			    url:'',
+ 			    url:'user_queryAllUser.action',
  			    width:1460,
  			   	pagination:true,
  			   	rownumbers:true,
