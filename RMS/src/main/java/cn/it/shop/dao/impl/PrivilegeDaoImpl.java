@@ -2,7 +2,6 @@ package cn.it.shop.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.HibernateException;
 import org.springframework.stereotype.Repository;
 
 import cn.it.shop.dao.PrivilegeDao;
@@ -30,10 +29,8 @@ public class PrivilegeDaoImpl extends BaseDaoImpl<Privilege> implements Privileg
 		for(Privilege privilege:(List<Privilege>)(getSession().createQuery(hql).list())){
 			JSONObject jo=new JSONObject();
 			jo.put("id", privilege.getId());
-            jo.put("PrivilegeOperation", privilege.getPrivilegeOperation());
-            jo.put("RecordStatus",privilege.getRecordStatus());
-            jo.put("Icon",privilege.getIcon());
-            jo.put("parendId",privilege.getParentID());
+			jo.put("RecordStatus", privilege.getRecordStatus());
+			jo.put("parendId",privilege.getParentID());
 			 if(privilege.getParentID()==0){
 			    	jo.put("state","closed");		    	
 			    }
@@ -45,29 +42,5 @@ public class PrivilegeDaoImpl extends BaseDaoImpl<Privilege> implements Privileg
 		}
 		return array;
 	}
-
-    @Override
-    public boolean findByMKR(String priMaster, int priKey,
-            String recordStatus) {
-        // TODO Auto-generated method stub
-        String hql ="SELECT p FROM Privilege p WHERE p.privilegeMaster = "+"\'"+priMaster+"\'"+" and p.privilegeMasterKey = " +"\'"+priKey+"\'"+" and p.recordStatus = "+"\'"+recordStatus+"\'";
-        System.out.println(hql);
-        boolean pd = false;
-        try {
-            List<Privilege> list=getSession().createQuery(hql).getResultList();
-            int i = list.size();
-            if(i!=0) {
-                pd = true;
-            }
-            System.out.println(i);
-        }
-        catch(HibernateException e) {
-            
-        }
-               
-        return pd;
-    }
-	
-
 
 }

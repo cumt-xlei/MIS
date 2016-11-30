@@ -42,7 +42,6 @@
 				<value>cn.it.shop.model.Privilege</value>
 				<value>cn.it.shop.model.Menu</value>
 				<value>cn.it.shop.model.Button</value>
-				<value>cn.it.shop.model.Customer</value>
 			</list>
 		</property>		
 		<property name="hibernateProperties">

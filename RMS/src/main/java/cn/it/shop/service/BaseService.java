@@ -4,12 +4,11 @@ import java.util.List;
 
 
 public interface BaseService<T>{
-    //保存
-	boolean save(T t);
-	//修改
-	boolean update(T t);
+	void save(T t);
+
+	void update(T t);
 	// 删除实体
-	boolean delete(T t);
+	void delete(T t);
 	//根据ID删除实体
 	void delete(int id);	
 	//根据String删除实体

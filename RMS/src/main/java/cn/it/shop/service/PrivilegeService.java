@@ -10,6 +10,5 @@ public interface PrivilegeService extends BaseService<Privilege>{
 	List<Privilege> queryAllPrivilege();
 	List<Privilege> queryPrivilege(int oldParentId);
 	JSONArray getMenu(int parentId);
-    boolean findByMKR(String priMaster, int priKey, String recordStatus);
 	
 }
