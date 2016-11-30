@@ -6,7 +6,5 @@ import cn.it.shop.model.User;
 
 public interface UserDao extends BaseDao<User>{
 	public List<User> queryUser(String name,int page,int rows);
-	public long getCount(String name);
-	//根据ids删除多条记录
-	public void deleteByIds(String ids);
+    List<User> queryAllUser(String string, int page, int rows);
 }

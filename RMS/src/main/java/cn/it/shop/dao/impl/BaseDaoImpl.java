@@ -45,16 +45,38 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 	//保存
 	@Override
-	public void save(T t) {
+	public boolean save(T t) {
 		System.out.println(getSession());
-		getSession().save(t);		
+		try {
+		    getSession().save(t);
+		    return true;
+		}catch (HibernateException e) {
+		    return false;
+        }
+		
 	}                  
 	//更新
 	@Override
-	public void update(T t) {
+	public boolean update(T t) {
+	    System.out.println(getSession());
+	    try {
 		getSession().saveOrUpdate(t);
+		   return true;
+        }catch (HibernateException e) {
+            return false;
+        }
 	}
-	
+	//删除
+    @Override
+    public boolean delete(T t) {
+        System.out.println(getSession());
+        try {
+        getSession().delete(t);
+            return true;
+        }catch (HibernateException e) {
+            return false;
+        }
+    }	
 	//单表查询获取所有实体
 	@Override
 	public List<T> query() {
@@ -68,11 +90,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 
-	@Override
-	public void delete(T t) {
-		getSession().delete(t);
-	}
-	
 	@Override
 	public void delete(String username) {
 		getSession()

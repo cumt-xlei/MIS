@@ -8,30 +8,30 @@ import cn.it.shop.model.Category;
 public class CategoryAction extends BaseAction<Category>{
 	
 	private static final long serialVersionUID = 1L;
-	//查询
-	public String query(){
-		request.put("categoryList", categoryService.query());
-		session.put("categoryList", categoryService.query());
-		application.put("categoryList", categoryService.query());
-		return "jsonList";
-	}
-	public String save(){
-		model.setType("休闲");
-		model.setHot(true);
-		categoryService.save(model);
-		return "index";
-	}
-	public String delete(){
-		categoryService.delete(1);
-		return "index";
-	}
-	public String update(){
-		model=categoryService.get(1);
-		System.out.println(model.getId());
-		model.setId(1);
-		model.setType("商务");
-		model.setHot(false);
-		categoryService.update(model);;
-		return "index";
-	}
+//	//查询
+//	public String query(){
+//		request.put("categoryList", categoryService.query());
+//		session.put("categoryList", categoryService.query());
+//		application.put("categoryList", categoryService.query());
+//		return "jsonList";
+//	}
+//	public String save(){
+//		model.setType("休闲");
+//		model.setHot(true);
+//		categoryService.save(model);
+//		return "index";
+//	}
+//	public String delete(){
+//		categoryService.delete(1);
+//		return "index";
+//	}
+//	public String update(){
+//		model=categoryService.get(1);
+//		System.out.println(model.getId());
+//		model.setId(1);
+//		model.setType("商务");
+//		model.setHot(false);
+//		categoryService.update(model);;
+//		return "index";
+//	}
 }

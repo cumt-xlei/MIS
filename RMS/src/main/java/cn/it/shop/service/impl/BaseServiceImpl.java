@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import cn.it.shop.dao.AdminDao;
 import cn.it.shop.dao.BaseDao;
 import cn.it.shop.dao.CategoryDao;
+import cn.it.shop.dao.CustomerDao;
 import cn.it.shop.dao.PrivilegeDao;
 import cn.it.shop.dao.RoleDao;
 import cn.it.shop.dao.UserDao;
@@ -54,22 +55,25 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	protected PrivilegeDao privilegeDao;
 	@Resource(name="userDao")
 	protected UserDao userDao;
+	@Resource(name="customerDao")
+    protected CustomerDao customerDao;
 	
 	
 	
 	@Override
-	public void save(T t) {
-		baseDao.save(t);
+	public boolean save(T t) {
+	    return baseDao.save(t);
 	}
 
 	@Override
-	public void update(T t) {
-		baseDao.update(t);
+	public boolean update(T t) {
+	    return baseDao.update(t);
 	}
 
 	@Override
-	public void delete(T t) {
-		baseDao.delete(t);
+	public boolean delete(T t) {
+	    return baseDao.delete(t);
+   
 	}
 	
 	@Override

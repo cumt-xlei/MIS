@@ -29,4 +29,11 @@ public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege> implements 
 		return (JSONArray)privilegeDao.getMenu(parentId);
 	}
 
+    @Override
+    public boolean findByMKR(String priMaster, int priKey,
+            String recordStatus) {
+        // TODO Auto-generated method stub
+        return privilegeDao. findByMKR(priMaster,priKey,recordStatus);
+    }
+
 }

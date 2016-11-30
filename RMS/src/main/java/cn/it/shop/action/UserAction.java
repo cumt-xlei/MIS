@@ -1,53 +1,83 @@
 package cn.it.shop.action;
-import java.io.ByteArrayInputStream;
-/**
- * 客户管理
- * 苏雄伟
- */
+
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import cn.it.shop.model.User;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 @Controller
 @Scope("prototype")
 public class UserAction extends BaseAction<User>{
 	
 	private static final long serialVersionUID = 1L;
-	//查询所有满足条件的用户
+	//查询满足条件的客户
 	public String queryUser(){
 		pageMap=new HashMap<String,Object>();
 		System.out.println("page:"+page);
 		List<User> userList=userService.queryUser("", page, rows);
-		long total=userService.getCount("");
 		pageMap.put("rows", userList);
-		pageMap.put("total", total);
-		System.out.println(userList.size());
 		return "jsonMap";
 	}
-	//添加客户
-	public void saveUser(){
-		User user=new User();
-		user.setRealName(model.getRealName());
-		user.setTitle(model.getTitle());
-		user.setNickName(model.getNickName());
-		user.setAddress(model.getAddress());
-		user.setUserId(69);
-		System.out.println("dfsdf"+user.getAddress());
-		userService.save(user);
-	}
-	//删除
-	public String deleteByIds(){
-		System.out.println("要删除的ids为"+ids);
-		userService.deleteByIds(ids);
-		inputStream=new ByteArrayInputStream("true".getBytes());
-		return "stream";
-	}
-	//更新
-	public void update(){
-		userService.update(model);
-	}
+	
+	//L:
+	private String returnpd;
+    private int page;//分页页数
+    private int rows;//分页行数
+    public String getReturnpd() {
+        return returnpd;
+    }
+    public void setReturnpd(String returnpd) {
+        this.returnpd = returnpd;
+    }
+    public int getPage() {
+        return page;
+    }
+    public void setPage(int page) {
+        this.page = page;
+    }
+    public int getRows() {
+        return rows;
+    }
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+    //分页必须
+    public PrintWriter out()throws IOException{
+        HttpServletResponse response=ServletActionContext.getResponse();  
+        response.setContentType("text/html");  
+        response.setContentType("text/plain; charset=utf-8");
+        PrintWriter out= response.getWriter();
+        return out;
+    }
+    //查询所有用户语句
+    public String queryAllUser() throws IOException{
+        returnpd="ok";
+         JSONArray array =new JSONArray();
+           List<User> list=new ArrayList<User>();
+               list=userService.queryAllUser("",page,rows);        
+           for(User user:list){
+                JSONObject jo=new JSONObject();
+                jo.put("id",user.getId());
+                jo.put("LoginName", user.getLoginName());
+                jo.put("Title", user.getTitle());
+                array.add(jo);
+           };
+           String str="{\"total\":"+userService.count()+",\"rows\":"+array.toString()+"}";
+            out().print(str);
+            out().flush();
+            out().close();
+        return returnpd;
+        
+    }
+	
 }

@@ -4,13 +4,13 @@ import java.util.List;
 
 
 public interface BaseDao<T>{
-
-	void save(T t);
-
-	void update(T t);
-	
+    
+    // 保存实体
+	boolean save(T t);
+	//修改实体
+	boolean update(T t);	
 	// 删除实体
-	void delete(T t);
+	boolean delete(T t);
 	//根据ID删除实体
 	void delete(int id);	
 	

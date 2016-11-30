@@ -20,21 +20,16 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 				.setMaxResults(rows)
 				.list();
 	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public long getCount(String name) {
-		String hql="SELECT count(u) FROM User u WHERE u.realName LIKE :name";
-		return (Long) getSession().createQuery(hql)
-				.setString("name", "%" + name + "%")
-				.uniqueResult();
-	}
-
-	@Override
-	public void deleteByIds(String ids) {
-		String hql="DELETE  FROM User  WHERE id in (" + ids + ")";
-		getSession().createQuery(hql)
-		.executeUpdate();	
-	}
+	   @SuppressWarnings({ "unchecked", "deprecation" })
+	    @Override
+	    public List<User> queryAllUser(String username,int page, int rows) {
+	        String hql="select u FROM User u";
+	        return (List<User>)getSession().createQuery(hql)
+	                .setFirstResult(rows*(page-1))
+	                .setMaxResults(rows)
+	                .getResultList();
+	        
+	        
+	    }
 	
 }

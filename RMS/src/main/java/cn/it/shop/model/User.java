@@ -11,7 +11,6 @@ import javax.persistence.Table;
 @Table(name="cf_user")
 public class User implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
-	private Integer userId;
 	private Integer id;
 	private Integer deptID;
 	private Integer supplierID;
@@ -158,12 +157,4 @@ public class User implements java.io.Serializable{
 	public void setRecordStatus(String recordStatus) {
 		this.recordStatus = recordStatus;
 	}
-	@Column(name="userId")
-	public Integer getUserId() {
-		return userId;
-	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-	
 }

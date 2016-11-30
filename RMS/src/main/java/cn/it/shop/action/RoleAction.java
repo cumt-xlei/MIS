@@ -35,7 +35,7 @@ public class RoleAction  extends BaseAction<Role>{
         PrintWriter out= response.getWriter();
         return out;
 	}
-	//查询所有用户语句
+	//查询所有角色语句
 	public String queryAllRole() throws IOException{
 		returnpd="ok";
 		 JSONArray array =new JSONArray();
@@ -43,6 +43,7 @@ public class RoleAction  extends BaseAction<Role>{
 			   list=roleService.queryAllRole("",page,rows);		   
 		   for(Role role:list){
 			    JSONObject jo=new JSONObject();
+			    jo.put("id",role.getId());
 			    jo.put("RoleName", role.getRoleName());
 			    jo.put("RoleDesc", role.getRoleDesc());
 			    array.add(jo);
