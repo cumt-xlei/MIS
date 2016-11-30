@@ -5,11 +5,11 @@
 <%@include file="/public/head.jspf"%>
 <script type="text/javascript">
 	$(function(){
-		//iframe中的dg对象
-		var dg = parent.$("iframe[title='客户']").get(0).contentWindow.$("#roledg");
+		var rows= parent.$("#roledg").datagrid("getSelections");
 		//完成数据的回显
-		var rows=dg.datagrid("getSelections");
+		console.log(rows);
 		$('#ff').form('load', {
+			id:rows[0].id,
 			realName : rows[0].realName,
 			title : rows[0].title,
 			nickName : rows[0].nickName,
@@ -29,18 +29,16 @@
 					success : function() {
 						//关闭当前窗体
 						parent.$("#win").window("close");
-						//刷新页面,获取aindex-   iframe--->dg
-						dg.datagrid("reload");
+						parent.$("roledg").datagrid("reload");
 					}
 				});
-
 			}
 		})
 	})
 </script>
 </head>
 <body>
-	<form id="ff" method="post" style="margin-left:48;">
+	<form id="ff" method="post" style="margin-left: 48;">
 		<div>
 			<label for="type">客户:</label> <input type="text" name="realName" />
 		</div>

@@ -3,7 +3,10 @@
 <html>
 <head>
 <%@include file="/public/head.jspf"%>
-<link rel="stylesheet" type="text/css" href="${RMS}/css/good_menu2.css" />
+<!-- 
+	<link rel="stylesheet" type="text/css" href="${RMS}/css/good_menu2.css" />
+ -->
+
 <script type="text/javascript">
 	$(function role() {
 		//数据表格

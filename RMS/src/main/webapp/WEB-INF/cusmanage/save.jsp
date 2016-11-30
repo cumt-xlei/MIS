@@ -49,7 +49,7 @@
 					//关闭当前窗体
 					parent.$("#win").window("close");
 					//刷新页面,获取aindex--->iframe--->dg
-					parent.$("iframe[title='客户管理']").get(0).contentWindow.$("#roledg").datagrid("reload");
+					parent.$("#roledg").datagrid("reload");
 				}
 			});				
 			}

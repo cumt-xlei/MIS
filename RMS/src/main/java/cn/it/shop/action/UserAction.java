@@ -30,9 +30,14 @@ public class UserAction extends BaseAction<User>{
 	}
 	//添加客户
 	public void saveUser(){
-		model.setUserId(69);
-		System.out.println("dfsdf"+model.getAddress());
-		userService.save(model);
+		User user=new User();
+		user.setRealName(model.getRealName());
+		user.setTitle(model.getTitle());
+		user.setNickName(model.getNickName());
+		user.setAddress(model.getAddress());
+		user.setUserId(69);
+		System.out.println("dfsdf"+user.getAddress());
+		userService.save(user);
 	}
 	//删除
 	public String deleteByIds(){
@@ -40,5 +45,9 @@ public class UserAction extends BaseAction<User>{
 		userService.deleteByIds(ids);
 		inputStream=new ByteArrayInputStream("true".getBytes());
 		return "stream";
+	}
+	//更新
+	public void update(){
+		userService.update(model);
 	}
 }
