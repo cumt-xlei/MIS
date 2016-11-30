@@ -1,5 +1,6 @@
 package cn.it.shop.action;
 
+import java.io.InputStream;
 import java.lang.reflect.ParameterizedType;
 import java.util.Map;
 
@@ -55,8 +56,11 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	protected Map<String,Object> session;
 	protected Map<String,Object> application;
 	protected Map<String,Object> pageMap=null;
+	protected InputStream inputStream;
 	protected int page;
 	protected int rows;
+	//ÒªÉ¾³ýµÄid
+	protected String ids;
 	@Override
 	public void setApplication(Map<String, Object> application) {
 		this.application=application;
@@ -92,9 +96,15 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	public void setRows(int rows) {
 		this.rows = rows;
 	}
-
 	
+	public String getIds() {
+		return ids;
+	}
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
 	
-	
-
+	public InputStream getInputStream() {
+		return inputStream;
+	}
 }

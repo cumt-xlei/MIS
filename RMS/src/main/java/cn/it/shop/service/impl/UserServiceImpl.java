@@ -13,4 +13,15 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public List<User> queryUser(String name, int page, int rows) {
 		return userDao.queryUser(name, page, rows);
 	}
+
+	@Override
+	public long getCount(String name) {
+		return userDao.getCount(name);
+	}
+
+	@Override
+	public void deleteByIds(String ids) {
+		userDao.deleteByIds(ids);
+	}
+
 }
