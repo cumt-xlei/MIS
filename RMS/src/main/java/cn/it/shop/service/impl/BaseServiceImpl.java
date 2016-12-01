@@ -15,6 +15,7 @@ import cn.it.shop.dao.AdminDao;
 import cn.it.shop.dao.BaseDao;
 import cn.it.shop.dao.CategoryDao;
 import cn.it.shop.dao.CustomerDao;
+import cn.it.shop.dao.PriListDao;
 import cn.it.shop.dao.PrivilegeDao;
 import cn.it.shop.dao.RoleDao;
 import cn.it.shop.dao.UserDao;
@@ -57,6 +58,8 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	protected UserDao userDao;
 	@Resource(name="customerDao")
     protected CustomerDao customerDao;
+	@Resource(name="priListDao")
+    protected PriListDao priListDao;
 	
 	
 	

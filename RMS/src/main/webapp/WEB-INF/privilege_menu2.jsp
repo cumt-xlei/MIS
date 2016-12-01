@@ -83,7 +83,6 @@
 			var parentId = 0;
 			$('#pritt').treegrid({    
 			    url:'pri_pri_queryPrivilege.action?parentId='+parentId,
-			    fitColumns:true,
 			    rownumbers:true,
 			    selectOnCheck:true,
 			    checkbox:true,//定义在每一个节点前显示复选框
@@ -95,9 +94,9 @@
 			    	$(this).treegrid('options').url = 'pri_pri_queryPrivilege.action?parentId='+row.id;   
 				},
 			    columns:[[    
-			        {title:'id',field:'id',width:180}, 
-			        {field:'PrivilegeOperation',title:'菜单-按钮',width:180},
-			        {field:'RecordStatus',title:'编码',width:180}, 
+			        {title:'id',field:'id',width:100}, 
+			        {field:'PrivilegeOperation',title:'菜单-按钮',width:400},
+			        {field:'RecordStatus',title:'编码',width:300}, 
 			        {field:'Icon',title:'图标',width:180}, 
 			    ]],
 			  //数据表格  
@@ -234,7 +233,7 @@
     </div>
     <div class="btm-area">
     	<p class="title">权限控制</p>
-    	<table id="pritt" style="width:600px;height:400px"></table>  
+    	<table id="pritt"></table>  
     </div>
 
 </body>

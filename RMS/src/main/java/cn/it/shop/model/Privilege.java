@@ -19,10 +19,6 @@ import javax.persistence.Table;
 @Table(name="cf_privilege")
 public class Privilege {
 	private Integer id;
-	private Integer privilegeMasterKey;
-	private Integer privilegeAccessKey;
-	private String privilegeMaster;
-	private String privilegeAccess;
 	private String privilegeOperation;
 	private String recordStatus;
 	private String title;
@@ -41,35 +37,7 @@ public class Privilege {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	@Column(name="PrivilegeMasterKey")
-	public Integer getPrivilegeMasterKey() {
-		return privilegeMasterKey;
-	}
-	public void setPrivilegeMasterKey(Integer privilegeMasterKey) {
-		this.privilegeMasterKey = privilegeMasterKey;
-	}
-	@Column(name="PrivilegeAccessKey")
-	public Integer getPrivilegeAccessKey() {
-		return privilegeAccessKey;
-	}
-	public void setPrivilegeAccessKey(Integer privilegeAccessKey) {
-		this.privilegeAccessKey = privilegeAccessKey;
-	}
-
-	@Column(name="PrivilegeMaster",length=50)
-	public String getPrivilegeMaster() {
-		return privilegeMaster;
-	}
-	public void setPrivilegeMaster(String privilegeMaster) {
-		this.privilegeMaster = privilegeMaster;
-	}
-	@Column(name="PrivilegeAccess",length=50)
-	public String getPrivilegeAccess() {
-		return privilegeAccess;
-	}
-	public void setPrivilegeAccess(String privilegeAccess) {
-		this.privilegeAccess = privilegeAccess;
-	}
+	
 	@Column(name="PrivilegeOperation",length=50)
 	public String getPrivilegeOperation() {
 		return privilegeOperation;

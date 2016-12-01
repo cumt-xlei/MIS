@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import cn.it.shop.service.AdminService;
 import cn.it.shop.service.CategoryService;
 import cn.it.shop.service.CustomerService;
+import cn.it.shop.service.PriListService;
 import cn.it.shop.service.PrivilegeService;
 import cn.it.shop.service.RoleService;
 import cn.it.shop.service.UserService;
@@ -34,6 +35,8 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	protected UserService userService;
 	@Resource 
     protected CustomerService customerService;
+	@Resource 
+    protected PriListService priListService;
 	
 	
 	//在调用构造方法的时候给model赋值
