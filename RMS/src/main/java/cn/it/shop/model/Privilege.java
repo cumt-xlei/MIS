@@ -26,9 +26,6 @@ public class Privilege {
     private Integer parentID;
 	private String icon;
 	private String type;
-	
-	
-
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {

@@ -146,10 +146,28 @@
 	        					        	 var errori=str[0].errori;
 	        					        	 var returnpd=str[0].returnpd;
 											 if(returnpd == "error"){
-												 $.messager.alert('错误','分配权限出错！'+'已存在'+errori+'条权限','error'); 
+												 $.messager.alert('错误','分配权限出错！'+'已存在'+errori+'条权限','error');
+												//刷新当前tab
+												    var currTab =  self.parent.$('#tabs').tabs('getSelected'); //获得当前tab
+												    var url = $(currTab.panel('options').content).attr('src');
+												    self.parent.$('#tabs').tabs('update', {
+												      tab : currTab,
+												      options : {
+												       content : createFrame(url)
+												      }
+												     });
 											 }
 											 else{
-												 $.messager.alert('提示','分配权限成功！'+'新增'+successi+'条！'+'修改'+updatei+'条！'+'失败'+errori+'条!','info'); 
+												 $.messager.alert('提示','分配权限成功！'+'新增'+successi+'条！'+'修改'+updatei+'条！'+'失败'+errori+'条!','info');
+												//刷新当前tab
+												    var currTab =  self.parent.$('#tabs').tabs('getSelected'); //获得当前tab
+												    var url = $(currTab.panel('options').content).attr('src');
+												    self.parent.$('#tabs').tabs('update', {
+												      tab : currTab,
+												      options : {
+												       content : createFrame(url)
+												      }
+												     });
 											 }
 											 
 	        					        	
@@ -188,7 +206,8 @@
     						if(cgroup.length==0){
     							$.messager.alert('提示','您还没有选择任何权限哦！','info');   	
     						}
-    						else{	        						
+    						else{	        	
+    							
     							//var postData =JSON.stringify(cgroup);  //把数组转换成json字符串
     							$.ajax({            
     					         type: "POST",
@@ -200,9 +219,19 @@
     					                priMaster: priMaster,
     					                priKey: priKey.id,	        					                	        					                
     					         },                              
-    					         success: function(returnpd){
-    					        	 alert(returnpd)
-    					        	    
+    					         success: function(str){
+    					        	 var successi=str[0].successi;
+    					        	 var errori=str[0].errori;
+    					        	 var returnpd=str[0].returnpd;
+    					        	 console.log(returnpd+successi+errori);
+									 if(returnpd == "error"){
+										 $.messager.alert('错误','禁用权限出错！'+'禁用成功'+successi+'条！'+'失败'+errori+'条权限','error'); 
+									 }
+									 else{
+										 $.messager.alert('提示','禁用权限成功！'+'禁用成功'+successi+'条！'+'失败'+errori+'条!','info'); 
+									 }
+									 
+    					        	
     					         }
     					         
     					   		 });	        							
