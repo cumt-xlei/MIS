@@ -152,6 +152,7 @@
 											 else{
 												 $.messager.alert('提示','分配权限成功！'+'新增'+successi+'条！'+'修改'+updatei+'条！'+'失败'+errori+'条!','info'); 
 											 }
+											 
 	        					        	
 	        					         }
 	        					         

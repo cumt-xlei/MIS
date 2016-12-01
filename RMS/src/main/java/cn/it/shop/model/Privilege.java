@@ -21,13 +21,13 @@ public class Privilege {
 	private Integer id;
 	private Integer privilegeMasterKey;
 	private Integer privilegeAccessKey;
-	private Integer createUserID;
-	private Integer modifyUserID;
 	private String privilegeMaster;
 	private String privilegeAccess;
 	private String privilegeOperation;
 	private String recordStatus;
-	private Integer parentID;
+	private String title;
+	private String url;
+    private Integer parentID;
 	private String icon;
 	private String type;
 	
@@ -55,20 +55,7 @@ public class Privilege {
 	public void setPrivilegeAccessKey(Integer privilegeAccessKey) {
 		this.privilegeAccessKey = privilegeAccessKey;
 	}
-	@Column(name="CreateUserID")
-	public Integer getCreateUserID() {
-		return createUserID;
-	}
-	public void setCreateUserID(Integer createUserID) {
-		this.createUserID = createUserID;
-	}
-	@Column(name="ModifyUserID")
-	public Integer getModifyUserID() {
-		return modifyUserID;
-	}
-	public void setModifyUserID(Integer modifyUserID) {
-		this.modifyUserID = modifyUserID;
-	}
+
 	@Column(name="PrivilegeMaster",length=50)
 	public String getPrivilegeMaster() {
 		return privilegeMaster;
@@ -117,5 +104,19 @@ public class Privilege {
     }
     public void setType(String type) {
         this.type = type;
+    }
+    @Column(name="Title")
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    @Column(name="Url")
+    public String getUrl() {
+        return url;
+    }
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
