@@ -67,6 +67,8 @@ public class PrivilegeAction extends BaseAction<Privilege>{
         out().close();
         return returnpd;
     }
+	
+	//È¨ÏÞ±£´æ
     public String savePrivilege() throws IOException {
         returnpd="ok";
         HttpServletRequest req = ServletActionContext.getRequest();
