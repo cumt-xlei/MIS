@@ -40,4 +40,17 @@ public class RoleDaoImpl  extends BaseDaoImpl<Role> implements RoleDao{
 			return false;
 	
 	}
+	@Override
+	public boolean updateRole(String newRoleName, String roleName, String roleDesc) {
+		// TODO Auto-generated method stub
+		String hql = "UPDATE Role r SET r.roleName=:roleName,r.roleDesc=:roleDesc WHERE r.roleName=:newRoleName";
+		Query query= getSession().createQuery(hql)
+				.setString("roleName", roleName)
+				.setString("roleDesc", roleDesc)
+				.setString("newRoleName", newRoleName);
+		if(query.executeUpdate()>0)
+			return true;
+		else
+			return false;
+	}
 }
