@@ -20,5 +20,16 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 				.setMaxResults(rows)
 				.list();
 	}
+	   @SuppressWarnings({ "unchecked", "deprecation" })
+	    @Override
+	    public List<User> queryAllUser(String username,int page, int rows) {
+	        String hql="select u FROM User u";
+	        return (List<User>)getSession().createQuery(hql)
+	                .setFirstResult(rows*(page-1))
+	                .setMaxResults(rows)
+	                .getResultList();
+	        
+	        
+	    }
 	
 }

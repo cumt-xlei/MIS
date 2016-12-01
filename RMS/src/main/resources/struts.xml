@@ -6,10 +6,9 @@
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
     	<constant name="struts.devMode" value="true" />     
     	<package name="bps"  extends="json-default"  strict-method-invocation="false"> 
-    	<!--action-->
-    	<!--权限action开始-->
+    	<!--action-->   	
     	<!--查找所有角色-->
-		<action name="queryAllRole" class="cn.it.shop.action.RoleAction" method="queryAllRole"> 
+    	<action name="queryAllRole" class="cn.it.shop.action.RoleAction" method="queryAllRole"> 
     		<result name="ok" type="json">
 				<!-- 为该Result指定参数 -->
 				<param name="noCache">true</param>
@@ -17,10 +16,21 @@
 				<!-- 设置只序列Action的map属性 -->		
 				<param name="root">returnpd</param>
 			</result>
-		</action>
-		<!--权限详情-->
-		<action name="queryPrivilege" class="cn.it.shop.action.PrivilegeAction" method="queryPrivilege"> 
-    		<result name="ok" type="json">
+	</action>
+	<!--权限页面action开始-->
+		<!--角色-->
+			<action name="pri_role_*" class="cn.it.shop.action.RoleAction" method="{1}"> 
+	    		<result name="ok" type="json">
+					<!-- 为该Result指定参数 -->
+					<param name="noCache">true</param>
+					<param name="contentType">text/html</param>
+					<!-- 设置只序列Action的map属性 -->		
+					<param name="root">returnpd</param>
+				</result>
+			</action>
+		<!--用户-->
+		<action name="pri_user_*" class="cn.it.shop.action.UserAction" method="{1}"> 
+	    		<result name="ok" type="json">
 				<!-- 为该Result指定参数 -->
 				<param name="noCache">true</param>
 				<param name="contentType">text/html</param>
@@ -28,8 +38,9 @@
 				<param name="root">returnpd</param>
 			</result>
 		</action>
-		<action name="queryAllPrivilege" class="cn.it.shop.action.PrivilegeAction" method="queryAllPrivilege"> 
-    		<result name="ok" type="json">
+		<!--权限-->
+		<action name="pri_pri_*" class="cn.it.shop.action.PrivilegeAction" method="{1}"> 
+	    		<result name="ok" type="json">
 				<!-- 为该Result指定参数 -->
 				<param name="noCache">true</param>
 				<param name="contentType">text/html</param>
@@ -37,57 +48,48 @@
 				<param name="root">returnpd</param>
 			</result>
 		</action>	
-    	<!--权限action结束-->
+    <!--权限页面action结束-->
 
 
 
-		<!-- 用于页面的转发 -->
-		<action name="send_*_*" class="cn.it.shop.action.SendAction">
-			<result name="send">/WEB-INF/{1}/{2}.jsp</result>
-		</action>
-		<!-- 处理关于user的操作 -->
-		<action name="user_*" class="cn.it.shop.action.UserAction" method="{1}">
-			<result name="jsonMap" type="json">
-				<param name="noCache">true</param>
-				<param name="contentType">text/html</param>
-				<!-- 要转化为json对象的数据 -->
-				<param name="root">pageMap</param>
-			</result>
-		</action> 
-		<!-- user的操作结束 -->  
+	<!-- 用于页面的转发 -->
+	<action name="send_*_*" class="cn.it.shop.action.SendAction">
+		<result name="send">/WEB-INF/{1}/{2}.jsp</result>
+	</action>
+	<!-- 处理关于user的操作 -->
+	<action name="user_*" class="cn.it.shop.action.UserAction" method="{1}">
+		<result name="jsonMap" type="json">
+			<param name="noCache">true</param>
+			<param name="contentType">text/html</param>
+			<!-- 要转化为json对象的数据 -->
+			<param name="root">pageMap</param>
+		</result>
+	</action> 
+	<!-- user的操作结束 -->  
 
     	<!--组织action-->
     	<action name="saveRole" class="cn.it.shop.action.RoleAction" method="saveRole"> 
     		<result name="ok" type="json">
-				<!-- 为该Result指定参数 -->
-				<param name="noCache">true</param>
-				<param name="contentType">text/html</param>
-				<!-- 设置只序列Action的map属性 -->		
-				<param name="root">returnpd</param>
-			</result>
-		</action>
+			<!-- 为该Result指定参数 -->
+			<param name="noCache">true</param>
+			<param name="contentType">text/html</param>
+			<!-- 设置只序列Action的map属性 -->		
+			<param name="root">returnpd</param>
+		</result>
+	</action>
     	<action name="deleteRole" class="cn.it.shop.action.RoleAction" method="deleteRole"> 
     		<result name="ok" type="json">
-				<!-- 为该Result指定参数 -->
-				<param name="noCache">true</param>
-				<param name="contentType">text/html</param>
-				<!-- 设置只序列Action的map属性 -->		
-				<param name="root">returnpd</param>
-			</result>
-		</action>
-    	<action name="updateRole" class="cn.it.shop.action.RoleAction" method="updateRole"> 
-    		<result name="ok" type="json">
-				<!-- 为该Result指定参数 -->
-				<param name="noCache">true</param>
-				<param name="contentType">text/html</param>
-				<!-- 设置只序列Action的map属性 -->		
-				<param name="root">returnpd</param>
-			</result>
-		</action>
+			<!-- 为该Result指定参数 -->
+			<param name="noCache">true</param>
+			<param name="contentType">text/html</param>
+			<!-- 设置只序列Action的map属性 -->		
+			<param name="root">returnpd</param>
+		</result>
+	</action>
     	
     	<!--组织action结束-->   
 	
-    	<action name="">
+    		<action name="">
 			<result>WEB-INF/indexBack.jsp</result>
 		</action>
 		<action name="*">

@@ -25,12 +25,6 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	public boolean deleteRole(String RoleName) {
 		// TODO Auto-generated method stub
 		return roleDao.deleteRole(RoleName);
-	}
-
-	@Override
-	public boolean updateRole(String newRoleName, String roleName, String roleDesc) {
-		// TODO Auto-generated method stub
-		return roleDao.updateRole(newRoleName, roleName, roleDesc);
 	}	
 
 }

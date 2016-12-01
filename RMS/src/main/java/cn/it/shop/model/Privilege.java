@@ -28,9 +28,12 @@ public class Privilege {
 	private String privilegeOperation;
 	private String recordStatus;
 	private Integer parentID;
+	private String icon;
+	private String type;
+	
 	
 
-	@Id
+    @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
 		return id;
@@ -101,5 +104,18 @@ public class Privilege {
 	public void setParentID(Integer parentID) {
 		this.parentID = parentID;
 	}
-
+	@Column(name="Icon")
+    public String getIcon() {
+        return icon;
+    }
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+    @Column(name="Type")
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
 }

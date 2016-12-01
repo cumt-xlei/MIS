@@ -11,4 +11,8 @@ public interface PrivilegeDao extends BaseDao<Privilege>{
 
 	JSONArray getMenu(int parentId);
 
+	Privilege findByMKR(String priMaster, int priKey, String recordStatus, String type);
+
+    boolean savePrivilege(Privilege privi);
+
 }

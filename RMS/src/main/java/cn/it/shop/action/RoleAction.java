@@ -13,16 +13,8 @@ import net.sf.json.JSONObject;
 
 public class RoleAction  extends BaseAction<Role>{
 	private String returnpd;
-	private String newRoleName;
 	private int page;//分页页数
 	private int rows;//分页行数
-	
-	public String getNewRoleName() {
-		return newRoleName;
-	}
-	public void setNewRoleName(String newRoleName) {
-		this.newRoleName = newRoleName;
-	}
 	public int getPage() {
 		return page;
 	}
@@ -43,7 +35,7 @@ public class RoleAction  extends BaseAction<Role>{
         PrintWriter out= response.getWriter();
         return out;
 	}
-	//查询所有用户语句
+	//查询所有角色语句
 	public String queryAllRole() throws IOException{
 		returnpd="ok";
 		 JSONArray array =new JSONArray();
@@ -51,6 +43,7 @@ public class RoleAction  extends BaseAction<Role>{
 			   list=roleService.queryAllRole("",page,rows);		   
 		   for(Role role:list){
 			    JSONObject jo=new JSONObject();
+			    jo.put("id",role.getId());
 			    jo.put("RoleName", role.getRoleName());
 			    jo.put("RoleDesc", role.getRoleDesc());
 			    array.add(jo);
@@ -71,15 +64,6 @@ public class RoleAction  extends BaseAction<Role>{
 	public String deleteRole(){
 		returnpd="ok";
 		roleService.deleteRole(getModel().getRoleName());
-		return returnpd;
-	}
-	public String updateRole(){
-		returnpd="ok";
-		
-		System.out.println(getNewRoleName());
-		System.out.println(getModel().getRoleName());
-		System.out.println(getModel().getRoleDesc());
-		roleService.updateRole(getNewRoleName(), getModel().getRoleName(), getModel().getRoleDesc());
 		return returnpd;
 	}
 }
