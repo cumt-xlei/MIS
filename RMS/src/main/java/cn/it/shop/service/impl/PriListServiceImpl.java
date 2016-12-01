@@ -14,4 +14,10 @@ public class PriListServiceImpl extends BaseServiceImpl<PriList> implements PriL
         return (PriList)priListDao.findByMKR(priMaster,priKey,toId);
     }
 
+    @Override
+    public boolean savePrivilege(PriList priviListModel) {
+        // TODO Auto-generated method stub
+        return priListDao.savePrivilege(priviListModel);
+    }
+
 }

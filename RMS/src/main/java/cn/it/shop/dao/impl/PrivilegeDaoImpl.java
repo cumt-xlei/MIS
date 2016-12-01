@@ -71,13 +71,13 @@ public class PrivilegeDaoImpl extends BaseDaoImpl<Privilege> implements Privileg
     @Override
     public boolean savePrivilege(Privilege privi) {
         // TODO Auto-generated method stub
-       /* String hql = "UPDATE Privilege p SET p.privilegeAccess=:newPrivilegeAccess WHERE p.id=:id";
-        Query query= getSession().createQuery(hql)
-                .setInteger("id", privi.getId())
-                .setString("newPrivilegeAccess", privi.getPrivilegeAccess());
-        if(query.executeUpdate()>0)
-            return true;
-        else*/
+//        String hql = "UPDATE Privilege p SET p.privilegeAccess=:newPrivilegeAccess WHERE p.id=:id";
+//        Query query= getSession().createQuery(hql)
+//                .setInteger("id", privi.getId())
+//                .setString("newPrivilegeAccess", privi.getPrivilegeAccess());
+//        if(query.executeUpdate()>0)
+//            return true;
+//        else
             return false;
     }
 	

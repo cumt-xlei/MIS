@@ -55,25 +55,7 @@ public class PrivilegeAction extends BaseAction<Privilege>{
 	        PrintWriter out= response.getWriter();
 	        return out;
 		}
-//	public String queryAllPrivilege() throws IOException{
-//		returnpd="ok";
-//		JSONArray array =new JSONArray();
-//		   List<Privilege> list=new ArrayList<Privilege>();
-//		   String hql="";
-//			   list=privilegeService.queryAllPrivilege();		   
-//		   for(Privilege privilege:list){
-//			    JSONObject jo=new JSONObject();
-//			    jo.put("id", privilege.getId());
-//			    jo.put("parendId",privilege.getPrivilegeOperation());
-//			    jo.put("PrivilegeOperation", privilege.getPrivilegeOperation());
-//			    array.add(jo);
-//		   };
-//		   String str="{\"total\":"+privilegeService.count()+",\"rows\":"+array.toString()+"}";
-//			out().print(str);
-//			out().flush();
-//			out().close();
-//		return returnpd;
-//	}
+
 	
 	public String queryPrivilege() throws IOException{
         returnpd="ok";
@@ -85,116 +67,152 @@ public class PrivilegeAction extends BaseAction<Privilege>{
         out().close();
         return returnpd;
     }
-//    public String savePrivilege() throws IOException {
-//        returnpd="ok";
-//        HttpServletRequest req = ServletActionContext.getRequest();
-//        req.setCharacterEncoding("UTF-8");
-//        String[] dataList = req.getParameterValues("array");
-//        ArrayList<String> list = new ArrayList<String>();
-//
-//        int errori=0;//失败次数统计
-//        int successi=0;//新增成功次数统计
-//        int updatei =0;//修改成功次数统计
-//        for (int i = 0; i <dataList.length; i++) {
-////            Privilege pri =privilegeService.get(Integer.parseInt(dataList[i]));           
-////            Privilege priSingle=new Privilege();
-////          //根据Master,Key,RecordStatus判断是否存在这条权限
-////          priSingle=privilegeService.findByMKR(priMaster,priKey,pri.getRecordStatus(),pri.getType());
-////          boolean priPd1 =false;
-////          if(priSingle.getId() != null) {
-////              priPd1= true;
-////          }
-//            
-//            PriList priListModel = new PriList();
-//           //根据Master(用户还是角色),Key(ID),权限ID判断是否存在这条权限
-//            priListModel=priListService.findByMKR(priMaster,priKey,Integer.parseInt(dataList[i]));
-//            boolean priPd1 =false;
-//            if(priListModel.getId() != null) {
-//                priPd1= true;
-//            }           
-//            //如果存在，则修改
-//            PriList priListModel = new PriList();
-//            
-//            //如果存在，则修改
-//            if(priPd1==true){
-//                boolean pripd2 = true;
-//                Privilege privi = new Privilege();
-//                privi.setId(priSingle.getId());
-//                privi.setPrivilegeAccess("permit");
-//                pripd2 = privilegeService.savePrivilege(privi);
-//                if(pripd2==true) {
-//                    updatei+=1;
-//                    returnpd="ok";
-//                    System.out.println("修改成功");
-//                }
-//                else {
-//                    errori+=1;
-//                    returnpd="error";
-//                    System.out.println("修改失败");
-//                }
-//                              
-//            }
-//            //如果不存在，则新增
-//            else {
-//                boolean pripd3 = true;
-//                Privilege privi = new Privilege();
-//                privi.setPrivilegeOperation(pri.getPrivilegeOperation());
-//                privi.setRecordStatus(pri.getRecordStatus());
-//                privi.setPrivilegeAccess("primit");
-//                privi.setPrivilegeMaster(priMaster);
-//                privi.setPrivilegeMasterKey(priKey);
-//                privi.setType(pri.getType());
-//                //保存
-//                pripd3 = privilegeService.save(privi);
-//                if(pripd3==false) {
-//                    errori+=1;
-//                    System.out.println("新增出错");
-//                    returnpd="error";                   
-//                }
-//                else {
-//                    successi+=1;
-//                    returnpd="ok";
-//                    System.out.println("新增成功");
-//                }
-//                
-//            }           
-//        }
-//        
-//        //将成功失败次数拼装
-//        JSONArray array =new JSONArray();
-//        JSONObject jo=new JSONObject();
-//        jo.put("successi", successi);
-//        jo.put("updatei",updatei);
-//        jo.put("errori",errori);
-//        jo.put("returnpd",returnpd);
-//        array.add(jo);
-//        String str=array.toString();
-//        out().print(str);
-//        out().flush();
-//        out().close();
-//         return "ok";
-//    }
-//    
-//    public String updatePrivilege() throws UnsupportedEncodingException {
-//        returnpd="ok";
-//        HttpServletRequest req = ServletActionContext.getRequest();
-//        req.setCharacterEncoding("UTF-8");
-//        String[] dataList = req.getParameterValues("array");
-//        ArrayList<String> list = new ArrayList<String>();
-//        boolean pripd = true;
-//        for (int i = 0; i <dataList.length; i++) {
-//            Privilege pri =privilegeService.get(Integer.parseInt(dataList[i]));
-//            System.out.println(pri.getPrivilegeOperation());
-//            Privilege privi = new Privilege();
-////            pri.getRecordStatus();
-//            privi.setPrivilegeAccess("forbid");
-//            pripd = privilegeService.update(privi);
-//            if(pripd==false) {
-//                returnpd="error";
-//            }
-//        }
-//        return "ok";
-//    }
+    public String savePrivilege() throws IOException {
+        returnpd="ok";
+        HttpServletRequest req = ServletActionContext.getRequest();
+        req.setCharacterEncoding("UTF-8");
+        String[] dataList = req.getParameterValues("array");
+        ArrayList<String> list = new ArrayList<String>();
+
+        int errori=0;//失败次数统计
+        int successi=0;//新增成功次数统计
+        int updatei =0;//修改成功次数统计
+        for (int i = 0; i <dataList.length; i++) {
+
+            
+            PriList priListModel = new PriList();
+           //根据Master(用户还是角色),Key(ID),权限ID判断是否存在这条权限
+            priListModel=priListService.findByMKR(priMaster,priKey,Integer.parseInt(dataList[i]));
+            boolean priPd1 =false;
+            if(priListModel.getId() != null) {
+                priPd1= true;
+            }  
+            
+            //如果存在，则修改
+            if(priPd1==true){
+                boolean pripd2 = true;
+                PriList priviListModel = new PriList();
+                priviListModel.setId(priListModel.getId());
+                priviListModel.setPrivilegeAccess("permit");
+                pripd2 = priListService.savePrivilege(priviListModel);
+                if(pripd2==true) {
+                    updatei+=1;
+                    returnpd="ok";
+                    System.out.println("修改成功");
+                }
+                else {
+                    errori+=1;
+                    returnpd="error";
+                    System.out.println("修改失败");
+                }
+            
+
+                              
+            }
+            //如果不存在，则新增
+            else {
+                boolean pripd3 = true;
+                PriList priviListModel = new PriList();
+                priviListModel.setPrivilegeMaster(priMaster);//用户角色表
+                priviListModel.setPrivilegeMasterKey(priKey);//用户角色ID
+                priviListModel.setPrivilegeAccess("permit");
+                priviListModel.setToId(Integer.parseInt(dataList[i]));
+                
+                //保存
+                pripd3 = priListService.save(priviListModel);
+                if(pripd3==false) {
+                    errori+=1;
+                    System.out.println("新增出错");
+                    returnpd="error";                   
+                }
+                else {
+                    successi+=1;
+                    returnpd="ok";
+                    System.out.println("新增成功");
+                }
+                
+            }           
+        }
+        
+        //将成功失败次数拼装
+        JSONArray array =new JSONArray();
+        JSONObject jo=new JSONObject();
+        jo.put("successi", successi);
+        jo.put("updatei",updatei);
+        jo.put("errori",errori);
+        jo.put("returnpd",returnpd);
+        array.add(jo);
+        String str=array.toString();
+        out().print(str);
+        out().flush();
+        out().close();
+         return "ok";
+    }
+    
+    public String updatePrivilege() throws IOException {
+        
+        returnpd="ok";
+        HttpServletRequest req = ServletActionContext.getRequest();
+        req.setCharacterEncoding("UTF-8");
+        String[] dataList = req.getParameterValues("array");
+        ArrayList<String> list = new ArrayList<String>();
+
+        int errori=0;//修改失败次数统计
+        int successi=0;//修改成功次数统计
+        for (int i = 0; i <dataList.length; i++) {
+
+            
+            PriList priListModel = new PriList();
+           //根据Master(用户还是角色),Key(ID),权限ID判断是否存在这条权限
+            priListModel=priListService.findByMKR(priMaster,priKey,Integer.parseInt(dataList[i]));
+            boolean priPd1 =false;
+            if(priListModel.getId() != null) {
+                priPd1= true;
+            }  
+            
+            //如果存在，则禁止
+            if(priPd1==true){
+                boolean pripd2 = true;
+                PriList priviListModel = new PriList();
+                priviListModel.setId(priListModel.getId());
+                priviListModel.setPrivilegeAccess("forbid");
+                pripd2 = priListService.savePrivilege(priviListModel);
+                if(pripd2==true) {
+                    successi+=1;
+                    returnpd="ok";
+                    System.out.println("禁止成功");
+                }
+                else {
+                    errori+=1;
+                    returnpd="error";
+                    System.out.println("禁止失败");
+                }
+            
+
+                              
+            }
+            //如果不存在，则返回失败
+            else {          
+                errori+=1;
+                returnpd="error";
+                System.out.println("权限不存在");
+            }           
+        }
+        
+        //将成功失败次数拼装
+        JSONArray array =new JSONArray();
+        JSONObject jo=new JSONObject();
+        jo.put("successi", successi);
+        jo.put("errori",errori);
+        jo.put("returnpd",returnpd);
+        array.add(jo);
+        String str=array.toString();
+        out().print(str);
+        out().flush();
+        out().close();
+         return "ok";
+ 
+    }
 
     
 }

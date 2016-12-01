@@ -6,4 +6,6 @@ public interface PriListService extends BaseService<PriList>{
 
     PriList findByMKR(String priMaster, int priKey, int toId);
 
+    boolean savePrivilege(PriList priviListModel);
+
 }

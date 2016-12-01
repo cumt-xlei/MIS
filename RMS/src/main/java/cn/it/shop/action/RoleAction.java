@@ -51,6 +51,7 @@ public class RoleAction  extends BaseAction<Role>{
 			   list=roleService.queryAllRole("",page,rows);		   
 		   for(Role role:list){
 			    JSONObject jo=new JSONObject();
+			    jo.put("id",role.getId());
 			    jo.put("RoleName", role.getRoleName());
 			    jo.put("RoleDesc", role.getRoleDesc());
 			    array.add(jo);
