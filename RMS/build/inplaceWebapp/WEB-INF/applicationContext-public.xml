@@ -40,9 +40,8 @@
 				<value>cn.it.shop.model.Role</value>
 				<value>cn.it.shop.model.UserRole</value>
 				<value>cn.it.shop.model.Privilege</value>
-				<value>cn.it.shop.model.Menu</value>
-				<value>cn.it.shop.model.Button</value>
 				<value>cn.it.shop.model.Customer</value>
+				<value>cn.it.shop.model.PriList</value>
 			</list>
 		</property>		
 		<property name="hibernateProperties">

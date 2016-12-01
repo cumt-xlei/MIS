@@ -32,7 +32,7 @@
 		},'-',{
 			text:'修改',
 			iconCls: 'icon-edit',
-			handler: function(){alert('help')}
+			handler: function(){updateRole()}
 		}]
 		});
 	    
@@ -40,6 +40,9 @@
 	    	closed:'true'
 	    });
 	    $('#dd2' ).dialog({
+	    	closed:'true'
+	    });
+	    $('#dd3' ).dialog({
 	    	closed:'true'
 	    })
 	})
@@ -62,7 +65,6 @@
 			}
 		});
 	}
-	
 	function deleteRole(){
 		var row = $('#dg').datagrid('getSelected');
 		if (row){
@@ -98,7 +100,33 @@
 			    
 			});
 		};
-
+	}
+	
+	function updateRole(){
+		var row = $('#dg').datagrid('getSelected');
+		if (row){
+			$('#dd3').dialog({
+			    title: '更新角色',
+			    width: 400,
+			    height: 200,
+			    closed: false,
+			    cache: false,
+			    modal: true
+			});
+			$('#ff1').form('load',{
+				RoleName:row.RoleName,
+				RoleDesc:row.RoleDesc,
+			});
+			$('#ff1').form({
+				url:'updateRole.action',
+				queryParams:{'newRoleName':row.RoleName},
+				success:function(){
+			    	  $.messager.alert('消息','更新成功','');
+					  $('#dd3').dialog({closed: true});
+			    	  $("#dg").datagrid("reload");
+				}
+			});
+		};
 	}
 
 	</script>  
@@ -127,6 +155,23 @@
 <div id="dd2" class="dialog_text">
 确定删除？
 </div>
-
+<div id="dd3" class="dialog_text">
+	<form id="ff1">
+		<table>
+			<tr>
+				<td>角色名称</td>
+				<td><input name="RoleName" type="text"></input></td>
+			</tr>
+			<tr>
+				<td>角色描述:</td>
+				<td><input name="RoleDesc" type="text"></input></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="更新"></input></td>
+			</tr>
+		</table>
+	</form>
+</div>
 </body>
 </html>

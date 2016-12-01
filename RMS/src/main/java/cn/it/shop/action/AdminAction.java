@@ -1,15 +1,47 @@
-//package cn.it.shop.action;
-//
-//import java.util.List;
-//
-//import org.springframework.context.annotation.Scope;
-//import org.springframework.stereotype.Controller;
-//
-//import cn.it.shop.model.Admin;
-//
-//@Controller
-//@Scope("prototype")
-//public class AdminAction extends BaseAction<Admin>{
+package cn.it.shop.action;
+
+import java.util.List;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import cn.it.shop.model.Admin;
+
+@Controller
+@Scope("prototype")
+public class AdminAction extends BaseAction<Admin>{
+	public String login(){
+		//进行登录的判断
+		model=adminService.login(model);
+		if(model==null){
+			System.out.println("失败");
+			session.put("adminremind", "登录失败，请重新登录");
+			return "alogin";
+		}else{
+			//登录成功，先存储到session中，然后返回到相应的页面
+			System.out.println("成功");
+			session.put("admin", model);
+			session.put("logout", "退出登录");
+			session.put("active_admin","当前用户： "+ model.getAdmin_username());
+			session.put("adminremind", "您已经登录！");
+			return "admin";
+		}
+	}
+	public String logout(){
+		session.remove("admin");
+		session.remove("active_admin");
+		session.remove("logout");
+		session.remove("adminremind");
+		return "alogin";
+	}
+}
+
+
+
+
+
+
+
 //
 //	$(function users(){
 //			var a=null;

@@ -9,6 +9,8 @@ import cn.it.shop.service.AdminService;
 
 @Service("adminService")
 public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminService {
-
-
+	@Override
+	public Admin login(Admin admin) {
+		return adminDao.login(admin);
+	}
 }

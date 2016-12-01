@@ -13,8 +13,8 @@ public class Admin implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
   
 	private Integer id;
-	private String username;
-    private String password;
+	private String admin_username;
+    private String admin_password;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
@@ -24,18 +24,22 @@ public class Admin implements java.io.Serializable {
 		this.id = id;
 	}
 	@Column(name="admin_username",unique=true,nullable=false)
-	public String getUsername() {
-		return username;
+	public String getAdmin_username() {
+		return admin_username;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setAdmin_username(String admin_username) {
+		this.admin_username = admin_username;
 	}
 	@Column(name="admin_password",nullable=false)
-	public String getPassword() {
-		return password;
+	public String getAdmin_password() {
+		return admin_password;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setAdmin_password(String admin_password) {
+		this.admin_password = admin_password;
 	}
+	
+	
+	
+	
     
 }
