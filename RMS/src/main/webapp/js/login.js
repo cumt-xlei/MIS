@@ -34,8 +34,8 @@ $(function(){
 		}else if(!$('#password').validatebox('isValid')){
 			$('#password').focus();
 		}else{
-			$('<form action="admin_login.action" method="post" style="display:none" ><input type="hidden"  name="admin_username"  value="' + $('#manager').val() +
-					'"/><input type="hidden"  name="admin_password"  value="' + $('#password').val() + '"/></form>').appendTo('body').submit().remove();
+			$('<form action="user_login.action" method="post" style="display:none" ><input type="hidden"  name="loginName"  value="' + $('#manager').val() +
+					'"/><input type="hidden"  name="loginPassword"  value="' + $('#password').val() + '"/></form>').appendTo('body').submit().remove();
 		}
 	});
 });

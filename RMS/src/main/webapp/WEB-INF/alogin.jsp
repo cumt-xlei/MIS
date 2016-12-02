@@ -9,8 +9,8 @@
 <body>
 	<form id="ff" method="post">
 		<div id="login">
-			<p>账号：<input type="text" id="manager" name="admin_username" class="textbox"></p>
-			<p>密码：<input type="password" id="password" name="admin_password" class="textbox"></p>
+			<p>账号：<input type="text" id="manager" name="loginName" class="textbox"></p>
+			<p>密码：<input type="password" id="password" name="loginPassword" class="textbox"></p>
 			<div id="warn">${sessionScope.adminremind}</div>
 		</div>
 		<div id="btn">

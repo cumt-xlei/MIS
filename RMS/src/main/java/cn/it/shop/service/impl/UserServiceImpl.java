@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import cn.it.shop.model.User;
 import cn.it.shop.service.UserService;
+import net.sf.json.JSONArray;
 @Service("userService")
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 
@@ -18,4 +19,15 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	    public List<User> queryAllUser(String string,int page, int rows) {
 	        return (List<User>)userDao.queryAllUser(string,page,rows);
 	    }
+
+	@Override
+	public User login(User user) {
+		return userDao.login(user);
+	}
+
+	@Override
+	public JSONArray getUserMenu(int parentId, User user) {
+		// TODO Auto-generated method stub
+		return userDao.getUserMenu(parentId, user);
+	}
 }

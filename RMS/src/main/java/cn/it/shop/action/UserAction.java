@@ -20,6 +20,42 @@ import net.sf.json.JSONObject;
 public class UserAction extends BaseAction<User>{
 	
 	private static final long serialVersionUID = 1L;
+	private int parentId;
+	public String login(){
+		//进行登录的判断
+		model=userService.login(model);
+		if(model==null){
+			System.out.println("失败");
+			session.put("adminremind", "登录失败，请重新登录");
+			return "alogin";
+		}else{
+			//登录成功，先存储到session中，然后返回到相应的页面
+			System.out.println("成功");
+			session.put("admin", model);
+			session.put("logout", "退出登录");
+			session.put("active_admin","当前用户： "+ model.getLoginName());
+			session.put("adminremind", "您已经登录！");
+			return "admin";
+		}
+	}
+	public String logout(){
+		session.remove("admin");
+		session.remove("active_admin");
+		session.remove("logout");
+		session.remove("adminremind");
+		return "alogin";
+	}
+	//得到用户能看到的最左侧的按钮
+	public String getUserMenu() throws IOException{
+		returnpd = "ok";
+		JSONArray array = new JSONArray();
+		array = userService.getUserMenu(parentId, new User());
+		String str = array.toString();
+		out().print(str);
+		out().flush();
+		out().close();
+		return returnpd;
+	}
 	//查询满足条件的客户
 	public String queryUser(){
 		pageMap=new HashMap<String,Object>();
@@ -51,7 +87,14 @@ public class UserAction extends BaseAction<User>{
     public void setRows(int rows) {
         this.rows = rows;
     }
-    //分页必须
+    
+    public int getParentId() {
+		return parentId;
+	}
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
+	}
+	//分页必须
     public PrintWriter out()throws IOException{
         HttpServletResponse response=ServletActionContext.getResponse();  
         response.setContentType("text/html");  

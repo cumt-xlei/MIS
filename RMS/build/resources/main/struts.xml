@@ -70,6 +70,15 @@
 				<!-- 要转化为json对象的数据 -->
 				<param name="root">pageMap</param>
 			</result>
+			<result name="ok" type="json">
+				<!-- 为该Result指定参数 -->
+				<param name="noCache">true</param>
+				<param name="contentType">text/html</param>
+				<!-- 设置只序列Action的map属性 -->
+				<param name="root">returnpd</param>
+			</result>
+			<result name="admin">/WEB-INF/main/indexBack.jsp</result>
+			<result name="alogin">/WEB-INF/alogin.jsp</result>
 		</action>
 		<action name="admin_*" class="cn.it.shop.action.AdminAction"
 			method="{1}">
