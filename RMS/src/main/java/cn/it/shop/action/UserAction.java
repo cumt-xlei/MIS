@@ -49,7 +49,7 @@ public class UserAction extends BaseAction<User>{
 	public String getUserMenu() throws IOException{
 		returnpd = "ok";
 		JSONArray array = new JSONArray();
-		array = userService.getUserMenu(parentId, new User());
+		array = userService.getUserMenu(parentId, (User) session.get("admin"));
 		String str = array.toString();
 		out().print(str);
 		out().flush();

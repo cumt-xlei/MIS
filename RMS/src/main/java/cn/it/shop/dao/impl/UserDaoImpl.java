@@ -42,10 +42,28 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
 	@Override
 	public JSONArray getUserMenu(int parentId, User user) {
-		String hql = "";
+		//StringBuffer bf=new StringBuffer();
+		String bf="";
+		//String username="test3";
 		JSONArray array = new JSONArray();
-		hql = "FROM Privilege p WHERE p.parentID = " + parentId;
-		for (Privilege privilege : (List<Privilege>) (getSession().createQuery(hql).list())) {
+		bf = "SELECT * FROM cf_privilege AS cp WHERE  (cp.id IN (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'role' AND cfpl.PrivilegeMasterKey IN (SELECT RoleID FROM cf_userrole AS cur LEFT JOIN cf_user AS cu ON cur.UserID = cu.id  WHERE cu.LoginName='"+ user.getLoginName() +"' )) or (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'user' AND cfpl.PrivilegeMasterKey IN (SELECT id FROM cf_user WHERE cf_user.LoginName='"+ user.getLoginName() +"'))) AND cp.ParentID=' " + parentId + "'";
+		//bf.replace("USER_NAME", "test3");
+		//bf.replace("PARENTID", "1");
+	
+		//		bf.append("SELECT * FROM cf_privilege AS cp ");
+//		bf.append("WHERE  (cp.id IN (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'role' ");
+//		bf.append("AND cfpl.PrivilegeMasterKey IN (SELECT RoleID ");
+//		bf.append("FROM cf_userrole AS cur LEFT JOIN cf_user AS cu ON cur.UserID = cu.id  WHERE cu.LoginName=");
+//		bf.append("'test3' ");
+//		bf.append(")) or (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'user' ");
+//		bf.append("AND cfpl.PrivilegeMasterKey IN (SELECT id FROM cf_user WHERE cf_user.LoginName=");
+//		bf.append("'test3'");
+//		bf.append("))) AND cp.ParentID=");
+//		bf.append("'1'");
+//		bf.append("\");");
+		
+		//hql = "FROM Privilege p WHERE p.parentID = " + parentId;
+		for (Privilege privilege : (List<Privilege>) (getSession().createSQLQuery(bf).addEntity(Privilege.class).list())) {
 			JSONObject jo = new JSONObject();
 			jo.put("id", privilege.getId());
 			jo.put("PrivilegeOperation", privilege.getPrivilegeOperation());

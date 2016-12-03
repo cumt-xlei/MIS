@@ -17,21 +17,21 @@
 	$(document)
 			.ready(
 					function() {
-						var parentId = 0;
+						var parentId = 1;
 						$('#tts')
 								.treegrid(
 										{
-											url : 'pri_pri_queryPrivilege.action?parentId='
+											url : 'user_getUserMenu.action?parentId='
 													+ parentId,
 											//rownumbers : true,
 											selectOnCheck : true,
-											checkbox : true,//定义在每一个节点前显示复选框
-											onlyLeafCheck : true,//定义是否仅在叶子节点前显示复选框
+											//checkbox : true,//定义在每一个节点前显示复选框
+											//onlyLeafCheck : true,//定义是否仅在叶子节点前显示复选框
 											idField : 'id',
 											treeField : 'PrivilegeOperation',
 											onBeforeExpand : function(row) {
 												//动态设置展开查询的url
-												$(this).treegrid('options').url = 'pri_pri_queryPrivilege.action?parentId='
+												$(this).treegrid('options').url = 'user_getUserMenu.action?parentId='
 														+ row.id;
 											},
 											columns : [ [ {

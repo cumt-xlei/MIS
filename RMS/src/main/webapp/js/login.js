@@ -17,7 +17,7 @@ $(function(){
 	//管理员密码验证
 	$('#password').validatebox({
 		required:true,
-		validType:'length[5,30]',
+		validType:'length[1,30]',
 		missingMessage:'请输入密码',
 		invalidMessage:'密码不得小于五个字符',		
 	});
