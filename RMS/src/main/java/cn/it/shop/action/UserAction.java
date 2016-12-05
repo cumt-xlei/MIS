@@ -75,6 +75,7 @@ public class UserAction extends BaseAction<User> {
 	private int page;// 分页页数
 	private int rows;// 分页行数
 	private int usId;
+	private int roId;
 
 	public String getReturnpd() {
 		return returnpd;
@@ -105,6 +106,13 @@ public class UserAction extends BaseAction<User> {
 	}
 	public void setUsId(int usId) {
 		this.usId = usId;
+	}
+
+	public int getRoId() {
+		return roId;
+	}
+	public void setRoId(int roId) {
+		this.roId = roId;
 	}
 	// 分页必须
 	public PrintWriter out() throws IOException {
@@ -146,8 +154,13 @@ public class UserAction extends BaseAction<User> {
 
 	public String deleteUser() {
 		returnpd = "ok";
-		System.out.println(getModel().getId());
 		userService.delete(getModel().getId());
+		List<UserRole> listUserRole = userRoleService.query();
+
+		for (UserRole userRole : listUserRole) {
+			if (getModel().getId() == userRole.getUserID())
+				userRoleService.delete(userRole.getId());
+		}
 		return returnpd;
 	}
 
@@ -185,6 +198,27 @@ public class UserAction extends BaseAction<User> {
 
 		return returnpd;
 	}
+	public String saveRole(){
+		returnpd = "ok";
+		UserRole userRole = new UserRole();
+		userRole.setRoleID(getRoId());
+		userRole.setUserID(getUsId());
+		userRoleService.save(userRole);
+		return returnpd;		
+	}
+	public String deleteRole(){
+		returnpd = "ok";
+		List<UserRole> listUserRole = userRoleService.query();
+		int iUrId = 0;
+		for (UserRole userRole : listUserRole) {
+			if (getUsId() == userRole.getUserID() && getRoId() == userRole.getRoleID())
+				iUrId = userRole.getId();
+		};
+		System.out.println(iUrId+"sssssss");
+		userRoleService.delete(iUrId);
+		return returnpd;		
+	}
+	
 	public int getParentId() {
 		return parentId;
 	}

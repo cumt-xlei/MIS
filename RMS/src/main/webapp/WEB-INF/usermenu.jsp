@@ -35,11 +35,6 @@
 			text:'修改',
 			iconCls: 'icon-edit',
 			handler: function(){updateUser()}
-		},'-',{
-			text:'角色',
-			disabled:true,
-			iconCls: 'icon-more',
-			handler: function(){updateUser()}
 		}],
 		});
 	    $('#dd' ).dialog({
@@ -51,7 +46,12 @@
 	    $('#dd3' ).dialog({
 	    	closed:'true'
 	    });
-	    
+	    $('#dd4' ).dialog({
+	    	closed:'true'
+	    });
+	    $('#dd5' ).dialog({
+	    	closed:'true'
+	    });
 
 	})
 
@@ -96,6 +96,7 @@
 						    	  $.messager.alert('消息','删除成功','');
 								  $('#dd2').dialog({closed: true});
 						    	  $("#dg").datagrid("reload");
+						    	  $("#dg1").datagrid("reload");
 						      }						    
 						})
 					}					
@@ -141,8 +142,7 @@
 		var row = $('#dg').datagrid('getSelected');
 	    $('#dg1').datagrid({
 		    url:'u_queryUserRole.action',
-		    queryParams:{"userId":row.id},
-		    pagination:true,
+		    queryParams:{"usId":row.id},
 		    singleSelect:true,
 		    columns:[[
 				{field:'id',title:'id',width:300,align:'center'},
@@ -152,19 +152,70 @@
 		    toolbar: [{
 				text:'添加',
 				iconCls: 'icon-add',
-				handler: function(){addRole()}
+				handler: function(){
+					$('#dd4').dialog({
+					    title: '添加角色',
+					    width: 400,
+					    height: 200,
+					    closed: false,
+					    cache: false,
+					    modal: true
+					});
+					$('#ff2').form('load',{
+						usId:row.id
+					}); 
+					$('#ff2').form({
+						success:function(){
+							$.messager.alert('消息','添加成功','');	
+							$('#dg1').datagrid('reload');
+							$('#dd4').dialog({closed: true});
+						}
+					});
+				}
 			},'-',{
 				text:'删除',
 				iconCls: 'icon-remove',
-				handler: function(){deleteRole()}
-			},'-',{
-				text:'修改',
-				iconCls: 'icon-edit',
-				handler: function(){updateRole()}
+				handler: function(){
+					var row1 = $('#dg1').datagrid('getSelected');
+					if (row){
+						$('#dd2').dialog({
+						    title: '确认窗口',
+						    width: 300,
+						    height: 150,
+						    closed: false,
+						    cache: false,
+						    modal: true,
+						    buttons:[{
+								text:'确定',
+								iconCls:'icon-ok',
+								handler:function(){
+									$.ajax({
+									      url:'u_deleteRole.action',
+									      dataType:'json', 
+									      data:{'usId':row.id,'roId':row1.id},
+									      method:'POST',
+									      success:function(){
+									    	  $.messager.alert('消息','删除成功','');
+											  $('#dd2').dialog({closed: true});
+									    	  $("#dg1").datagrid("reload");
+									      }						    
+									})
+								}					
+
+							},{
+								text:'取消',
+								iconCls:'icon-cancel',
+								handler:function(){$('#dd2').dialog('close');}
+							}]
+						    
+						});
+					};
+				}
 			}]
 			});
 		
 	}
+
 
 	</script>  
 <body>
@@ -217,5 +268,25 @@
 <br />
 <div>用户拥有的角色</div>
 <table id="dg1"></table>
+
+<div id="dd4" class="dialog_text">
+	<form id="ff2" action="u_saveRole.action" method="post">
+		<table>
+			<tr>
+				<td>用户ID</td>
+				<td><input name="usId" type="text"></input></td>
+			</tr>
+			<tr>
+				<td>角色ID</td>
+				<td><input name="roId" type="text"></input></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="保存"></input></td>
+			</tr>
+		</table>
+	</form>
+</div>
+
 </body>
 </html>
