@@ -19,6 +19,7 @@ import cn.it.shop.dao.PriListDao;
 import cn.it.shop.dao.PrivilegeDao;
 import cn.it.shop.dao.RoleDao;
 import cn.it.shop.dao.UserDao;
+import cn.it.shop.dao.UserRoleDao;
 import cn.it.shop.service.BaseService;
 @SuppressWarnings("unchecked")
 @Service("baseService")

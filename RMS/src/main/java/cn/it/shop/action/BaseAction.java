@@ -18,6 +18,7 @@ import cn.it.shop.service.CustomerService;
 import cn.it.shop.service.PriListService;
 import cn.it.shop.service.PrivilegeService;
 import cn.it.shop.service.RoleService;
+import cn.it.shop.service.UserRoleService;
 import cn.it.shop.service.UserService;
 
 public class BaseAction<T> extends ActionSupport implements RequestAware,SessionAware, ApplicationAware,ModelDriven<T>{
