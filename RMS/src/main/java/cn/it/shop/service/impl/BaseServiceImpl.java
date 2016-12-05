@@ -19,30 +19,31 @@ import cn.it.shop.dao.PriListDao;
 import cn.it.shop.dao.PrivilegeDao;
 import cn.it.shop.dao.RoleDao;
 import cn.it.shop.dao.UserDao;
+import cn.it.shop.dao.UserRoleDao;
 import cn.it.shop.service.BaseService;
 @SuppressWarnings("unchecked")
 @Service("baseService")
 @Lazy(true)
 public class BaseServiceImpl<T> implements BaseService<T> {
 	
-	private Class clazz; // clazzÖÐ´æ´¢ÁË×ÓÀàµ±Ç°²Ù×÷ÊµÌåÀàÐÍ
+	private Class clazz; // clazzï¿½Ð´æ´¢ï¿½ï¿½ï¿½ï¿½ï¿½àµ±Ç°ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public BaseServiceImpl() {
-		// Èç¹û×ÓÀàµ÷ÓÃµ±Ç°¹¹Ôì·½·¨,this´ú±íµÄÊÇ×ÓÀà¶ÔÏó
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½Ç°ï¿½ï¿½ï¿½ì·½ï¿½ï¿½,thisï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ParameterizedType type = (ParameterizedType) this.getClass()
 				.getGenericSuperclass();
 		clazz = (Class) type.getActualTypeArguments()[0];
 	}
 	protected BaseDao baseDao;   // baseDao=categoryDao || baseDao=accountDao || baseDao=forderDao
 	
-	@PostConstruct   // init·½·¨ÊÇÔÚ¹¹Ôì·½·¨Óëset×¢ÈëÖ®ºóÖ´ÐÐ, Ò²¾ÍÊÇXMLµÄ: init-method=""
+	@PostConstruct   // initï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ì·½ï¿½ï¿½ï¿½ï¿½set×¢ï¿½ï¿½Ö®ï¿½ï¿½Ö´ï¿½ï¿½, Ò²ï¿½ï¿½ï¿½ï¿½XMLï¿½ï¿½: init-method=""
 	public void init() throws Exception{
-		// 1: ¸ù¾Ý¾ßÌåµÄ·ºÐÍ, »ñÈ¡ÏàÓ¦µÄField×Ö¶Î, categoryDao
+		// 1: ï¿½ï¿½ï¿½Ý¾ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½, ï¿½ï¿½È¡ï¿½ï¿½Ó¦ï¿½ï¿½Fieldï¿½Ö¶ï¿½, categoryDao
 		String clazzName=clazz.getSimpleName();
 		String clazzDaoName=clazzName.substring(0,1).toLowerCase() + clazzName.substring(1) + "Dao";
 		Field clazzField=this.getClass().getSuperclass().getDeclaredField(clazzDaoName);
-		// 2: »ñÈ¡baseDao Filed×Ö¶Î
+		// 2: ï¿½ï¿½È¡baseDao Filedï¿½Ö¶ï¿½
 		Field baseField=this.getClass().getSuperclass().getDeclaredField("baseDao");
-		// 3: °ÑcategoryDaoµÄÖµ¸³Öµ¸øbaseDao
+		// 3: ï¿½ï¿½categoryDaoï¿½ï¿½Öµï¿½ï¿½Öµï¿½ï¿½baseDao
 		baseField.set(this,clazzField.get(this));
 	}
 
@@ -60,7 +61,8 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     protected CustomerDao customerDao;
 	@Resource(name="priListDao")
     protected PriListDao priListDao;
-	
+	@Resource(name="userRoleDao")
+	protected UserRoleDao userRoleDao;	
 	
 	
 	@Override

@@ -66,21 +66,18 @@ public class RoleAction  extends BaseAction<Role>{
 	
 	public String saveRole(){
 		returnpd="ok";
+		System.out.println("1");
 		roleService.save(getModel());
 		return returnpd;
 	}
 	public String deleteRole(){
 		returnpd="ok";
-		roleService.deleteRole(getModel().getRoleName());
+		roleService.delete(getModel().getId());
 		return returnpd;
 	}
 	public String updateRole(){
 		returnpd="ok";
-		
-		System.out.println(getNewRoleName());
-		System.out.println(getModel().getRoleName());
-		System.out.println(getModel().getRoleDesc());
-		roleService.updateRole(getNewRoleName(), getModel().getRoleName(), getModel().getRoleDesc());
+		roleService.update(getModel());
 		return returnpd;
 	}
 }

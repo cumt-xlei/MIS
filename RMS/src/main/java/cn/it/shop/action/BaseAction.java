@@ -18,11 +18,12 @@ import cn.it.shop.service.CustomerService;
 import cn.it.shop.service.PriListService;
 import cn.it.shop.service.PrivilegeService;
 import cn.it.shop.service.RoleService;
+import cn.it.shop.service.UserRoleService;
 import cn.it.shop.service.UserService;
 
 public class BaseAction<T> extends ActionSupport implements RequestAware,SessionAware, ApplicationAware,ModelDriven<T>{
 	private static final long serialVersionUID = 1L;
-	//×¢Èëservice
+	//×¢ï¿½ï¿½service
 	@Resource
 	protected CategoryService categoryService;
 	@Resource 
@@ -37,9 +38,10 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
     protected CustomerService customerService;
 	@Resource 
     protected PriListService priListService;
+	@Resource
+	protected UserRoleService userRoleService;	
 	
-	
-	//ÔÚµ÷ÓÃ¹¹Ôì·½·¨µÄÊ±ºò¸ømodel¸³Öµ
+	//ï¿½Úµï¿½ï¿½Ã¹ï¿½ï¿½ì·½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½modelï¿½ï¿½Öµ
 	protected T model;
 	public BaseAction() {
 		ParameterizedType type = (ParameterizedType) this.getClass()
@@ -52,7 +54,7 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 		}
 	}
 	
-	//·µ»ØµÄ¶ÔÏó½«ÒªÑ¹Õ»
+	//ï¿½ï¿½ï¿½ØµÄ¶ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÑ¹Õ»
 	@Override
 	public T getModel() {
 		return model;

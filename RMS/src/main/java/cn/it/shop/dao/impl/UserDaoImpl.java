@@ -1,55 +1,38 @@
 package cn.it.shop.dao.impl;
-
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import cn.it.shop.dao.CategoryDao;
 import cn.it.shop.dao.UserDao;
-import cn.it.shop.model.Admin;
 import cn.it.shop.model.Category;
-import cn.it.shop.model.Privilege;
 import cn.it.shop.model.User;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
 @Repository("userDao")
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
 	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
 	public List<User> queryUser(String name, int page, int rows) {
-		String hql = "FROM User u WHERE u.realName LIKE :name";
-		return getSession().createQuery(hql).setString("name", "%" + name + "%").setFirstResult((page - 1) * rows)
-				.setMaxResults(rows).list();
+		String hql="FROM User u WHERE u.realName LIKE :name";
+		return getSession().createQuery(hql)				
+				.setString("name", "%" + name + "%")
+				.setFirstResult((page-1)*rows)
+				.setMaxResults(rows)
+				.list();
 	}
-
-	@SuppressWarnings({ "unchecked", "deprecation" })
-	@Override
-	public List<User> queryAllUser(String username, int page, int rows) {
-		String hql = "select u FROM User u";
-		return (List<User>) getSession().createQuery(hql).setFirstResult(rows * (page - 1)).setMaxResults(rows)
-				.getResultList();
-
-	}
-
-	@Override
-	public User login(User user) {
-		String hql = "FROM User u WHERE u.loginName=:username AND u.loginPassword=:password";
-		return (User) getSession().createQuery(hql).setString("username", user.getLoginName())
-				.setString("password", user.getLoginPassword()).uniqueResult();
-	}
-
-	@Override
-	public JSONArray getUserMenu(int parentId, User user) {
-		//StringBuffer bf=new StringBuffer();
-		String bf="";
-		//String username="test3";
-		JSONArray array = new JSONArray();
-		bf = "SELECT * FROM cf_privilege AS cp WHERE  (cp.id IN (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'role' AND cfpl.PrivilegeMasterKey IN (SELECT RoleID FROM cf_userrole AS cur LEFT JOIN cf_user AS cu ON cur.UserID = cu.id  WHERE cu.LoginName='"+ user.getLoginName() +"' )) or (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'user' AND cfpl.PrivilegeMasterKey IN (SELECT id FROM cf_user WHERE cf_user.LoginName='"+ user.getLoginName() +"'))) AND cp.ParentID=' " + parentId + "'";
-		//bf.replace("USER_NAME", "test3");
-		//bf.replace("PARENTID", "1");
+	   @SuppressWarnings({ "unchecked", "deprecation" })
+	    @Override
+	    public List<User> queryAllUser(String username,int page, int rows) {
+	        String hql="select u FROM User u";
+	        return (List<User>)getSession().createQuery(hql)
+	                .setFirstResult(rows*(page-1))
+	                .setMaxResults(rows)
+	                .getResultList();
+	        
+	        
+	    }
 	
+<<<<<<< HEAD
 		//		bf.append("SELECT * FROM cf_privilege AS cp ");
 //		bf.append("WHERE  (cp.id IN (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'role' ");
 //		bf.append("AND cfpl.PrivilegeMasterKey IN (SELECT RoleID ");
@@ -82,4 +65,6 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 		}
 		return array;
 	}
+=======
+>>>>>>> origin/master
 }

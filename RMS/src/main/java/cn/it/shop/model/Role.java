@@ -12,8 +12,6 @@ import javax.persistence.Table;
 public class Role implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private Integer createUserID;
-	private Integer modifyUserID;
 	private String roleName;
 	private String roleDesc;
 	
@@ -24,20 +22,6 @@ public class Role implements java.io.Serializable {
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	@Column(name="CreateUserID")
-	public Integer getCreateUserID() {
-		return createUserID;
-	}
-	public void setCreateUserID(Integer createUserID) {
-		this.createUserID = createUserID;
-	}
-	@Column(name="ModifyUserID")
-	public Integer getModifyUserID() {
-		return modifyUserID;
-	}
-	public void setModifyUserID(Integer modifyUserID) {
-		this.modifyUserID = modifyUserID;
 	}
 	@Column(name="RoleName",length=50,nullable=false)
 	public void setRoleName(String roleName) {
