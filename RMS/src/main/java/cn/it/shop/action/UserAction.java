@@ -74,7 +74,7 @@ public class UserAction extends BaseAction<User> {
 	private String returnpd;
 	private int page;// 分页页数
 	private int rows;// 分页行数
-	private int userId;
+	private int usId;
 
 	public String getReturnpd() {
 		return returnpd;
@@ -100,14 +100,12 @@ public class UserAction extends BaseAction<User> {
 		this.rows = rows;
 	}
 
-	public int getUserId() {
-		return userId;
+	public int getUsId() {
+		return usId;
 	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUsId(int usId) {
+		this.usId = usId;
 	}
-
 	// 分页必须
 	public PrintWriter out() throws IOException {
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -161,6 +159,7 @@ public class UserAction extends BaseAction<User> {
 	}
 
 	public String queryUserRole() throws IOException {
+		System.out.print(usId);
 		returnpd = "ok";
 		JSONArray jsonArray = new JSONArray();
 
@@ -168,7 +167,7 @@ public class UserAction extends BaseAction<User> {
 		List<UserRole> listUserRole = userRoleService.query();
 
 		for (UserRole userRole : listUserRole) {
-			if (getUserId() == userRole.getUserID())
+			if (getUsId() == userRole.getUserID())
 				listRole.add(roleService.get(userRole.getRoleID()));
 		}
 
