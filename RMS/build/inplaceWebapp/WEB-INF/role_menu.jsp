@@ -18,8 +18,9 @@
 	    pagination:true,
 	    singleSelect:true,
 	    columns:[[
-			{field:'RoleName',title:'角色名称',width:400,align:'center'},
-			{field:'RoleDesc',title:'角色描述',width:1100,align:'center'},
+			{field:'id',title:'id',width:300,align:'center'},
+			{field:'RoleName',title:'角色名称',width:300,align:'center'},
+			{field:'RoleDesc',title:'角色描述',width:1000,align:'center'},
 	    ]],
 	    toolbar: [{
 			text:'添加',
@@ -80,9 +81,9 @@
 					iconCls:'icon-ok',
 					handler:function(){
 						$.ajax({
-						      url:'deleteRole.action',
+						      url:'r_deleteRole.action',
 						      dataType:'json', 
-						      data:{'RoleName':row.RoleName},
+						      data:{'id':row.id},
 						      method:'POST',
 						      success:function(){
 						    	  $.messager.alert('消息','删除成功','');
@@ -114,12 +115,12 @@
 			    modal: true
 			});
 			$('#ff1').form('load',{
+				id:row.id,
 				RoleName:row.RoleName,
 				RoleDesc:row.RoleDesc,
 			});
 			$('#ff1').form({
-				url:'updateRole.action',
-				queryParams:{'newRoleName':row.RoleName},
+				url:'r_updateRole.action',
 				success:function(){
 			    	  $.messager.alert('消息','更新成功','');
 					  $('#dd3').dialog({closed: true});
@@ -134,7 +135,7 @@
  
 <table id="dg"></table>
 <div id="dd" class="dialog_text">
-	<form id="ff" action="saveRole.action" method="post">
+	<form id="ff" action="r_saveRole.action" method="post">
 		<table>
 			<tr>
 				<td>角色名称</td>
@@ -158,6 +159,9 @@
 <div id="dd3" class="dialog_text">
 	<form id="ff1">
 		<table>
+			<tr>
+				<td><input name="id" type="hidden"></input></td>
+			</tr>
 			<tr>
 				<td>角色名称</td>
 				<td><input name="RoleName" type="text"></input></td>

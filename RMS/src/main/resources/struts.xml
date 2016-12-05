@@ -79,11 +79,13 @@
 				<!-- 设置只序列Action的map属性 -->
 				<param name="root">returnpd</param>
 			</result>
+			<result name="admin">/WEB-INF/main/indexBack.jsp</result>
+			<result name="alogin">/WEB-INF/alogin.jsp</result>
 		</action>
 		
 		
 		
-		<action name="u_*" class="cn.it.shop.action.UserAction"
+		<action name="user_*" class="cn.it.shop.action.UserAction"
 			method="{1}">
 			<result name="ok" type="json">
 				<!-- 为该Result指定参数 -->
@@ -92,6 +94,8 @@
 				<!-- 设置只序列Action的map属性 -->
 				<param name="root">returnpd</param>
 			</result>
+			<result name="admin">/WEB-INF/main/indexBack.jsp</result>
+			<result name="alogin">/WEB-INF/alogin.jsp</result>
 		</action>
 		
 		<!--组织action结束 -->

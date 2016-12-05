@@ -62,55 +62,16 @@
 			<result name="send">/WEB-INF/{1}/{2}.jsp</result>
 		</action>
 		<!-- 处理关于user的操作 -->
-		<action name="user_*" class="cn.it.shop.action.UserAction"
-			method="{1}">
-			<result name="jsonMap" type="json">
-				<param name="noCache">true</param>
-				<param name="contentType">text/html</param>
-				<!-- 要转化为json对象的数据 -->
-				<param name="root">pageMap</param>
-			</result>
-			<result name="ok" type="json">
-				<!-- 为该Result指定参数 -->
-				<param name="noCache">true</param>
-				<param name="contentType">text/html</param>
-				<!-- 设置只序列Action的map属性 -->
-				<param name="root">returnpd</param>
-			</result>
-			<result name="admin">/WEB-INF/main/indexBack.jsp</result>
-			<result name="alogin">/WEB-INF/alogin.jsp</result>
-		</action>
 		<action name="admin_*" class="cn.it.shop.action.AdminAction"
 			method="{1}">
 			<result name="admin">/WEB-INF/main/indexBack.jsp</result>
 			<result name="alogin">/WEB-INF/alogin.jsp</result>
 		</action>
 		<!-- user的操作结束 -->
-
 		<!--组织action -->
-		<action name="saveRole" class="cn.it.shop.action.RoleAction"
-			method="saveRole">
-			<result name="ok" type="json">
-				<!-- 为该Result指定参数 -->
-				<param name="noCache">true</param>
-				<param name="contentType">text/html</param>
-				<!-- 设置只序列Action的map属性 -->
-				<param name="root">returnpd</param>
-			</result>
-		</action>
-		<action name="deleteRole" class="cn.it.shop.action.RoleAction"
-			method="deleteRole">
-			<result name="ok" type="json">
-				<!-- 为该Result指定参数 -->
-				<param name="noCache">true</param>
-				<param name="contentType">text/html</param>
-				<!-- 设置只序列Action的map属性 -->
-				<param name="root">returnpd</param>
-			</result>
-		</action>
 
-		<action name="updateRole" class="cn.it.shop.action.RoleAction"
-			method="updateRole">
+		<action name="r_*" class="cn.it.shop.action.RoleAction"
+			method="{1}">
 			<result name="ok" type="json">
 				<!-- 为该Result指定参数 -->
 				<param name="noCache">true</param>
@@ -118,7 +79,25 @@
 				<!-- 设置只序列Action的map属性 -->
 				<param name="root">returnpd</param>
 			</result>
+			<result name="admin">/WEB-INF/main/indexBack.jsp</result>
+			<result name="alogin">/WEB-INF/alogin.jsp</result>
 		</action>
+		
+		
+		
+		<action name="user_*" class="cn.it.shop.action.UserAction"
+			method="{1}">
+			<result name="ok" type="json">
+				<!-- 为该Result指定参数 -->
+				<param name="noCache">true</param>
+				<param name="contentType">text/html</param>
+				<!-- 设置只序列Action的map属性 -->
+				<param name="root">returnpd</param>
+			</result>
+			<result name="admin">/WEB-INF/main/indexBack.jsp</result>
+			<result name="alogin">/WEB-INF/alogin.jsp</result>
+		</action>
+		
 		<!--组织action结束 -->
 
 		<action name="">

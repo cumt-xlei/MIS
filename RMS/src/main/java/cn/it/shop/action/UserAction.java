@@ -18,122 +18,179 @@ import cn.it.shop.model.User;
 import cn.it.shop.model.UserRole;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+
 @Controller
 @Scope("prototype")
-public class UserAction extends BaseAction<User>{
-	
+public class UserAction extends BaseAction<User> {
+
 	private static final long serialVersionUID = 1L;
-	//查询满足条件的客户
-	public String queryUser(){
-		pageMap=new HashMap<String,Object>();
-		System.out.println("page:"+page);
-		List<User> userList=userService.queryUser("", page, rows);
-		pageMap.put("rows", userList);
-		return "jsonMap";
+	private int parentId;
+	// 登录
+	public String login(){
+		//进行登录的判断
+		model=userService.login(model);
+		if(model==null){
+			System.out.println("失败");
+			session.put("adminremind", "登录失败，请重新登录");
+			return "alogin";
+		}else{
+			//登录成功，先存储到session中，然后返回到相应的页面
+			System.out.println("成功");
+			session.put("admin", model);
+			session.put("logout", "退出登录");
+			session.put("active_admin","当前用户： "+ model.getLoginName());
+			session.put("adminremind", "您已经登录！");
+			return "admin";
+		}
 	}
-	
-	//L:
+	public String logout(){
+		session.remove("admin");
+		session.remove("active_admin");
+		session.remove("logout");
+		session.remove("adminremind");
+		return "alogin";
+	}
+
+	//得到用户能看到的最左侧的按钮
+		public String getUserMenu() throws IOException{
+			returnpd = "ok";
+			JSONArray array = new JSONArray();
+			array = userService.getUserMenu(parentId, (User) session.get("admin"));
+			String str = array.toString();
+			out().print(str);
+			out().flush();
+			out().close();
+			return returnpd;
+		}
+		//查询满足条件的客户
+		public String queryUser(){
+			pageMap=new HashMap<String,Object>();
+			System.out.println("page:"+page);
+			List<User> userList=userService.queryUser("", page, rows);
+			pageMap.put("rows", userList);
+			return "jsonMap";
+		}
+	// L:
 	private String returnpd;
-    private int page;//分页页数
-    private int rows;//分页行数
-    private int userId;
-    public String getReturnpd() {
-        return returnpd;
-    }
-    public void setReturnpd(String returnpd) {
-        this.returnpd = returnpd;
-    }
-    public int getPage() {
-        return page;
-    }
-    public void setPage(int page) {
-        this.page = page;
-    }
-    public int getRows() {
-        return rows;
-    }
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
-    public int getUserId() {
+	private int page;// 分页页数
+	private int rows;// 分页行数
+	private int userId;
+
+	public String getReturnpd() {
+		return returnpd;
+	}
+
+	public void setReturnpd(String returnpd) {
+		this.returnpd = returnpd;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
+	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	//分页必须
-    public PrintWriter out()throws IOException{
-        HttpServletResponse response=ServletActionContext.getResponse();  
-        response.setContentType("text/html");  
-        response.setContentType("text/plain; charset=utf-8");
-        PrintWriter out= response.getWriter();
-        return out;
-    }
-    //查询所有用户语句
-    public String queryAllUser() throws IOException{
-        returnpd="ok";
-         JSONArray array =new JSONArray();
-           List<User> list=new ArrayList<User>();
-               list=userService.queryAllUser("",page,rows);        
-           for(User user:list){
-                JSONObject jo=new JSONObject();
-                jo.put("id",user.getId());
-                jo.put("LoginName", user.getLoginName());
-                jo.put("Title", user.getTitle());
-                array.add(jo);
-           };
-           String str="{\"total\":"+userService.count()+",\"rows\":"+array.toString()+"}";
-            out().print(str);
-            out().flush();
-            out().close();
-        return returnpd;
-        
-    }
-	public String saveUser(){
-		returnpd="ok";
+
+	// 分页必须
+	public PrintWriter out() throws IOException {
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html");
+		response.setContentType("text/plain; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		return out;
+	}
+
+	// 查询所有用户语句
+	public String queryAllUser() throws IOException {
+		returnpd = "ok";
+		JSONArray array = new JSONArray();
+		List<User> list = new ArrayList<User>();
+		list = userService.queryAllUser("", page, rows);
+		for (User user : list) {
+			JSONObject jo = new JSONObject();
+			jo.put("id", user.getId());
+			jo.put("LoginName", user.getLoginName());
+			jo.put("Title", user.getTitle());
+			array.add(jo);
+		}
+		;
+		String str = "{\"total\":" + userService.count() + ",\"rows\":" + array.toString() + "}";
+		out().print(str);
+		out().flush();
+		out().close();
+		return returnpd;
+
+	}
+
+	public String saveUser() {
+		returnpd = "ok";
 		getModel().setLoginPassword("123");
 		userService.save(getModel());
 		return returnpd;
 	}
-	public String deleteUser(){
-		returnpd="ok";
+
+	public String deleteUser() {
+		returnpd = "ok";
 		System.out.println(getModel().getId());
 		userService.delete(getModel().getId());
 		return returnpd;
 	}
-	public String updateUser(){
-		returnpd="ok";
+
+	public String updateUser() {
+		returnpd = "ok";
 		getModel().setLoginPassword("123");
 		userService.update(getModel());
 		return returnpd;
 	}
-	
-	
-	public String queryUserRole() throws IOException{
-		returnpd="ok";
+
+	public String queryUserRole() throws IOException {
+		returnpd = "ok";
 		JSONArray jsonArray = new JSONArray();
-		
+
 		List<Role> listRole = new ArrayList<Role>();
 		List<UserRole> listUserRole = userRoleService.query();
-		
+
 		for (UserRole userRole : listUserRole) {
-			if(getUserId() == userRole.getUserID())
+			if (getUserId() == userRole.getUserID())
 				listRole.add(roleService.get(userRole.getRoleID()));
 		}
-		
+
 		for (Role role : listRole) {
 			JSONObject jsonOBJ = new JSONObject();
-			jsonOBJ.put("id",role.getId());
+			jsonOBJ.put("id", role.getId());
 			jsonOBJ.put("RoleName", role.getRoleName());
 			jsonOBJ.put("RoleDesc", role.getRoleDesc());
 			jsonArray.add(jsonOBJ);
 		}
-        String str="{\"total\":"+userRoleService.count()+",\"rows\":"+jsonArray.toString()+"}";
-        out().print(str);
-        out().flush();
-        out().close();
-		
+		String str = "{\"total\":" + userRoleService.count() + ",\"rows\":" + jsonArray.toString() + "}";
+		out().print(str);
+		out().flush();
+		out().close();
+
 		return returnpd;
-	}	
+	}
+	public int getParentId() {
+		return parentId;
+	}
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
+	}
 	
 }
