@@ -14,16 +14,28 @@ import org.apache.struts2.ServletActionContext;
 import cn.it.shop.model.PriList;
 import cn.it.shop.model.Privilege;
 import cn.it.shop.model.Role;
+import cn.it.shop.model.User;
+import cn.it.shop.model.UserRole;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class PrivilegeAction extends BaseAction<Privilege> {
-	private String returnpd;
+	private static final String String = null;
+    private String returnpd;
 	private int parentId;
 	private String priMaster;
 	private int priKey;
+	private int priPageId;
 
-	public String getPriMaster() {
+	public int getPriPageId() {
+        return priPageId;
+    }
+
+    public void setPriPageId(int priPageId) {
+        this.priPageId = priPageId;
+    }
+
+    public String getPriMaster() {
 		return priMaster;
 	}
 
@@ -212,6 +224,81 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 		out().close();
 		return "ok";
 
+	}
+	
+	//查询按钮详情
+	public String searchBtnPrivilege() throws IOException {
+	    
+	    User user =(User) session.get("admin");
+	    System.out.println(user.getId());
+	    //登录才做查询
+	    if(user.getId() != null) {
+	        //新建数组存储权限ID传到前台
+	        int viewUser = 0;
+	        int viewRole = 0;
+	        int permitPri = 0;
+	        int forbidPri = 0;
+	        //根据用户ID查询权限详情
+	        List<PriList> priuserList=priListService.queryByPriId("user",user.getId());
+	        System.out.println("根据用户查得按钮权限条数："+priuserList.size());
+	        for(PriList p : priuserList ) {
+	            if(p.getToId()==21) {
+                    viewUser=21;
+                }
+                if(p.getToId()==22) {
+                    viewRole=22;
+                }
+                if(p.getToId()==23) {
+                    permitPri=23;
+                }
+                if(p.getToId()==24) {
+                    forbidPri=24; 
+                }
+	            System.out.println(p.getToId());
+	            
+	        }
+	        
+	        
+
+	        List<UserRole> urList = userRoleService.queryByUserId(user.getId());
+	        for(UserRole ur:urList) {
+	            List<PriList> priroleList=priListService.queryByPriId("role",ur.getId());
+	            System.out.println("根据角色查得按钮权限条数："+priroleList.size());
+	            for(PriList p2 : priroleList ) {
+	                if(p2.getToId()==21 && viewUser==0) {
+	                    viewUser=21;
+	                }
+	                if(p2.getToId()==22 && viewRole==0) {
+	                    viewRole=22;
+	                }
+	                if(p2.getToId()==23 && permitPri==0) {
+	                    permitPri=23;
+	                }
+	                if(p2.getToId()==24 && forbidPri==0) {
+	                    forbidPri=24; 
+	                }
+	                System.out.println(p2.getToId());
+	                
+	            }
+	            
+	        }
+	        
+	        //权限传回前台
+	        JSONArray array = new JSONArray();
+	        JSONObject jo = new JSONObject();
+	        jo.put("viewUser",viewUser);
+	        jo.put("viewRole",viewRole);
+	        jo.put("permitPri",permitPri);
+	        jo.put("forbidPri",forbidPri);
+	        array.add(jo);
+	        String priId = array.toString();
+	        out().print(priId);
+	        out().flush();
+	        out().close();
+	        
+	        
+	    }	    
+	    return "ok";
 	}
 
 }

@@ -14,6 +14,50 @@
 <script type="text/javascript" src="js/esui.js"></script>
 
 <script type="text/javascript">
+
+//查询所有用户
+$(function user() {
+	//数据表格
+	$('#priuserdg').datagrid({
+		url : 'pri_user_queryAllUser.action',
+		pagination : true,
+		rownumbers : true,
+		striped : true,
+		singleSelect : true,
+		columns : [ [ {
+			field : 'id',
+			title : 'id',
+			width : 180,
+			align : 'center'
+		}, {
+			field : 'LoginName',
+			title : '用户名',
+			width : 250,
+			align : 'center'
+		}, {
+			field : 'Title',
+			title : '名称',
+			width : 455,
+			align : 'center'
+		} ] ],
+		//数据表格  
+		toolbar : [ {
+			text : '查看角色',
+			iconCls : 'icon-users',
+			handler : function() {
+				//列表隐藏 显示
+				$('#pri-role-area').show();
+				$('#pri-user-area').hide()
+			}
+		} ],
+		onLoadSuccess : function() {
+			$('#pri-user-area').hide()	
+		}
+
+	});
+
+});
+	
 	//查询所有角色
 	$(function role() {
 		//数据表格
@@ -53,49 +97,7 @@
 		});
 	});
 
-	//查询所有用户
-	$(function user() {
-		//数据表格
-		$('#priuserdg').datagrid({
-			url : 'pri_user_queryAllUser.action',
-			pagination : true,
-			rownumbers : true,
-			striped : true,
-			singleSelect : true,
-			columns : [ [ {
-				field : 'id',
-				title : 'id',
-				width : 180,
-				align : 'center'
-			}, {
-				field : 'LoginName',
-				title : '用户名',
-				width : 250,
-				align : 'center'
-			}, {
-				field : 'Title',
-				title : '名称',
-				width : 455,
-				align : 'center'
-			} ] ],
-			//数据表格  
-			toolbar : [ {
-				text : '查看角色',
-				iconCls : 'icon-users',
-				handler : function() {
-					//列表隐藏 显示
-					$('#pri-role-area').show();
-					$('#pri-user-area').hide()
-				}
-			} ],
-			onLoadSuccess : function() {
-				//一开始将User列表隐藏 
-				$('#pri-user-area').hide()
-			}
-
-		});
-
-	});
+	
 
 	//权限列表
 	$(document)
@@ -297,8 +299,7 @@
 																} else {
 
 																	//var postData =JSON.stringify(cgroup);  //把数组转换成json字符串
-																	$
-																			.ajax({
+																	$.ajax({
 																				type : "POST",
 																				url : "pri_pri_updatePrivilege.action",
 																				dataType : "json",
@@ -363,6 +364,45 @@
 
 										});
 					});
+	
+	//隐藏按钮
+	$(document).ready(function(){
+		//后台页面ID
+		var priPageId=8;
+		
+		$.ajax({
+			type : "POST",
+			url : "pri_pri_searchBtnPrivilege.action",
+			dataType : "json",
+			traditional : true,
+			data : {
+				priPageId : priPageId
+			},
+			success : function(priId) {
+				var viewUser= priId[0].viewUser
+				var viewRole= priId[0].viewRole
+				var permitPri= priId[0].permitPri
+				var forbidPri= priId[0].forbidPri
+				console.log(viewUser+viewRole+permitPri+forbidPri);
+				if(viewUser==0){
+					$('div.datagrid-toolbar a').eq(0).hide()
+				}
+				if(viewRole==0){
+					$('div.datagrid-toolbar a').eq(1).hide()
+				}
+				if(permitPri==0){
+					$('div.datagrid-toolbar a').eq(2).hide()
+				}
+				if(forbidPri==0){
+					$('div.datagrid-toolbar a').eq(3).hide()
+				}
+				
+			}
+
+		});
+		//隐藏 
+		
+	});
 </script>
 </head>
 <!--1. 在整个页面创建布局面板-->
@@ -380,6 +420,5 @@
 		<p class="title">权限控制</p>
 		<table id="pritt"></table>
 	</div>
-
 </body>
 </html>

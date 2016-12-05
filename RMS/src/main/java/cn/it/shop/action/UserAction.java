@@ -26,21 +26,21 @@ public class UserAction extends BaseAction<User> {
 	private static final long serialVersionUID = 1L;
 	private int parentId;
 
-	// µÇÂ¼
+	// ï¿½ï¿½Â¼
 	public String login() {
-		// ½øÐÐµÇÂ¼µÄÅÐ¶Ï
+		// ï¿½ï¿½ï¿½Ðµï¿½Â¼ï¿½ï¿½ï¿½Ð¶ï¿½
 		model = userService.login(model);
 		if (model == null) {
-			System.out.println("Ê§°Ü");
-			session.put("adminremind", "µÇÂ¼Ê§°Ü£¬ÇëÖØÐÂµÇÂ¼");
+			System.out.println("Ê§ï¿½ï¿½");
+			session.put("adminremind", "ï¿½ï¿½Â¼Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Â¼");
 			return "alogin";
 		} else {
-			// µÇÂ¼³É¹¦£¬ÏÈ´æ´¢µ½sessionÖÐ£¬È»ºó·µ»Øµ½ÏàÓ¦µÄÒ³Ãæ
-			System.out.println("³É¹¦");
+			// ï¿½ï¿½Â¼ï¿½É¹ï¿½ï¿½ï¿½ï¿½È´æ´¢ï¿½ï¿½sessionï¿½Ð£ï¿½È»ï¿½ó·µ»Øµï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ò³ï¿½ï¿½
+			System.out.println("ï¿½É¹ï¿½");
 			session.put("admin", model);
-			session.put("logout", "ÍË³öµÇÂ¼");
-			session.put("active_admin", "µ±Ç°ÓÃ»§£º " + model.getLoginName());
-			session.put("adminremind", "ÄúÒÑ¾­µÇÂ¼£¡");
+			session.put("logout", "ï¿½Ë³ï¿½ï¿½ï¿½Â¼");
+			session.put("active_admin", "ï¿½ï¿½Ç°ï¿½Ã»ï¿½ï¿½ï¿½ " + model.getLoginName());
+			session.put("adminremind", "ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½Â¼ï¿½ï¿½");
 			return "admin";
 		}
 	}
@@ -53,7 +53,7 @@ public class UserAction extends BaseAction<User> {
 		return "alogin";
 	}
 
-	// µÃµ½ÓÃ»§ÄÜ¿´µ½µÄ×î×ó²àµÄ°´Å¥
+	// ï¿½Ãµï¿½ï¿½Ã»ï¿½ï¿½Ü¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä°ï¿½Å¥
 	public String getUserMenu() throws IOException {
 		returnpd = "ok";
 		JSONArray array = new JSONArray();
@@ -65,7 +65,7 @@ public class UserAction extends BaseAction<User> {
 		return returnpd;
 	}
 
-	// ²éÑ¯Âú×ãÌõ¼þµÄ¿Í»§
+	// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Í»ï¿½
 	public String queryUser() {
 		pageMap = new HashMap<String, Object>();
 		System.out.println("page:" + page);
@@ -76,9 +76,10 @@ public class UserAction extends BaseAction<User> {
 
 	// L:
 	private String returnpd;
-	private int page;// ·ÖÒ³Ò³Êý
-	private int rows;// ·ÖÒ³ÐÐÊý
-	private int userId;
+	private int page;// ï¿½ï¿½Ò³Ò³ï¿½ï¿½
+	private int rows;// ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
+	private int usId;
+	private int roId;
 
 	public String getReturnpd() {
 		return returnpd;
@@ -104,15 +105,20 @@ public class UserAction extends BaseAction<User> {
 		this.rows = rows;
 	}
 
-	public int getUserId() {
-		return userId;
+	public int getUsId() {
+		return usId;
+	}
+	public void setUsId(int usId) {
+		this.usId = usId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public int getRoId() {
+		return roId;
 	}
-
-	// ·ÖÒ³±ØÐë
+	public void setRoId(int roId) {
+		this.roId = roId;
+	}
+	// ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
 	public PrintWriter out() throws IOException {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html");
@@ -121,7 +127,7 @@ public class UserAction extends BaseAction<User> {
 		return out;
 	}
 
-	// ²éÑ¯ËùÓÐÓÃ»§Óï¾ä
+	// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	public String queryAllUser() throws IOException {
 		returnpd = "ok";
 		JSONArray array = new JSONArray();
@@ -152,8 +158,13 @@ public class UserAction extends BaseAction<User> {
 
 	public String deleteUser() {
 		returnpd = "ok";
-		System.out.println(getModel().getId());
 		userService.delete(getModel().getId());
+		List<UserRole> listUserRole = userRoleService.query();
+
+		for (UserRole userRole : listUserRole) {
+			if (getModel().getId() == userRole.getUserID())
+				userRoleService.delete(userRole.getId());
+		}
 		return returnpd;
 	}
 
@@ -165,6 +176,7 @@ public class UserAction extends BaseAction<User> {
 	}
 
 	public String queryUserRole() throws IOException {
+		System.out.print(usId);
 		returnpd = "ok";
 		JSONArray jsonArray = new JSONArray();
 
@@ -172,7 +184,7 @@ public class UserAction extends BaseAction<User> {
 		List<UserRole> listUserRole = userRoleService.query();
 
 		for (UserRole userRole : listUserRole) {
-			if (getUserId() == userRole.getUserID())
+			if (getUsId() == userRole.getUserID())
 				listRole.add(roleService.get(userRole.getRoleID()));
 		}
 
@@ -190,7 +202,27 @@ public class UserAction extends BaseAction<User> {
 
 		return returnpd;
 	}
-
+	public String saveRole(){
+		returnpd = "ok";
+		UserRole userRole = new UserRole();
+		userRole.setRoleID(getRoId());
+		userRole.setUserID(getUsId());
+		userRoleService.save(userRole);
+		return returnpd;		
+	}
+	public String deleteRole(){
+		returnpd = "ok";
+		List<UserRole> listUserRole = userRoleService.query();
+		int iUrId = 0;
+		for (UserRole userRole : listUserRole) {
+			if (getUsId() == userRole.getUserID() && getRoId() == userRole.getRoleID())
+				iUrId = userRole.getId();
+		};
+		System.out.println(iUrId+"sssssss");
+		userRoleService.delete(iUrId);
+		return returnpd;		
+	}
+	
 	public int getParentId() {
 		return parentId;
 	}

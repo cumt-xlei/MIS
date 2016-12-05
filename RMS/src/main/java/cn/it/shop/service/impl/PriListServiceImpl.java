@@ -1,5 +1,7 @@
 package cn.it.shop.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import cn.it.shop.model.PriList;
@@ -18,6 +20,12 @@ public class PriListServiceImpl extends BaseServiceImpl<PriList> implements PriL
     public boolean savePrivilege(PriList priviListModel) {
         // TODO Auto-generated method stub
         return priListDao.savePrivilege(priviListModel);
+    }
+
+    @Override
+    public List<PriList> queryByPriId(String tuser, Integer uid) {
+        // TODO Auto-generated method stub
+        return (List<PriList>)priListDao.queryByPriId(tuser,uid);
     }
 
 }

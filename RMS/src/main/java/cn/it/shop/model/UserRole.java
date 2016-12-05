@@ -1,12 +1,10 @@
 package cn.it.shop.model;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 /**
  * 
@@ -31,16 +29,14 @@ public class UserRole {
 	
 	//1.设置一实体，级联操作为all.
 	//2.插入外键不为空
-		@ManyToOne(targetEntity=User.class,cascade=CascadeType.ALL)
-		@JoinColumn(name="userID",nullable=false)
+		@Column
 		public Integer getUserID() {
 			return userID;
 		}
 		public void setUserID(Integer userID) {
 			this.userID = userID;
 		}
-		@ManyToOne(targetEntity=Role.class,cascade=CascadeType.ALL)
-		@JoinColumn(name="roleID",nullable=false)
+		@Column
 		public Integer getRoleID() {
 			return roleID;
 		}

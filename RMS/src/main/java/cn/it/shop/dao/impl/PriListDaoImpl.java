@@ -1,5 +1,7 @@
 package cn.it.shop.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.NoResultException;
 
 import org.hibernate.Query;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import cn.it.shop.dao.PriListDao;
 import cn.it.shop.model.PriList;
+import cn.it.shop.model.Privilege;
 
 @Repository("priListDao")
 public class PriListDaoImpl extends BaseDaoImpl<PriList> implements PriListDao{
@@ -38,6 +41,19 @@ public class PriListDaoImpl extends BaseDaoImpl<PriList> implements PriListDao{
           return true;
       else
           return false;
+    }
+
+    @SuppressWarnings({ "unchecked", "deprecation" })
+    @Override
+    public List<PriList> queryByPriId(String tuser, Integer uid) {
+        // TODO Auto-generated method stub
+        String hql = "select p from PriList p WHERE p.privilegeMasterKey=:uid and p.privilegeMaster=:tuser and p.privilegeAccess='permit'";
+        
+        List<PriList> pList= (List<PriList>)getSession().createQuery(hql)
+                               .setInteger("uid",uid)
+                               .setString("tuser", tuser)
+                               .getResultList();
+        return pList;
     }
 
 }
