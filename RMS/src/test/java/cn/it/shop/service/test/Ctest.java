@@ -14,9 +14,6 @@ public class Ctest extends BaseAction<Customer>{
     public void setUp() throws Exception {
     }
 
-    @Test
-    public void test() {
-        customerService.test("110");
-    }
+    
 
 }

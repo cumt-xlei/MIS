@@ -43,7 +43,7 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 		String bf="";
 		//String username="test3";
 		JSONArray array = new JSONArray();
-		bf = "SELECT * FROM cf_privilege AS cp WHERE  (cp.id IN (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'role' AND cfpl.PrivilegeMasterKey IN (SELECT RoleID FROM cf_userrole AS cur LEFT JOIN cf_user AS cu ON cur.UserID = cu.id  WHERE cu.LoginName='"+ user.getLoginName() +"' )) or (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'user' AND cfpl.PrivilegeMasterKey IN (SELECT id FROM cf_user WHERE cf_user.LoginName='"+ user.getLoginName() +"'))) AND cp.ParentID=' " + parentId + "'";
+		bf = "SELECT * FROM cf_privilege AS cp WHERE  (cp.id IN (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'role' AND cfpl.PrivilegeAccess='permit' AND cfpl.PrivilegeMasterKey IN (SELECT RoleID FROM cf_userrole AS cur LEFT JOIN cf_user AS cu ON cur.UserID = cu.id  WHERE cu.LoginName='"+ user.getLoginName() +"' )) or (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'user' AND cfpl.PrivilegeAccess='permit' AND cfpl.PrivilegeMasterKey IN (SELECT id FROM cf_user WHERE cf_user.LoginName='"+ user.getLoginName() +"'))) AND cp.ParentID=' " + parentId + "'";
 		//bf.replace("USER_NAME", "test3");
 		//bf.replace("PARENTID", "1");
 	
@@ -68,6 +68,8 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 			jo.put("Icon", privilege.getIcon());
 			jo.put("parendId", privilege.getParentID());
 			jo.put("type", privilege.getType());
+			jo.put("title", privilege.getTitle());
+			jo.put("url", privilege.getUrl());
 			// 小于等于2即代表有子菜单，0为最高级，1、2为次级，其他为选项。。
 			if (privilege.getParentID() <= 2) {
 				jo.put("state", "closed");

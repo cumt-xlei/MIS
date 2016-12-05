@@ -70,8 +70,7 @@
 		<!-- user的操作结束 -->
 		<!--组织action -->
 
-		<action name="r_*" class="cn.it.shop.action.RoleAction"
-			method="{1}">
+		<action name="r_*" class="cn.it.shop.action.RoleAction" method="{1}">
 			<result name="ok" type="json">
 				<!-- 为该Result指定参数 -->
 				<param name="noCache">true</param>
@@ -82,9 +81,9 @@
 			<result name="admin">/WEB-INF/main/indexBack.jsp</result>
 			<result name="alogin">/WEB-INF/alogin.jsp</result>
 		</action>
-		
-		
-		
+
+
+
 		<action name="user_*" class="cn.it.shop.action.UserAction"
 			method="{1}">
 			<result name="ok" type="json">
@@ -97,9 +96,15 @@
 			<result name="admin">/WEB-INF/main/indexBack.jsp</result>
 			<result name="alogin">/WEB-INF/alogin.jsp</result>
 		</action>
-		
-		<!--组织action结束 -->
 
+		<!--组织action结束 -->
+		
+		<action name="customer_*"  class="cn.it.shop.action.CustomerAction" method="{1}">
+			<result name="jsonMap"  type="json">
+				<param name="root">pageMap</param>
+			</result>
+		</action>
+		
 		<action name="">
 			<result>WEB-INF/indexBack.jsp</result>
 		</action>

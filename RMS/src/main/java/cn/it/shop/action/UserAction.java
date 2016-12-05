@@ -25,25 +25,27 @@ public class UserAction extends BaseAction<User> {
 
 	private static final long serialVersionUID = 1L;
 	private int parentId;
+
 	// 登录
-	public String login(){
-		//进行登录的判断
-		model=userService.login(model);
-		if(model==null){
+	public String login() {
+		// 进行登录的判断
+		model = userService.login(model);
+		if (model == null) {
 			System.out.println("失败");
 			session.put("adminremind", "登录失败，请重新登录");
 			return "alogin";
-		}else{
-			//登录成功，先存储到session中，然后返回到相应的页面
+		} else {
+			// 登录成功，先存储到session中，然后返回到相应的页面
 			System.out.println("成功");
 			session.put("admin", model);
 			session.put("logout", "退出登录");
-			session.put("active_admin","当前用户： "+ model.getLoginName());
+			session.put("active_admin", "当前用户： " + model.getLoginName());
 			session.put("adminremind", "您已经登录！");
 			return "admin";
 		}
 	}
-	public String logout(){
+
+	public String logout() {
 		session.remove("admin");
 		session.remove("active_admin");
 		session.remove("logout");
@@ -51,25 +53,27 @@ public class UserAction extends BaseAction<User> {
 		return "alogin";
 	}
 
-	//得到用户能看到的最左侧的按钮
-		public String getUserMenu() throws IOException{
-			returnpd = "ok";
-			JSONArray array = new JSONArray();
-			array = userService.getUserMenu(parentId, (User) session.get("admin"));
-			String str = array.toString();
-			out().print(str);
-			out().flush();
-			out().close();
-			return returnpd;
-		}
-		//查询满足条件的客户
-		public String queryUser(){
-			pageMap=new HashMap<String,Object>();
-			System.out.println("page:"+page);
-			List<User> userList=userService.queryUser("", page, rows);
-			pageMap.put("rows", userList);
-			return "jsonMap";
-		}
+	// 得到用户能看到的最左侧的按钮
+	public String getUserMenu() throws IOException {
+		returnpd = "ok";
+		JSONArray array = new JSONArray();
+		array = userService.getUserMenu(parentId, (User) session.get("admin"));
+		String str = array.toString();
+		out().print(str);
+		out().flush();
+		out().close();
+		return returnpd;
+	}
+
+	// 查询满足条件的客户
+	public String queryUser() {
+		pageMap = new HashMap<String, Object>();
+		System.out.println("page:" + page);
+		List<User> userList = userService.queryUser("", page, rows);
+		pageMap.put("rows", userList);
+		return "jsonMap";
+	}
+
 	// L:
 	private String returnpd;
 	private int page;// 分页页数
@@ -186,11 +190,13 @@ public class UserAction extends BaseAction<User> {
 
 		return returnpd;
 	}
+
 	public int getParentId() {
 		return parentId;
 	}
+
 	public void setParentId(int parentId) {
 		this.parentId = parentId;
 	}
-	
+
 }

@@ -7,33 +7,37 @@
  		$(function role(){
  			//数据表格
  			$('#roledg').datagrid({
- 			    url:'user_queryUser.action',
+ 			    url:'customer_queryCustomer.action',
  			    width:1460,
  			   	pagination:true,
  			   	rownumbers:true,
  			   	striped:true,
- 			   	singleSelect:true,
+ 			   	//singleSelect:true,
+ 			   
  			   pagination : true,
 				pageSize : 20,
 				pageList : [ 5, 10, 15,20 ],
-				loadMsg : '正在查询学生信息，请等待...',
+				loadMsg : '正在查询客户信息，请等待...',
 				//指定id字段为标识字段
-				idField : 'id',
+				idField : 'customerID',
 				//自动适应列
 				fitColumns : true,
 	 			frozenColumns : [ [ 
 	 			    {field : 'xyz',checkbox : true},
-	 			    {field : 'id',title : '编号',width : 30}
+	 			    {field : 'customerID',title : '编号',width : 30}
 	 			    ] ],
  			    columns:[[
- 					{field:'realName',title:'客户',width:100,align:'center'},
- 					{field:'title',title:'公司名称',width:100,align:'center'},
- 					{field:'nickName',title:'联系名',width:100,align:'center'},
- 					{field:'RoleDesc',title:'头衔',width:100,align:'center'},
+ 					{field:'customerID',title:'客户',width:100,align:'center'},
+ 					{field:'companyName',title:'公司名称',width:100,align:'center'},
+ 					{field:'contactName',title:'联系名',width:100,align:'center'},
+ 					{field:'contactTitle',title:'头衔',width:100,align:'center'},
  					{field:'address',title:'地址',width:200,align:'center'},
- 					{field:'RoleDesc',title:'城市',width:100,align:'center'},
- 					{field:'RoleDesc',title:'区域',width:100,align:'center'},
- 					{field:'RoleDesc',title:'邮政编码',width:700,align:'center'}
+ 					{field:'city',title:'城市',width:100,align:'center'},
+ 					{field:'region',title:'区域',width:100,align:'center'},
+ 					{field:'postalCode',title:'邮政编码',width:100,align:'center'},
+ 					{field:'country',title:'国籍',width:100,align:'center'},
+ 					{field:'phone',title:'联系方式',width:100,align:'center'},
+ 					{field:'fax',title:'传真',width:100,align:'center'}
  			    ]],
  			 //数据表格  
  			   toolbar: [{
@@ -81,7 +85,13 @@
  				menu:'#mm', 
  				prompt:'请输入值' 
  				}); 
+ 			
+ 			function allselectRow(tableName) {  
+ 			    $('#' + tableName).datagrid('selectAll');  
+ 			}  
  		});	
+ 		
+ 		
  		function qq(value,name){ 
  			alert(value+":"+name) 
  			};

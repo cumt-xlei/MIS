@@ -22,8 +22,8 @@
 								.treegrid(
 										{
 											url : 'user_getUserMenu.action?parentId='
-													+ parentId,							
-											selectOnCheck : true,								
+													+ parentId,
+											selectOnCheck : true,
 											idField : 'id',
 											treeField : 'PrivilegeOperation',
 											onBeforeExpand : function(row) {
@@ -31,11 +31,11 @@
 												$(this).treegrid('options').url = 'user_getUserMenu.action?parentId='
 														+ row.id;
 											},
-											onClickRow: function(row){
+											onClickRow : function(row) {
 												console.log(row);
-												if(row.type=3){
+												if (row.type = 3) {
 													console.log(row.type);
-													addTab('类别','good_menu2')
+													addTab(row.title, row.url)
 												}
 											},
 											columns : [ [ {
@@ -45,18 +45,25 @@
 											} ] ],
 										});
 					});
-	function addTab(title, url){
-		if ($('#tt').tabs('exists', title)){
+	function addTab(title, url) {
+		if ($('#tt').tabs('exists', title)) {
 			$('#tt').tabs('select', title);
 		} else {
-			var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
-		    $('#tt').tabs('add',{
-					title:title,
-					content:content,
-		            closable:true
-					});
+			var content = '<iframe scrolling="auto" frameborder="0"  src="'
+					+ url + '" style="width:100%;height:100%;"></iframe>';
+			if(url == "0"){
+				console.log("为空");
+			}else{
+				$('#tt').tabs('add', {
+					title : title,
+					content : content,
+					closable : true
+				});
 			}
+			
+
 		}
+	}
 </script>
 </head>
 <!--1. 在整个页面创建布局面板-->
@@ -72,7 +79,7 @@
 		</div>
 
 		<div class="fr northRight">
-			<span>欢迎您</span>
+			<span>${sessionScope.admin.loginName }欢迎您</span>
 		</div>
 	</div>
 
