@@ -25,24 +25,24 @@ import cn.it.shop.service.BaseService;
 @Lazy(true)
 public class BaseServiceImpl<T> implements BaseService<T> {
 	
-	private Class clazz; // clazz中存储了子类当前操作实体类型
+	private Class clazz; // clazz锟叫存储锟斤拷锟斤拷锟洁当前锟斤拷锟斤拷实锟斤拷锟斤拷锟斤拷
 	public BaseServiceImpl() {
-		// 如果子类调用当前构造方法,this代表的是子类对象
+		// 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟矫碉拷前锟斤拷锟届方锟斤拷,this锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 		ParameterizedType type = (ParameterizedType) this.getClass()
 				.getGenericSuperclass();
 		clazz = (Class) type.getActualTypeArguments()[0];
 	}
 	protected BaseDao baseDao;   // baseDao=categoryDao || baseDao=accountDao || baseDao=forderDao
 	
-	@PostConstruct   // init方法是在构造方法与set注入之后执行, 也就是XML的: init-method=""
+	@PostConstruct   // init锟斤拷锟斤拷锟斤拷锟节癸拷锟届方锟斤拷锟斤拷set注锟斤拷之锟斤拷执锟斤拷, 也锟斤拷锟斤拷XML锟斤拷: init-method=""
 	public void init() throws Exception{
-		// 1: 根据具体的泛型, 获取相应的Field字段, categoryDao
+		// 1: 锟斤拷锟捷撅拷锟斤拷锟侥凤拷锟斤拷, 锟斤拷取锟斤拷应锟斤拷Field锟街讹拷, categoryDao
 		String clazzName=clazz.getSimpleName();
 		String clazzDaoName=clazzName.substring(0,1).toLowerCase() + clazzName.substring(1) + "Dao";
 		Field clazzField=this.getClass().getSuperclass().getDeclaredField(clazzDaoName);
-		// 2: 获取baseDao Filed字段
+		// 2: 锟斤拷取baseDao Filed锟街讹拷
 		Field baseField=this.getClass().getSuperclass().getDeclaredField("baseDao");
-		// 3: 把categoryDao的值赋值给baseDao
+		// 3: 锟斤拷categoryDao锟斤拷值锟斤拷值锟斤拷baseDao
 		baseField.set(this,clazzField.get(this));
 	}
 
@@ -60,7 +60,8 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     protected CustomerDao customerDao;
 	@Resource(name="priListDao")
     protected PriListDao priListDao;
-	
+	@Resource(name="userRoleDao")
+	protected UserRoleDao userRoleDao;	
 	
 	
 	@Override
