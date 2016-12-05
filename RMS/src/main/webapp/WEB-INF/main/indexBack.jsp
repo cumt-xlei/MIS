@@ -22,11 +22,8 @@
 								.treegrid(
 										{
 											url : 'user_getUserMenu.action?parentId='
-													+ parentId,
-											//rownumbers : true,
-											selectOnCheck : true,
-											//checkbox : true,//定义在每一个节点前显示复选框
-											//onlyLeafCheck : true,//定义是否仅在叶子节点前显示复选框
+													+ parentId,							
+											selectOnCheck : true,								
 											idField : 'id',
 											treeField : 'PrivilegeOperation',
 											onBeforeExpand : function(row) {
@@ -34,13 +31,32 @@
 												$(this).treegrid('options').url = 'user_getUserMenu.action?parentId='
 														+ row.id;
 											},
+											onClickRow: function(row){
+												console.log(row);
+												if(row.type=3){
+													console.log(row.type);
+													addTab('类别','good_menu2')
+												}
+											},
 											columns : [ [ {
 												field : 'PrivilegeOperation',
-												title : '',
+												//title : '',
 												width : 240
 											} ] ],
 										});
 					});
+	function addTab(title, url){
+		if ($('#tt').tabs('exists', title)){
+			$('#tt').tabs('select', title);
+		} else {
+			var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
+		    $('#tt').tabs('add',{
+					title:title,
+					content:content,
+		            closable:true
+					});
+			}
+		}
 </script>
 </head>
 <!--1. 在整个页面创建布局面板-->

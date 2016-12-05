@@ -70,6 +70,7 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 			jo.put("RecordStatus", privilege.getRecordStatus());
 			jo.put("Icon", privilege.getIcon());
 			jo.put("parendId", privilege.getParentID());
+			jo.put("type", privilege.getType());
 			// 小于等于2即代表有子菜单，0为最高级，1、2为次级，其他为选项。。
 			if (privilege.getParentID() <= 2) {
 				jo.put("state", "closed");
@@ -81,6 +82,4 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 		}
 		return array;
 	}
-
-
 }
