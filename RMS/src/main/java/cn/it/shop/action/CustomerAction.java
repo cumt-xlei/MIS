@@ -1,5 +1,6 @@
 package cn.it.shop.action;
 
+import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,6 +24,13 @@ public class CustomerAction extends BaseAction<Customer> {
 		pageMap.put("total", count);
 		System.out.print("------------"+customerList.size());
 		return "jsonMap";
+	}
+	
+	public String deleteByIds(){
+		System.out.println("ÒªÉ¾³ýµÄidsÎª"+ids);
+		customerService.deleteByIds(ids);
+		inputStream=new ByteArrayInputStream("true".getBytes());
+		return "stream";
 	}
 	public int getPage() {
 		return page;
