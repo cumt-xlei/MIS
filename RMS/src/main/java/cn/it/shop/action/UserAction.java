@@ -202,6 +202,25 @@ public class UserAction extends BaseAction<User> {
 
 		return returnpd;
 	}
+
+	public String queryRole() throws IOException{
+		returnpd = "ok";
+		List<Role> roleList = roleService.query();
+		JSONObject jor = new JSONObject();
+		JSONArray jar = new JSONArray();
+		for (Role role : roleList) {
+			jor.put("id", role.getId());
+			jor.put("RoleName", role.getRoleName());
+			System.out.println(role.getRoleName());
+			jar.add(jor);
+		}
+		String ro = jar.toString();
+		out().print(ro);
+		out().flush();
+		out().close();
+		return returnpd;
+	}
+
 	public String saveRole(){
 		returnpd = "ok";
 		UserRole userRole = new UserRole();

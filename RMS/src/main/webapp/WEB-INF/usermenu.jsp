@@ -164,6 +164,11 @@
 					$('#ff2').form('load',{
 						usId:row.id
 					}); 
+					$('#cc').combobox({    
+					    url:'u_queryRole.action',    
+					    valueField:'id',    
+					    textField:'RoleName'   
+					}); 
 					$('#ff2').form({
 						success:function(){
 							$.messager.alert('消息','添加成功','');	
@@ -277,9 +282,10 @@
 				<td><input name="usId" type="text"></input></td>
 			</tr>
 			<tr>
-				<td>角色ID</td>
-				<td><input name="roId" type="text"></input></td>
+				<td>角色</td>
+				<td><input id="cc" name="roId"></td>
 			</tr>
+
 			<tr>
 				<td></td>
 				<td><input type="submit" value="保存"></input></td>
