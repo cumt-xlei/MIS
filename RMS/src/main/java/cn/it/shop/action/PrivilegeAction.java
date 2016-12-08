@@ -26,8 +26,54 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 	private String priMaster;
 	private int priKey;
 	private int priPageId;
+	private int id;
+	private String pprivilegeOperation;
+    private String precordStatus;
+    private String ptitle;
+    private String purl;
 
-	public int getPriPageId() {
+
+    public String getPprivilegeOperation() {
+        return pprivilegeOperation;
+    }
+
+    public void setPprivilegeOperation(String pprivilegeOperation) {
+        this.pprivilegeOperation = pprivilegeOperation;
+    }
+
+    public String getPrecordStatus() {
+        return precordStatus;
+    }
+
+    public void setPrecordStatus(String precordStatus) {
+        this.precordStatus = precordStatus;
+    }
+
+    public String getPtitle() {
+        return ptitle;
+    }
+
+    public void setPtitle(String ptitle) {
+        this.ptitle = ptitle;
+    }
+
+    public String getPurl() {
+        return purl;
+    }
+
+    public void setPurl(String purl) {
+        this.purl = purl;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getPriPageId() {
         return priPageId;
     }
 
@@ -300,5 +346,21 @@ public class PrivilegeAction extends BaseAction<Privilege> {
         out().close();
 	    return "ok";
 	}
-
+	
+	public String saveNewPrivilege(){
+	    System.out.println(purl);
+	    model.setPrivilegeOperation(pprivilegeOperation);
+	    model.setRecordStatus(precordStatus);	    
+	    model.setTitle(ptitle);
+	    model.setUrl(purl);
+	    model.setParentID(parentId);	    
+	    boolean pd =privilegeService.save(model);
+	    if(pd==true) {
+	        returnpd="1";
+	    }
+	    else {
+	        returnpd="2";
+	    }
+	    return "ok";	    
+	}
 }
