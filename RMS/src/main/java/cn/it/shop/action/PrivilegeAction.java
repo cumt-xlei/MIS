@@ -228,16 +228,15 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 	
 	//查询按钮详情
 	public String searchBtnPrivilege() throws IOException {
-	    
-	    User user =(User) session.get("admin");
-	    System.out.println(user.getId());
+	    User user=null;
+	    user =(User) session.get("admin");
+	    int viewUser = 0;
+        int viewRole = 0;
+        int permitPri = 0;
+        int forbidPri = 0;
 	    //登录才做查询
-	    if(user.getId() != null) {
+	    if(user != null) {
 	        //新建数组存储权限ID传到前台
-	        int viewUser = 0;
-	        int viewRole = 0;
-	        int permitPri = 0;
-	        int forbidPri = 0;
 	        //根据用户ID查询权限详情
 	        List<PriList> priuserList=priListService.queryByPriId("user",user.getId());
 	        System.out.println("根据用户查得按钮权限条数："+priuserList.size());
@@ -283,21 +282,22 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 	            
 	        }
 	        
-	        //权限传回前台
-	        JSONArray array = new JSONArray();
-	        JSONObject jo = new JSONObject();
-	        jo.put("viewUser",viewUser);
-	        jo.put("viewRole",viewRole);
-	        jo.put("permitPri",permitPri);
-	        jo.put("forbidPri",forbidPri);
-	        array.add(jo);
-	        String priId = array.toString();
-	        out().print(priId);
-	        out().flush();
-	        out().close();
 	        
 	        
-	    }	    
+	    }	
+
+        //权限传回前台
+        JSONArray array = new JSONArray();
+        JSONObject jo = new JSONObject();
+        jo.put("viewUser",viewUser);
+        jo.put("viewRole",viewRole);
+        jo.put("permitPri",permitPri);
+        jo.put("forbidPri",forbidPri);
+        array.add(jo);
+        String priId = array.toString();
+        out().print(priId);
+        out().flush();
+        out().close();
 	    return "ok";
 	}
 
