@@ -12,9 +12,13 @@ import cn.it.shop.model.Customer;
 @Controller
 @Scope("prototype")
 public class CustomerAction extends BaseAction<Customer> {
-	private int page;// ·ÖÒ³Ò³Êı
-	private int rows;// ·ÖÒ³ĞĞÊı
-	// ²éÑ¯Âú×ãÌõ¼şµÄ¿Í»§
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int page;// ï¿½ï¿½Ò³Ò³ï¿½ï¿½
+	private int rows;// ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Í»ï¿½
 	public String queryCustomer() {
 		pageMap = new HashMap<String, Object>();
 		System.out.println("page:" + page);
@@ -27,10 +31,21 @@ public class CustomerAction extends BaseAction<Customer> {
 	}
 	
 	public String deleteByIds(){
-		System.out.println("ÒªÉ¾³ıµÄidsÎª"+ids);
+		System.out.println("ÒªÉ¾ï¿½ï¿½ï¿½ï¿½idsÎª"+ids);
 		customerService.deleteByIds(ids);
 		inputStream=new ByteArrayInputStream("true".getBytes());
 		return "stream";
+	}
+	
+	public void update(){
+		System.out.println("æ‰§è¡Œæ›´æ–°");
+		customerService.update(model);
+	}
+	public void save(){
+		System.out.println("æ‰§è¡Œä¿å­˜");
+		System.out.println(model.getAddress());
+		
+		customerService.save(model);
 	}
 	public int getPage() {
 		return page;

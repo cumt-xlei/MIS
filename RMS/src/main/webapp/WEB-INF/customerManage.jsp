@@ -15,7 +15,6 @@
 							rownumbers : true,
 							striped : true,
 							//singleSelect:true,
-
 							pagination : true,
 							pageSize : 20,
 							pageList : [ 5, 10, 15, 20 ],
@@ -211,14 +210,16 @@
 											}
 										}
 
-									}, '-', {
+									}
+									/*
+									'-', {
 										text : '查看',
 										iconCls : 'icon-users',
 										handler : function() {
 											$('#roledg').hide()
 										},
 										width : 100
-									} ]
+									} */]
 						});
 		/* //面板
 		$('#aa').accordion({    
@@ -246,7 +247,8 @@
 </script>
 </head>
 <body>
-	<h3 style="color: #0099FF;">搜索</h3>
+	<!-- 
+		<h3 style="color: #0099FF;">搜索</h3>
 	<input id="ss" class="easyui-searchbox" style="width: 300px"
 		data-options="searcher:qq,prompt:'Please Input Value',menu:'#mm'"></input>
 
@@ -256,6 +258,8 @@
 		<div data-options="name:'sports'">联系名</div>
 		<div data-options="name:'sports'">头衔</div>
 	</div>
+	 -->
+	
 
 	<!--表格-->
 	<div class="top-area">

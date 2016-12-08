@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 /**
  * 
- *  @author купшн╟
+ *  @author О©╫О©╫О©╫О©╫н╟
  */
 @Entity
 @Table(name="cf_customer")
