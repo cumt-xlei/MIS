@@ -1,6 +1,9 @@
 package cn.it.shop.action;
 
+import cn.it.shop.model.PriList;
 import cn.it.shop.model.Role;
+import cn.it.shop.model.User;
+import cn.it.shop.model.UserRole;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,8 +17,8 @@ import net.sf.json.JSONObject;
 public class RoleAction  extends BaseAction<Role>{
 	private String returnpd;
 	private String newRoleName;
-	private int page;//·ÖÒ³Ò³Êý
-	private int rows;//·ÖÒ³ÐÐÊý
+	private int page;//ï¿½ï¿½Ò³Ò³ï¿½ï¿½
+	private int rows;//ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
 	
 	public String getNewRoleName() {
 		return newRoleName;
@@ -35,7 +38,7 @@ public class RoleAction  extends BaseAction<Role>{
 	public void setRows(int rows) {
 		this.rows = rows;
 	}
-	//·ÖÒ³±ØÐë
+	//ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
 	public PrintWriter out()throws IOException{
 		HttpServletResponse response=ServletActionContext.getResponse();  
         response.setContentType("text/html");  
@@ -43,7 +46,7 @@ public class RoleAction  extends BaseAction<Role>{
         PrintWriter out= response.getWriter();
         return out;
 	}
-	//²éÑ¯ËùÓÐÓÃ»§Óï¾ä
+	//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½
 	public String queryAllRole() throws IOException{
 		returnpd="ok";
 		 JSONArray array =new JSONArray();
@@ -80,4 +83,51 @@ public class RoleAction  extends BaseAction<Role>{
 		roleService.update(getModel());
 		return returnpd;
 	}
+	public String getRolePer() throws IOException{
+		returnpd="ok";
+	    User user=null;
+	    user =(User) session.get("admin");
+		JSONObject permision = new JSONObject();
+		permision.put("add", 0);
+		permision.put("delete", 0);
+		permision.put("update", 0);
+		List<PriList> priuserList = priListService.queryByPriId("user", user.getId());
+        for(PriList p : priuserList ) {
+            if(p.getToId() == 28)
+            	permision.put("add", 1);
+            else
+            	permision.put("add", 0);
+            if(p.getToId() == 29)
+            	permision.put("delete", 1);
+            else
+            	permision.put("delete", 0);
+            if(p.getToId() == 30)
+            	permision.put("update", 1);
+            else
+            	permision.put("update", 0);
+        }	
+		List<UserRole> userRoleList  = userRoleService.queryByUserId(1);
+		for (UserRole userRole : userRoleList) {
+			List<PriList> priroleList = priListService.queryByPriId("role", userRole.getRoleID());
+	        for(PriList p : priroleList ) {
+	            if(p.getToId() == 28 || permision.getInt("add") == 1)
+	            	permision.put("add", 1);
+	            else
+	            	permision.put("add", 0);
+	            if(p.getToId() == 29 || permision.getInt("delete") == 1)
+	            	permision.put("delete", 1);
+	            else
+	            	permision.put("delete", 0);
+	            if(p.getToId() == 30 || permision.getInt("update") == 1)
+	            	permision.put("update", 1);
+	            else
+	            	permision.put("update", 0);
+	        }
+		}
+		out().print(permision.toString());
+		out().flush();
+		out().close();
+		return returnpd;
+	}
+	
 }

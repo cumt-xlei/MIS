@@ -13,6 +13,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import cn.it.shop.model.PriList;
 import cn.it.shop.model.Role;
 import cn.it.shop.model.User;
 import cn.it.shop.model.UserRole;
@@ -74,6 +75,53 @@ public class UserAction extends BaseAction<User> {
 		return "jsonMap";
 	}
 
+	public String getUserPer() throws IOException{
+		returnpd="ok";
+	    User user=null;
+	    user =(User) session.get("admin");
+		JSONObject permision = new JSONObject();
+		permision.put("add", 0);
+		permision.put("delete", 0);
+		permision.put("update", 0);
+		List<PriList> priuserList = priListService.queryByPriId("user", user.getId());
+        for(PriList p : priuserList ) {
+            if(p.getToId() == 25)
+            	permision.put("add", 1);
+            else
+            	permision.put("add", 0);
+            if(p.getToId() == 26)
+            	permision.put("delete", 1);
+            else
+            	permision.put("delete", 0);
+            if(p.getToId() == 27)
+            	permision.put("update", 1);
+            else
+            	permision.put("update", 0);
+        }	
+		List<UserRole> userRoleList  = userRoleService.queryByUserId(1);
+		for (UserRole userRole : userRoleList) {
+			List<PriList> priroleList = priListService.queryByPriId("role", userRole.getRoleID());
+	        for(PriList p : priroleList ) {
+	            if(p.getToId() == 25 || permision.getInt("add") == 1)
+	            	permision.put("add", 1);
+	            else
+	            	permision.put("add", 0);
+	            if(p.getToId() == 26 || permision.getInt("delete") == 1)
+	            	permision.put("delete", 1);
+	            else
+	            	permision.put("delete", 0);
+	            if(p.getToId() == 27 || permision.getInt("update") == 1)
+	            	permision.put("update", 1);
+	            else
+	            	permision.put("update", 0);
+	        }
+		}
+		out().print(permision.toString());
+		out().flush();
+		out().close();
+		return returnpd;
+	}
+	
 	// L:
 	private String returnpd;
 	private int page;// ��ҳҳ��

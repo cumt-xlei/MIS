@@ -34,7 +34,29 @@
 			text:'修改',
 			iconCls: 'icon-edit',
 			handler: function(){updateRole()}
-		}]
+		}],
+		onLoadSuccess:function(){
+			$.ajax({
+				  url: "r_getRolePer.action",
+			      dataType:'json', 
+			      method:'POST',
+				  success: function(data){
+					  if(data.add = 0){
+					        $('div.datagrid-toolbar a').eq(0).hide();
+					        $('div.datagrid-toolbar div').eq(0).hide();
+					  }
+					  if(data.delete == 0){
+					        $('div.datagrid-toolbar a').eq(1).hide();
+					        $('div.datagrid-toolbar div').eq(1).hide();
+					  }
+					  if(data.update == 0){
+					        $('div.datagrid-toolbar a').eq(2).hide();
+					        $('div.datagrid-toolbar div').eq(2).hide();
+					  }
+	
+				  },
+				});
+		}
 		});
 	    
 	    $('#dd' ).dialog({
