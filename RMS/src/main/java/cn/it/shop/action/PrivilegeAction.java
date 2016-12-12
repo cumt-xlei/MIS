@@ -113,7 +113,7 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 		this.returnpd = returnpd;
 	}
 
-	// Êä³ö
+	//è¾“å‡º
 	public PrintWriter out() throws IOException {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html");
@@ -133,7 +133,7 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 		return returnpd;
 	}
 
-	// È¨ÏŞ±£´æ
+	// æ–°å»ºæƒé™
 	public String savePrivilege() throws IOException {
 		returnpd = "ok";
 		HttpServletRequest req = ServletActionContext.getRequest();
@@ -141,20 +141,20 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 		String[] dataList = req.getParameterValues("array");
 		ArrayList<String> list = new ArrayList<String>();
 
-		int errori = 0;// Ê§°Ü´ÎÊıÍ³¼Æ
-		int successi = 0;// ĞÂÔö³É¹¦´ÎÊıÍ³¼Æ
-		int updatei = 0;// ĞŞ¸Ä³É¹¦´ÎÊıÍ³¼Æ
+		int errori = 0;// å¤±è´¥æ¬¡æ•°
+		int successi = 0;// æˆåŠŸæ¬¡æ•°
+		int updatei = 0;// æ›´æ–°æ¬¡æ•°
 		for (int i = 0; i < dataList.length; i++) {
 
 			PriList priListModel = new PriList();
-			// ¸ù¾İMaster(ÓÃ»§»¹ÊÇ½ÇÉ«),Key(ID),È¨ÏŞIDÅĞ¶ÏÊÇ·ñ´æÔÚÕâÌõÈ¨ÏŞ
+			// æ ¹æ®Master(è¡¨),Key(ID),æŸ¥è¯¢åˆ—è¡¨
 			priListModel = priListService.findByMKR(priMaster, priKey, Integer.parseInt(dataList[i]));
 			boolean priPd1 = false;
 			if (priListModel.getId() != null) {
 				priPd1 = true;
 			}
 
-			// Èç¹û´æÔÚ£¬ÔòĞŞ¸Ä
+			// å¦‚æœå­˜åœ¨ï¼Œåˆ™æ›´æ–°
 			if (priPd1 == true) {
 				boolean pripd2 = true;
 				PriList priviListModel = new PriList();
@@ -164,39 +164,39 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 				if (pripd2 == true) {
 					updatei += 1;
 					returnpd = "ok";
-					System.out.println("ĞŞ¸Ä³É¹¦");
+					System.out.println("æˆåŠŸ");
 				} else {
 					errori += 1;
 					returnpd = "error";
-					System.out.println("ĞŞ¸ÄÊ§°Ü");
+					System.out.println("å¤±è´¥");
 				}
 
 			}
-			// Èç¹û²»´æÔÚ£¬ÔòĞÂÔö
+			// å¦‚æœä¸å­˜åœ¨ï¼Œåˆ™æ’å…¥
 			else {
 				boolean pripd3 = true;
 				PriList priviListModel = new PriList();
-				priviListModel.setPrivilegeMaster(priMaster);// ÓÃ»§½ÇÉ«±í
-				priviListModel.setPrivilegeMasterKey(priKey);// ÓÃ»§½ÇÉ«ID
+				priviListModel.setPrivilegeMaster(priMaster);// ï¿½Ã»ï¿½ï¿½ï¿½É«ï¿½ï¿½
+				priviListModel.setPrivilegeMasterKey(priKey);// ï¿½Ã»ï¿½ï¿½ï¿½É«ID
 				priviListModel.setPrivilegeAccess("permit");
 				priviListModel.setToId(Integer.parseInt(dataList[i]));
 
-				// ±£´æ
+				
 				pripd3 = priListService.save(priviListModel);
 				if (pripd3 == false) {
 					errori += 1;
-					System.out.println("ĞÂÔö³ö´í");
+					System.out.println("æˆåŠŸ");
 					returnpd = "error";
 				} else {
 					successi += 1;
 					returnpd = "ok";
-					System.out.println("ĞÂÔö³É¹¦");
+					System.out.println("å¤±è´¥");
 				}
 
 			}
 		}
 
-		// ½«³É¹¦Ê§°Ü´ÎÊıÆ´×°
+		// è¿”å›å‰å°
 		JSONArray array = new JSONArray();
 		JSONObject jo = new JSONObject();
 		jo.put("successi", successi);
@@ -211,6 +211,7 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 		return "ok";
 	}
 
+	//ç¦ç”¨æƒé™
 	public String updatePrivilege() throws IOException {
 
 		returnpd = "ok";
@@ -219,19 +220,19 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 		String[] dataList = req.getParameterValues("array");
 		ArrayList<String> list = new ArrayList<String>();
 
-		int errori = 0;// ĞŞ¸ÄÊ§°Ü´ÎÊıÍ³¼Æ
-		int successi = 0;// ĞŞ¸Ä³É¹¦´ÎÊıÍ³¼Æ
+		int errori = 0;// å¤±è´¥æ¬¡æ•°
+		int successi = 0;// æˆåŠŸæ¬¡æ•°
 		for (int i = 0; i < dataList.length; i++) {
 
 			PriList priListModel = new PriList();
-			// ¸ù¾İMaster(ÓÃ»§»¹ÊÇ½ÇÉ«),Key(ID),È¨ÏŞIDÅĞ¶ÏÊÇ·ñ´æÔÚÕâÌõÈ¨ÏŞ
+			// æ ¹æ®Master(è¡¨),Key(ID),æŸ¥è¯¢åˆ—è¡¨
 			priListModel = priListService.findByMKR(priMaster, priKey, Integer.parseInt(dataList[i]));
 			boolean priPd1 = false;
 			if (priListModel.getId() != null) {
 				priPd1 = true;
 			}
 
-			// Èç¹û´æÔÚ£¬Ôò½ûÖ¹
+			//å­˜åœ¨åˆ™æŸ¥è¯¢Ö¹
 			if (priPd1 == true) {
 				boolean pripd2 = true;
 				PriList priviListModel = new PriList();
@@ -241,23 +242,23 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 				if (pripd2 == true) {
 					successi += 1;
 					returnpd = "ok";
-					System.out.println("½ûÖ¹³É¹¦");
+					System.out.println("æˆåŠŸ");
 				} else {
 					errori += 1;
 					returnpd = "error";
-					System.out.println("½ûÖ¹Ê§°Ü");
+					System.out.println("å¤±è´¥");
 				}
 
 			}
-			// Èç¹û²»´æÔÚ£¬Ôò·µ»ØÊ§°Ü
+			// ä¸å­˜åœ¨è¿”å›é”™è¯¯
 			else {
 				errori += 1;
 				returnpd = "error";
-				System.out.println("È¨ÏŞ²»´æÔÚ");
+				System.out.println("æˆåŠŸ");
 			}
 		}
 
-		// ½«³É¹¦Ê§°Ü´ÎÊıÆ´×°
+		// è¿”å›å‰å°
 		JSONArray array = new JSONArray();
 		JSONObject jo = new JSONObject();
 		jo.put("successi", successi);
@@ -272,7 +273,7 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 
 	}
 	
-	//²éÑ¯°´Å¥ÏêÇé
+	//æŸ¥è¯¢æŒ‰é’®æƒé™
 	public String searchBtnPrivilege() throws IOException {
 	    User user=null;
 	    user =(User) session.get("admin");
@@ -280,12 +281,11 @@ public class PrivilegeAction extends BaseAction<Privilege> {
         int viewRole = 0;
         int permitPri = 0;
         int forbidPri = 0;
-	    //µÇÂ¼²Å×ö²éÑ¯
+	    //ç™»å½•æ‰åˆ¤æ–­æƒé™
 	    if(user != null) {
-	        //ĞÂ½¨Êı×é´æ´¢È¨ÏŞID´«µ½Ç°Ì¨
-	        //¸ù¾İÓÃ»§ID²éÑ¯È¨ÏŞÏêÇé
+	        //æ ¹æ®IDæŸ¥è¯¢
 	        List<PriList> priuserList=priListService.queryByPriId("user",user.getId());
-	        System.out.println("¸ù¾İÓÃ»§²éµÃ°´Å¥È¨ÏŞÌõÊı£º"+priuserList.size());
+	        System.out.println("æ ¹æ®ç”¨æˆ·æŸ¥è¯¢æ¡æ•°ï¼š"+priuserList.size());
 	        for(PriList p : priuserList ) {
 	            if(p.getToId()==21) {
                     viewUser=21;
@@ -307,8 +307,8 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 
 	        List<UserRole> urList = userRoleService.queryByUserId(user.getId());
 	        for(UserRole ur:urList) {
-	            List<PriList> priroleList=priListService.queryByPriId("role",ur.getId());
-	            System.out.println("¸ù¾İ½ÇÉ«²éµÃ°´Å¥È¨ÏŞÌõÊı£º"+priroleList.size());
+	            List<PriList> priroleList=priListService.queryByPriId("role",ur.getRoleID());
+	            System.out.println("æ ¹æ®è§’è‰²æŸ¥è¯¢æ¡æ•°ï¼š"+priroleList.size());
 	            for(PriList p2 : priroleList ) {
 	                if(p2.getToId()==21 && viewUser==0) {
 	                    viewUser=21;
@@ -332,7 +332,7 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 	        
 	    }	
 
-        //È¨ÏŞ´«»ØÇ°Ì¨
+        //è¿”å›å‰å°
         JSONArray array = new JSONArray();
         JSONObject jo = new JSONObject();
         jo.put("viewUser",viewUser);
