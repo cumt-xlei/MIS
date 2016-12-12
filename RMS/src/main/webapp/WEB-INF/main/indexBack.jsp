@@ -60,8 +60,6 @@
 					closable : true
 				});
 			}
-			
-
 		}
 	}
 </script>
@@ -72,9 +70,9 @@
 	<!--1.1 egion="north"，指明高度，可以自适应-->
 	<div region="north" class="north" scroll="no">
 		<div class="fl northLeft">
-			<a href="index"> <img class="logoImg fl"
+			<!-- <a href="index"> <img class="logoImg fl"
 				src="images/icon/logo.jpg" alt="XX网" />
-			</a>
+			</a> -->
 			<h3 class="fl mgl">权限管理系统</h3>
 		</div>
 
