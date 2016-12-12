@@ -42,5 +42,7 @@ a:focus{color:#000000 !important;text-decoration:none !important;}
 	.top-area{width:950px;}
 	.top-area .title{margin-bottom:0px;background-color:#E7F0FE;border:1px solid #95B8E7;}
 	.btm-area .title{margin-bottom:0px;background-color:#E7F0FE;border:1px solid #95B8E7;}
+	.top-area2{width:950px;margin:0 auto}
+	.top-area2 .center{width:200px;margin:0 auto;margin-bottom:10px;}
+	.top-area2 .center .form{margin-bottom:10px;}
 /*对话窗口字体格式*/
-.dialog_text{ text-align:center;padding-top:20px }

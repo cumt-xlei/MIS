@@ -36,12 +36,10 @@ public class UserAction extends BaseAction<User> {
 			session.put("adminremind", "��¼ʧ�ܣ������µ�¼");
 			return "alogin";
 		} else {
-			// ��¼�ɹ����ȴ洢��session�У�Ȼ�󷵻ص���Ӧ��ҳ��
-			System.out.println("�ɹ�");
 			session.put("admin", model);
-			session.put("logout", "�˳���¼");
-			session.put("active_admin", "��ǰ�û��� " + model.getLoginName());
-			session.put("adminremind", "���Ѿ���¼��");
+			session.put("logout", "注销");
+			session.put("active_admin", "当前用户" + model.getLoginName());
+			session.put("adminremind", "成功登录");
 			return "admin";
 		}
 	}
@@ -54,7 +52,6 @@ public class UserAction extends BaseAction<User> {
 		return "alogin";
 	}
 
-	// �õ��û��ܿ������������İ�ť
 	public String getUserMenu() throws IOException {
 		returnpd = "ok";
 		JSONArray array = new JSONArray();

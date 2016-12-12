@@ -43,21 +43,15 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 		String bf="";
 		//String username="test3";
 		JSONArray array = new JSONArray();
-		bf = "SELECT * FROM cf_privilege AS cp WHERE  (cp.id IN (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'role' AND cfpl.PrivilegeAccess='permit' AND cfpl.PrivilegeMasterKey IN (SELECT RoleID FROM cf_userrole AS cur LEFT JOIN cf_user AS cu ON cur.UserID = cu.id  WHERE cu.LoginName='"+ user.getLoginName() +"' )) or (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'user' AND cfpl.PrivilegeAccess='permit' AND cfpl.PrivilegeMasterKey IN (SELECT id FROM cf_user WHERE cf_user.LoginName='"+ user.getLoginName() +"'))) AND cp.ParentID=' " + parentId + "'";
-		//bf.replace("USER_NAME", "test3");
-		//bf.replace("PARENTID", "1");
-	
-		//		bf.append("SELECT * FROM cf_privilege AS cp ");
-//		bf.append("WHERE  (cp.id IN (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'role' ");
-//		bf.append("AND cfpl.PrivilegeMasterKey IN (SELECT RoleID ");
-//		bf.append("FROM cf_userrole AS cur LEFT JOIN cf_user AS cu ON cur.UserID = cu.id  WHERE cu.LoginName=");
-//		bf.append("'test3' ");
-//		bf.append(")) or (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'user' ");
-//		bf.append("AND cfpl.PrivilegeMasterKey IN (SELECT id FROM cf_user WHERE cf_user.LoginName=");
-//		bf.append("'test3'");
-//		bf.append("))) AND cp.ParentID=");
-//		bf.append("'1'");
-//		bf.append("\");");
+		bf = "SELECT * FROM cf_privilege AS cp WHERE  "
+                + "(cp.id IN (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'role' "
+                + "AND cfpl.PrivilegeAccess='permit' AND cfpl.PrivilegeMasterKey IN"
+                + " (SELECT RoleID FROM cf_userrole AS cur LEFT JOIN cf_user AS cu ON cur.UserID = cu.id  "
+                + "WHERE cu.LoginName='"+ user.getLoginName() +"' )) or "
+                        + "cp.id IN (SELECT cfpl.toid FROM cf_privilege_list AS cfpl WHERE cfpl.PrivilegeMaster = 'user' "
+                        + "AND cfpl.PrivilegeAccess='permit' AND cfpl.PrivilegeMasterKey "
+                        + "IN (SELECT id FROM cf_user WHERE cf_user.LoginName='"+ user.getLoginName() +"'))) AND cp.ParentID=' " + parentId + "'";
+
 		
 		//hql = "FROM Privilege p WHERE p.parentID = " + parentId;
 		for (Privilege privilege : (List<Privilege>) (getSession().createSQLQuery(bf).addEntity(Privilege.class).list())) {
@@ -70,7 +64,7 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 			jo.put("type", privilege.getType());
 			jo.put("title", privilege.getTitle());
 			jo.put("url", privilege.getUrl());
-			// Ð¡ÓÚµÈÓÚ2¼´´ú±íÓÐ×Ó²Ëµ¥£¬0Îª×î¸ß¼¶£¬1¡¢2Îª´Î¼¶£¬ÆäËûÎªÑ¡Ïî¡£¡£
+			// Ð¡ï¿½Úµï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó²Ëµï¿½ï¿½ï¿½0Îªï¿½ï¿½ß¼ï¿½ï¿½ï¿½1ï¿½ï¿½2Îªï¿½Î¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÑ¡ï¿½î¡£ï¿½ï¿½
 			if (privilege.getParentID() <= 2) {
 				jo.put("state", "closed");
 			} else {

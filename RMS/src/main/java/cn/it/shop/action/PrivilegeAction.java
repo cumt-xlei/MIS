@@ -148,12 +148,15 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 
 			PriList priListModel = new PriList();
 			// 根据Master(表),Key(ID),查询列表
+			Privilege pmodel =privilegeService.get(Integer.parseInt(dataList[i]));
+			System.out.println("Id:"+Integer.parseInt(dataList[i]));
+			System.out.println("parentId:"+pmodel.getParentID());
 			priListModel = priListService.findByMKR(priMaster, priKey, Integer.parseInt(dataList[i]));
 			boolean priPd1 = false;
 			if (priListModel.getId() != null) {
 				priPd1 = true;
 			}
-
+			
 			// 如果存在，则更新
 			if (priPd1 == true) {
 				boolean pripd2 = true;
@@ -180,7 +183,14 @@ public class PrivilegeAction extends BaseAction<Privilege> {
 				priviListModel.setPrivilegeMasterKey(priKey);// �û���ɫID
 				priviListModel.setPrivilegeAccess("permit");
 				priviListModel.setToId(Integer.parseInt(dataList[i]));
-
+				
+				PriList priLiParentModel = new PriList();
+				priLiParentModel.setPrivilegeMaster(priMaster);// 
+				priLiParentModel.setPrivilegeMasterKey(priKey);//
+				priLiParentModel.setPrivilegeAccess("permit");
+				priLiParentModel.setToId(pmodel.getParentID());
+				
+				priListService.save(priLiParentModel);
 				
 				pripd3 = priListService.save(priviListModel);
 				if (pripd3 == false) {

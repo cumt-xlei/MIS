@@ -78,6 +78,11 @@
 
 		<div class="fr northRight">
 			<span>${sessionScope.admin.loginName }欢迎您</span>
+            &nbsp;&nbsp;
+            <span>
+                <a href="user_logout.action">退出登录</a> 
+            </span>
+            
 		</div>
 	</div>
 
