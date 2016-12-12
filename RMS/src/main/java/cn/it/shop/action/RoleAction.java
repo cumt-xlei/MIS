@@ -93,23 +93,24 @@ public class RoleAction  extends BaseAction<Role>{
 		permision.put("update", 0);
 		List<PriList> priuserList = priListService.queryByPriId("user", user.getId());
         for(PriList p : priuserList ) {
-            if(p.getToId() == 28)
+            if(p.getToId() == 28 || permision.getInt("add") == 1)
             	permision.put("add", 1);
             else
             	permision.put("add", 0);
-            if(p.getToId() == 29)
+            if(p.getToId() == 29 || permision.getInt("delete") == 1)
             	permision.put("delete", 1);
             else
             	permision.put("delete", 0);
-            if(p.getToId() == 30)
+            if(p.getToId() == 30 || permision.getInt("update") == 1)
             	permision.put("update", 1);
             else
             	permision.put("update", 0);
         }	
-		List<UserRole> userRoleList  = userRoleService.queryByUserId(1);
+		List<UserRole> userRoleList  = userRoleService.queryByUserId(user.getId());
 		for (UserRole userRole : userRoleList) {
 			List<PriList> priroleList = priListService.queryByPriId("role", userRole.getRoleID());
 	        for(PriList p : priroleList ) {
+	    		
 	            if(p.getToId() == 28 || permision.getInt("add") == 1)
 	            	permision.put("add", 1);
 	            else

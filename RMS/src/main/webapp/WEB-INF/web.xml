@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<welcome-file-list>
-		<welcome-file>indexBack</welcome-file>
+		<welcome-file>alogin</welcome-file>
 	</welcome-file-list>
 	<!-- 解决延迟加载可能造成的访问异常 -->
 	<filter>

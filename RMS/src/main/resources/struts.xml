@@ -118,7 +118,7 @@
 		</action>
 		
 		<action name="">
-			<result>WEB-INF/indexBack.jsp</result>
+			<result>WEB-INF/alogin.jsp</result>
 		</action>
 		<action name="*">
 			<result>WEB-INF/{1}.jsp</result>

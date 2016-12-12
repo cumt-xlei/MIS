@@ -41,7 +41,7 @@
 			      dataType:'json', 
 			      method:'POST',
 				  success: function(data){
-					  if(data.add = 0){
+					  if(data.add == 0){
 					        $('div.datagrid-toolbar a').eq(0).hide();
 					        $('div.datagrid-toolbar div').eq(0).hide();
 					  }

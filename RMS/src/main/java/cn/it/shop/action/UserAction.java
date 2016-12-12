@@ -82,20 +82,20 @@ public class UserAction extends BaseAction<User> {
 		permision.put("update", 0);
 		List<PriList> priuserList = priListService.queryByPriId("user", user.getId());
         for(PriList p : priuserList ) {
-            if(p.getToId() == 25)
+            if(p.getToId() == 25 || permision.getInt("add") == 1)
             	permision.put("add", 1);
             else
             	permision.put("add", 0);
-            if(p.getToId() == 26)
+            if(p.getToId() == 27 || permision.getInt("delete") == 1)
             	permision.put("delete", 1);
             else
             	permision.put("delete", 0);
-            if(p.getToId() == 27)
+            if(p.getToId() == 26 || permision.getInt("update") == 1)
             	permision.put("update", 1);
             else
             	permision.put("update", 0);
         }	
-		List<UserRole> userRoleList  = userRoleService.queryByUserId(1);
+		List<UserRole> userRoleList  = userRoleService.queryByUserId(user.getId());
 		for (UserRole userRole : userRoleList) {
 			List<PriList> priroleList = priListService.queryByPriId("role", userRole.getRoleID());
 	        for(PriList p : priroleList ) {
@@ -103,14 +103,16 @@ public class UserAction extends BaseAction<User> {
 	            	permision.put("add", 1);
 	            else
 	            	permision.put("add", 0);
-	            if(p.getToId() == 26 || permision.getInt("delete") == 1)
+	            if(p.getToId() == 27 || permision.getInt("delete") == 1)
 	            	permision.put("delete", 1);
 	            else
 	            	permision.put("delete", 0);
-	            if(p.getToId() == 27 || permision.getInt("update") == 1)
+	            if(p.getToId() == 26 || permision.getInt("update") == 1)
 	            	permision.put("update", 1);
 	            else
 	            	permision.put("update", 0);
+	            System.out.println("65555555555555555555555");
+	            System.out.println(permision.getInt("add"));
 	        }
 		}
 		out().print(permision.toString());
@@ -196,7 +198,6 @@ public class UserAction extends BaseAction<User> {
 
 	public String saveUser() {
 		returnpd = "ok";
-		getModel().setLoginPassword("123");
 		userService.save(getModel());
 		return returnpd;
 	}

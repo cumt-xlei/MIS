@@ -12,6 +12,7 @@
     <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="js/esui.js"></script>
 	<script type="text/javascript">
+	var da;
 	$(function(){
 	    $('#dg').datagrid({
 	    url:'pri_user_queryAllUser.action',
@@ -42,7 +43,8 @@
 			      dataType:'json', 
 			      method:'POST',
 				  success: function(data){
-					  if(data.add = 0){
+					  da = data;
+					  if(data.add == 0){
 					        $('div.datagrid-toolbar a').eq(0).hide();
 					        $('div.datagrid-toolbar div').eq(0).hide();
 					  }
@@ -164,6 +166,17 @@
 		var row = $('#dg').datagrid('getSelected');
 	    $('#dg1').datagrid({
 		    url:'u_queryUserRole.action',
+		    onLoadSuccess:function(){
+				var data = da;
+				  if(data.add == 0){
+				        $('div.datagrid-toolbar a').eq(3).hide();
+				        $('div.datagrid-toolbar div').eq(3).hide();
+				  }
+				  if(data.delete == 0){
+				        $('div.datagrid-toolbar a').eq(4).hide();
+				        $('div.datagrid-toolbar div').eq(4).hide();
+				  }
+		    },
 		    queryParams:{"usId":row.id},
 		    singleSelect:true,
 		    columns:[[
@@ -258,6 +271,10 @@
 			<tr>
 				<td>名 称：</td>
 				<td><input name="Title" type="text"></input></td>
+			</tr>
+			<tr>
+				<td>登陆密码：</td>
+				<td><input name="loginPassword" type="text"></input></td>
 			</tr>
 			<tr>
 				<td></td>

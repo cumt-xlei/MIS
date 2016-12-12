@@ -14,8 +14,10 @@ public class UserRoleDaoImpl extends BaseDaoImpl<UserRole> implements UserRoleDa
     @Override
     public List<UserRole> queryByUserId(Integer userId) {
         // TODO Auto-generated method stub
-        String hql="select ur from UserRole ur";
-        return (List<UserRole>)getSession().createQuery(hql).getResultList();
+        String hql="select ur from UserRole ur where ur.userID=:userID";
+        return (List<UserRole>)getSession().createQuery(hql)
+        		.setInteger("userID", userId)
+        		.getResultList();
     }
 
 }
